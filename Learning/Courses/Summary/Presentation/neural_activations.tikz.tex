@@ -1,0 +1,36 @@
+\begin{columns}[t]
+    \column{.5\textwidth}
+    \centering
+    \begin{figure}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=\textwidth,
+                height=.8\textwidth,
+                grid=major,
+                grid style={dashed, gray!30},
+                xtick={-5, 0, 5},
+                xticklabels={$-\infty$, $0$, $+\infty$}
+                ]
+                \addplot[mark=none]{tanh(x)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\tanh(x)$}
+    \end{figure}
+    \centering
+    \column{.5\textwidth}
+    \begin{figure}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=\textwidth,
+                height=.8\textwidth,
+                grid=major,
+                grid style={dashed, gray!30},
+                xtick={-5, 0, 5},
+                xticklabels={\empty, $0$, \empty}
+                ]
+                \addplot[mark=none]{max(x, 0)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{ReLU function}
+    \end{figure}
+\end{columns}

@@ -1,0 +1,54 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{fontspec}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{bm}
+
+\usetikzlibrary{positioning, shapes, calc, arrows}
+
+\usetheme{Montpellier}
+\usecolortheme{crane}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{caption}[numbered]
+
+\title{Convolutional Neural Networks Summary}
+\date{\today}
+\author[Joan]{Joan Marcè i Igual}
+\institute[UHN]{University Health Network}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+\begin{frame}{Table of Contents}
+	\tableofcontents
+\end{frame}
+
+\section{Introduction to NN}
+\begin{frame}{\secname}
+	Neural Networks are a type of supervised learning. So we have a set of labeled data:
+	$$\{(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), ..., (x^{(m)}, y^{(m)})\}$$
+	
+	We want to use it to predict new data $\hat{y} = f(x)$
+	
+	\textbf{Problem}: search the proper $f(x)$
+\end{frame}
+\begin{frame}
+	\input{neural_network.tikz.tex}
+\end{frame}
+\begin{frame}
+    \begin{itemize}
+        \item $l$: Current layer
+        \item $w_{i, j}^{[l]}$: Weight from neuron $i$ to $j$ between layers $l - 1$ and $l$
+        \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
+        \item $\bm{a}^{[l]} = g(\bm{w}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
+        \item $g(x)$: Activation function
+    \end{itemize}
+    \input{neural_activations.tikz.tex}
+\end{frame}
+
+\end{document}
