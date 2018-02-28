@@ -1,28 +1,26 @@
-\begin{columns}[t]
-    \column{.5\textwidth}
-    \centering
+\begin{onlyenv}<1>
     \begin{figure}
-        \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=.8\textwidth,
-                grid=major,
-                grid style={dashed, gray!30},
-                xtick={-5, 0, 5},
-                xticklabels={$-\infty$, $0$, $+\infty$}
-                ]
-                \addplot[mark=none]{tanh(x)};
-            \end{axis}
+        \begin{tikzpicture}<1>
+        \begin{axis}[
+        width=\textwidth,
+        height=\textwidth,
+        grid=major,
+        grid style={dashed, gray!30},
+        xtick={-5, 0, 5},
+        xticklabels={$-\infty$, $0$, $+\infty$}
+        ]
+        \addplot[mark=none]{tanh(x)};
+        \end{axis}
         \end{tikzpicture}
         \caption{$\tanh(x)$}
     \end{figure}
-    \centering
-    \column{.5\textwidth}
+\end{onlyenv}
+\begin{onlyenv}<2>
     \begin{figure}
         \begin{tikzpicture}
             \begin{axis}[
                 width=\textwidth,
-                height=.8\textwidth,
+                height=\textwidth,
                 grid=major,
                 grid style={dashed, gray!30},
                 xtick={-5, 0, 5},
@@ -33,4 +31,4 @@
         \end{tikzpicture}
         \caption{ReLU function}
     \end{figure}
-\end{columns}
+\end{onlyenv}

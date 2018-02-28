@@ -28,7 +28,7 @@
 	\tableofcontents
 \end{frame}
 
-\section{Introduction to NN}
+\section{Introduction}
 \begin{frame}{\secname}
 	Neural Networks are a type of supervised learning. So we have a set of labeled data:
 	$$\{(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), ..., (x^{(m)}, y^{(m)})\}$$
@@ -37,18 +37,38 @@
 	
 	\textbf{Problem}: search the proper $f(x)$
 \end{frame}
-\begin{frame}
+\section{Neural Networks}
+\begin{frame}{\secname}
 	\input{neural_network.tikz.tex}
 \end{frame}
-\begin{frame}
-    \begin{itemize}
-        \item $l$: Current layer
-        \item $w_{i, j}^{[l]}$: Weight from neuron $i$ to $j$ between layers $l - 1$ and $l$
-        \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
-        \item $\bm{a}^{[l]} = g(\bm{w}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
-        \item $g(x)$: Activation function
-    \end{itemize}
-    \input{neural_activations.tikz.tex}
+\subsection{Parameters}
+\begin{frame}{\subsecname}
+    \begin{columns}[t]
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item $l$: Current layer
+            \item $w_{i, j}^{[l]}$: Weight from neuron $j$ to $i$ at layer $l$
+            \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
+            \item $a_{j}^{[l]} = g\left( \left( \sum_{j}^{n[l-1]}  w_{i, j}^{[l]} \cdot a_{j} \right) + b_i^{[l]} \right)$
+            \item $\bm{a}^{[l]} = g(\bm{w}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
+            \item $g(x)$: Activation function
+        \end{itemize}
+        \column{.5\textwidth}
+        \centering
+        \input{neural_activations.tikz.tex}
+    \end{columns}
 \end{frame}
+\begin{frame}
+    Cost function:
+    $$
+    J(\bm{w}, \bm{b}) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(\hat{y}^{(i)}, y^{(i)})
+    $$
+    
+    
+    $$
+    \mathcal{L}(\hat{y}, y) = ||\hat{y} - y||^2_2
+    $$
+\end{frame}
+
 
 \end{document}
