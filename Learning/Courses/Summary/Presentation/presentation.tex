@@ -8,6 +8,7 @@
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{bm}
 
+\pgfplotsset{compat=1.15}
 \usetikzlibrary{positioning, shapes, calc, arrows}
 
 \usetheme{Montpellier}
@@ -50,7 +51,7 @@
             \item $w_{i, j}^{[l]}$: Weight from neuron $j$ to $i$ at layer $l$
             \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
             \item $a_{j}^{[l]} = g\left( \left( \sum_{j}^{n[l-1]}  w_{i, j}^{[l]} \cdot a_{j} \right) + b_i^{[l]} \right)$
-            \item $\bm{a}^{[l]} = g(\bm{w}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
+            \item $\bm{a}^{[l]} = g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
             \item $g(x)$: Activation function
         \end{itemize}
         \column{.5\textwidth}
@@ -59,15 +60,27 @@
     \end{columns}
 \end{frame}
 \begin{frame}
-    Cost function:
-    $$
-    J(\bm{w}, \bm{b}) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(\hat{y}^{(i)}, y^{(i)})
-    $$
-    
-    
-    $$
-    \mathcal{L}(\hat{y}, y) = ||\hat{y} - y||^2_2
-    $$
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{block}{Cost function}
+            $$
+            J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y}) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(\hat{\bm{y}}^{(i)}, \bm{y}^{(i)})
+            $$
+        \end{block}
+        \begin{block}{Loss function}
+            $$
+            \mathcal{L}(\hat{\bm{y}}, \bm{y}) = ||\hat{\bm{y}} - \bm{y}||^2
+            $$
+        \end{block}
+        \column{.4\textwidth}
+        We want to minimize $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$ to get better results for $\hat{y}$.
+        \begin{block}{Parameters update}
+            \begin{align*}
+                \bm{W} &:= \bm{W} - \alpha*\frac{\partial J}{\partial \bm{W}} \\
+                \bm{b} &:= \bm{b} - \alpha*\frac{\partial J}{\partial \bm{b}}
+            \end{align*}
+        \end{block}
+    \end{columns}
 \end{frame}
 
 
