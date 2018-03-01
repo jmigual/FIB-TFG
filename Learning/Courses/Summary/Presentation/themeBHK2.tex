@@ -1,0 +1,99 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  This Beamer template was created by Cameron Bracken.
+%%  Anyone can freely use or modify it for any purpose
+%%  without attribution.
+%%
+%%  Last Modified: Oct 2013 by Catharina Olsen
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[xcolor=x11names,compress]{beamer}
+
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme{default}
+\usefonttheme{serif}
+\usepackage{palatino}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+
+\setbeamerfont{frametitle}{}
+
+\definecolor{BHKpresentationDark}{RGB}{114,133,176}
+\definecolor{BHKpresentationDarkGrey}{RGB}{103,116,128}
+\definecolor{BHKblue}{RGB}{51,105,153}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamercolor*{frametitle}{fg=BHKpresentationDark} 
+\setbeamercolor*{lower separation line head}{bg=BHKblue} 
+\setbeamercolor*{normal text}{fg=BHKpresentationDarkGrey,bg=white} 
+\setbeamercolor*{alerted text}{fg=BHKblue} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{item}{fg=BHKpresentationDark,bg=gray} 
+\setbeamercolor{enumerate item}{fg=BHKpresentationDark}
+\setbeamercolor*{structure}{fg=black} 
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+\setbeamercovered{transparent}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth]{footlinecolor}
+    \includegraphics[width=\textwidth]{bar_footline.pdf}
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{frametitle}[default][center]
+
+
+%%%%start document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+%%%% title slide %%%%%
+{\setbeamertemplate{footline}{} 
+\begin{frame}
+
+\vspace{-1.5cm}
+\hfill\makebox[0.2\paperwidth]{\includegraphics[width=0.4\textwidth]{logo_wtext}}
+\begin{flushleft}
+\hspace{-1cm}\includegraphics[width=0.8\textwidth, height=0.4em]{title_line.pdf}\hfill
+
+\title{
+\begin{flushleft}{\huge \color{BHKpresentationDark} add your title} 
+\end{flushleft}}
+
+% \date{\today}
+\date{$~~$}
+\author{\begin{flushleft}\vspace{-1cm} add your name\end{flushleft}}
+\titlepage
+\end{flushleft}
+\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\scshape Introduction}
+\subsection{Intro}
+\begin{frame}{Myframe}
+\begin{itemize}
+	\item this is an item
+\end{itemize}
+\end{frame}
+
+
+\end{document}
