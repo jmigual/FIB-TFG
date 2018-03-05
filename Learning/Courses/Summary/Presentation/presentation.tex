@@ -1,5 +1,5 @@
  % !TEX program = lualatex
-\documentclass[xcolor={x11names, table},compress]{beamer}
+\documentclass[xcolor={x11names, table}, compress]{beamer}
 
 \usepackage{xcolor}
 \usepackage{fontspec}
@@ -16,7 +16,6 @@
 
 %% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \useinnertheme{default}
-\usefonttheme{serif}
 \usepackage{palatino}
 \usepackage[T1]{fontenc}
 \usepackage[default]{lato}
@@ -51,6 +50,7 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{subsection in toc}[subsections numbered]
+
 
 \newcommand{\insertsec}{\thesection.~\insertsection}
 \newcommand{\insertsubsec}{\thesection.\thesubsection~\insertsubsection}
@@ -105,9 +105,9 @@
         \column{.6\textwidth}
         \begin{itemize}
             \item $l$: Current layer
-            \item $w_{i, j}^{[l]}$: Weight from neuron $j$ to $i$ at layer $l$
-            \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
-            \item $n^{[l]}$: Neurons for layer $l$
+            \item $w_{i, j}^{[l]}$: Weight from unit $j$ to $i$ at layer $l$
+            \item $b_{i}^{[l]}$: Bias for unit $i$ at layer $l$
+            \item $n^{[l]}$: Number of units in layer $l$
             \item $\bm{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}}$: Weight matrix
             \item $\bm{b}^{[l]} \in \mathbb{R}^{n^{[l]}}$: Bias
             \item $
