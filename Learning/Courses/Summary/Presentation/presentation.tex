@@ -55,7 +55,9 @@
 \newcommand{\insertsec}{\thesection.~\insertsection}
 \newcommand{\insertsubsec}{\thesection.\thesubsection~\insertsubsection}
 
-%%%% Start of document %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start of document %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 %%%% title slide %%%%%
@@ -68,10 +70,11 @@
         \hspace{-1cm}\includegraphics[width=0.8\textwidth, height=0.4em]{title_line.pdf}\hfill
         
         \title{
-            \begin{flushleft}{\huge \color{BHKpresentationDark} Convolutional Neural Networks Summary} 
+            \begin{flushleft}{\huge \color{BHKpresentationDark} 
+            Convolutional Neural Networks Summary
+        } 
         \end{flushleft}}
         
-        % \date{\today}
         \date{$~~$}
         \author[Joan]{\begin{flushleft}\vspace{-1cm} Joan Marcè i Igual\end{flushleft}}
         \titlepage
@@ -125,7 +128,8 @@
         \column{.6\textwidth}
         \begin{block}{Cost function}
             $$
-            J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y}) = \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(\hat{\bm{y}}^{(i)}, \bm{y}^{(i)})
+            J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y}) = 
+            \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(\hat{\bm{y}}^{(i)}, \bm{y}^{(i)})
             $$
         \end{block}
         \begin{block}{Loss function}
@@ -140,14 +144,16 @@
             \end{align*}
         \end{block}
         \column{.4\textwidth}
-        To achieve better results at predicting $\hat{\bm{y}}$ we have to minimize the cost function $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$.
+        To achieve better results at predicting $\hat{\bm{y}}$ 
+        we have to minimize the cost function $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$.
     \end{columns}
 \end{frame}
 
 \section{Convolutional Neural Networks}
 \begin{frame}{\insertsec}
     This type of networks are a bit different because instead of computing the activations by
-    multiplying the previous ones with the weight matrix it convolutes the previous activations (denoted by $*$):
+    multiplying the previous ones with the weight matrix it convolutes the previous activations 
+    (denoted by $*$):
     
     \begin{align*}
         \bm{a}^{[l]} &= g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]}) \\
@@ -158,6 +164,11 @@
 
 \subsection{Convolution Operation}
 \begin{frame}{\insertsubsec}
+    \begin{alertblock}{Important}
+        What we call \textit{Convolution} in ML it's actually the \textit{Cross-Correlation} operation
+        in signal analysis.
+    \end{alertblock}
+    
     \begin{align*}
         \left(
         \begin{array}{cccccc}
@@ -187,6 +198,11 @@
         \end{array}
         \right)
     \end{align*}
+    $$
+        10 \cdot 1 + 10 \cdot 1 + 10 \cdot 1 +
+        10 \cdot 0 + 10 \cdot 0 + 10 \cdot 0 +
+        0 \cdot -1 + 0 \cdot -1 + 0 \cdot -1 = 30
+    $$
 
 \end{frame}
 
