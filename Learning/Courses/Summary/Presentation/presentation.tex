@@ -1,5 +1,7 @@
-\documentclass[xcolor=x11names,compress]{beamer}
+ % !TEX program = lualatex
+\documentclass[xcolor={x11names, table},compress]{beamer}
 
+\usepackage{xcolor}
 \usepackage{fontspec}
 \usepackage{pgfplots}
 \usepackage{tikz}
@@ -7,11 +9,10 @@
 \usepackage{bm}
 \usepackage{eso-pic}
 \usepackage{graphicx}
-\usepackage{color}
-\usepackage{xcolor}
 
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{positioning, shapes, calc, arrows}
+\hypersetup{pdfstartview={Fit}}
 
 %% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \useinnertheme{default}
@@ -51,6 +52,11 @@
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{subsection in toc}[subsections numbered]
 
+\newcommand{\insertsec}{\thesection.~\insertsection}
+\newcommand{\insertsubsec}{\thesection.\thesubsection~\insertsubsection}
+
+%%%% Start of document %%%%%%%%%%
+
 \begin{document}
 %%%% title slide %%%%%
 {\setbeamertemplate{footline}{} 
@@ -78,7 +84,7 @@
 \end{frame}
 
 \section{Introduction}
-\begin{frame}{\secname}
+\begin{frame}{\insertsec}
 	Neural Networks are a type of supervised learning. So we have a set of labeled data:
 	$$\{(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), ..., (x^{(m)}, y^{(m)})\}$$
 	
@@ -87,19 +93,26 @@
 	\textbf{Problem}: search the proper $f(x)$
 \end{frame}
 \section{Neural Networks}
-\begin{frame}{\secname}
+\begin{frame}{\insertsec}
 	\input{neural_network.tikz.tex}
 \end{frame}
 \subsection{Parameters}
-\begin{frame}{\subsecname}
+\begin{frame}{\insertsubsec}
     \begin{columns}[t]
         \column{.6\textwidth}
         \begin{itemize}
             \item $l$: Current layer
             \item $w_{i, j}^{[l]}$: Weight from neuron $j$ to $i$ at layer $l$
             \item $b_{i}^{[l]}$: Bias for neuron $i$ at layer $l$
-            \item $a_{j}^{[l]} = g\left( \left( \sum_{j}^{n[l-1]}  w_{i, j}^{[l]} \cdot a_{j} \right) + b_i^{[l]} \right)$
-            \item $\bm{a}^{[l]} = g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]})$: Activations for layer $l$
+            \item $n^{[l]}$: Neurons for layer $l$
+            \item $\bm{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}}$: Weight matrix
+            \item $\bm{b}^{[l]} \in \mathbb{R}^{n^{[l]}}$: Bias
+            \item $
+            \begin{aligned}[t]
+            \bm{a}^{[l]} &= g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]}) \\
+            \bm{a}^{[l]} &\in \mathbb{R}^{n^{[l]}}
+            \end{aligned}
+            $ Activations for layer $l$
             \item $g(x)$: Activation function
         \end{itemize}
         \column{.5\textwidth}
@@ -120,15 +133,61 @@
             \mathcal{L}(\hat{\bm{y}}, \bm{y}) = ||\hat{\bm{y}} - \bm{y}||^2
             $$
         \end{block}
-        \column{.4\textwidth}
-        We want to minimize $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$ to get better results for $\hat{y}$.
         \begin{block}{Parameters update}
             \begin{align*}
-                \bm{W} &:= \bm{W} - \alpha*\frac{\partial J}{\partial \bm{W}} \\
-                \bm{b} &:= \bm{b} - \alpha*\frac{\partial J}{\partial \bm{b}}
+            \bm{W} &:= \bm{W} - \alpha*\frac{\partial J}{\partial \bm{W}} \\
+            \bm{b} &:= \bm{b} - \alpha*\frac{\partial J}{\partial \bm{b}}
             \end{align*}
         \end{block}
+        \column{.4\textwidth}
+        To achieve better results at predicting $\hat{\bm{y}}$ we have to minimize the cost function $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$.
     \end{columns}
+\end{frame}
+
+\section{Convolutional Neural Networks}
+\begin{frame}{\insertsec}
+    This type of networks are a bit different because instead of computing the activations by
+    multiplying the previous ones with the weight matrix it convolutes the previous activations (denoted by $*$):
+    
+    \begin{align*}
+        \bm{a}^{[l]} &= g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]}) \\
+        \text{Becomes:} \\
+        \bm{a}^{[l]} &= g(\bm{W}^{[l]} * \bm{a}^{[l-1]} + \bm{b}^{[l]})
+    \end{align*}
+\end{frame}
+
+\subsection{Convolution Operation}
+\begin{frame}{\insertsubsec}
+    \begin{align*}
+        \left(
+        \begin{array}{cccccc}
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+        \end{array}
+        \right)
+        *
+        \left(
+        \begin{array}{ccc}
+            1 & 0 & -1 \\
+            1 & 0 & -1 \\ 
+            1 & 0 & -1 \\
+        \end{array}
+        \right)
+        = 
+        \left(
+        \begin{array}{cccc}
+            0 & \cellcolor{green!20}30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+        \end{array}
+        \right)
+    \end{align*}
+
 \end{frame}
 
 
