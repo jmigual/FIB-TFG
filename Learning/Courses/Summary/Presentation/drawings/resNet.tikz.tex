@@ -1,0 +1,20 @@
+\def\layersep{1.5cm}
+
+\begin{figure}[H]
+    \begin{tikzpicture}[node distance=\layersep]
+        \tikzstyle{block}=[rectangle, fill=green!30, inner sep = 5pt]
+        \node[block] (R0) at (0, 0) {Block 0};
+        \node[left = .75 of R0] (A0) {};
+        \node[above = .75 of R0] (A1) {};
+        \node[block, left = .75 of A0, text width = 2cm] (I0) {Previous blocks};
+        \node[block, right = of R0] (R1) {Block 1};
+        \node[right = 1 of R1] (A2) {};
+
+        % Arrows
+        \draw [-latex] (I0) -- (R0) node[above, near start] {$a^{[l]}$};
+        \draw [-latex] (R0) -- (R1) node[above, midway] {$a^{[l + 1]}$};
+        \draw (A0.center) |- (A1.center); 
+        \draw [-latex] (A1.center) -| (R1.north);
+        \draw [-latex] (R1) -- (A2) node[above, midway] {$a^{[l + 2]}$};
+    \end{tikzpicture}
+\end{figure}
