@@ -16,9 +16,8 @@
 
 %% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \useinnertheme{default}
-\usepackage{palatino}
 \usepackage[T1]{fontenc}
-\usepackage[default]{lato}
+\usefonttheme{professionalfonts}
 
 \setbeamerfont{frametitle}{}
 
@@ -63,23 +62,22 @@
 %%%% title slide %%%%%
 {\setbeamertemplate{footline}{} 
     \begin{frame}
-    
-    \vspace{-1.5cm}
-    \hfill\makebox[0.2\paperwidth]{\includegraphics[width=0.4\textwidth]{logo_wtext}}
-    \begin{flushleft}
-        \hspace{-1cm}\includegraphics[width=0.8\textwidth, height=0.4em]{title_line.pdf}\hfill
-        
-        \title{
-            \begin{flushleft}{\huge \color{BHKpresentationDark} 
-            Convolutional Neural Networks Summary
-        } 
-        \end{flushleft}}
-        
-        \date{$~~$}
-        \author[Joan]{\begin{flushleft}\vspace{-1cm} Joan Marcè i Igual\end{flushleft}}
-        \titlepage
-    \end{flushleft}
-\end{frame}
+        \vspace{-1.5cm}
+        \hfill\makebox[0.2\paperwidth]{\includegraphics[width=0.4\textwidth]{logo_wtext}}
+        \begin{flushleft}
+            \hspace{-1cm}\includegraphics[width=0.8\textwidth, height=0.4em]{title_line.pdf}\hfill
+            
+            \title{
+                \begin{flushleft}{\huge \color{BHKpresentationDark} 
+                Convolutional Neural Networks Summary
+            } 
+            \end{flushleft}}
+            
+            \date{$~~$}
+            \author[Joan]{\begin{flushleft}\vspace{-1cm} Joan Marcè i Igual\end{flushleft}}
+            \titlepage
+        \end{flushleft}
+    \end{frame}
 }
 
 \begin{frame}{Table of Contents}
@@ -95,10 +93,12 @@
 	
 	\textbf{Problem}: search the proper $f(x)$
 \end{frame}
+
 \section{Neural Networks}
 \begin{frame}{\insertsec}
-	\input{neural_network.tikz.tex}
+	\input{drawings/neural_network.tikz.tex}
 \end{frame}
+
 \subsection{Parameters}
 \begin{frame}{\insertsubsec}
     \begin{columns}[t]
@@ -120,7 +120,7 @@
         \end{itemize}
         \column{.5\textwidth}
         \centering
-        \input{neural_activations.tikz.tex}
+        \input{drawings/neural_activations.tikz.tex}
     \end{columns}
 \end{frame}
 \begin{frame}
@@ -139,8 +139,8 @@
         \end{block}
         \begin{block}{Parameters update}
             \begin{align*}
-            \bm{W} &:= \bm{W} - \alpha*\frac{\partial J}{\partial \bm{W}} \\
-            \bm{b} &:= \bm{b} - \alpha*\frac{\partial J}{\partial \bm{b}}
+            \bm{W} &:= \bm{W} - \alpha \cdot \frac{\partial J}{\partial \bm{W}} \\
+            \bm{b} &:= \bm{b} - \alpha \cdot \frac{\partial J}{\partial \bm{b}}
             \end{align*}
         \end{block}
         \column{.4\textwidth}
@@ -203,8 +203,30 @@
         10 \cdot 0 + 10 \cdot 0 + 10 \cdot 0 +
         0 \cdot -1 + 0 \cdot -1 + 0 \cdot -1 = 30
     $$
-
 \end{frame}
 
+\subsection{Pooling operation}
+\begin{frame}{\insertsubsec}
+    \begin{block}{Max-Pooling}
+        
+    \end{block}
+
+    \begin{block}{Avg-Pooling}
+        
+    \end{block}
+\end{frame}
+
+\subsection{Residual Networks}
+\begin{frame}{\insertsubsec}
+    They are a type of network that can learn the identity function thus allowing us to do
+    very deep networks.
+    \input{drawings/resNet.tikz.tex}
+
+    \begin{align*}
+        \bm{a}^{[l+2]} = 
+        g(\underbrace{W^{[l+2]} \cdot \bm{a}^{[l + 1]} + \bm{b}^{[l + 2]}}
+        _{0 \text{ if using regularization}} + \bm{a}^{[l]})
+    \end{align*}
+\end{frame}
 
 \end{document}
