@@ -1,0 +1,114 @@
+\section{Convolutional Neural Networks}
+\begin{frame}{\insertsec}
+    This type of networks are a bit different because instead of computing the activations by
+    multiplying the previous ones with the weight matrix it convolutes the previous activations 
+    (denoted by $*$):
+    
+    \begin{align*}
+        \bm{a}^{[l]} &= g(\bm{W}^{[l]}\cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]}) \\
+        \text{Becomes:} \\
+        \bm{a}^{[l]} &= g(\bm{W}^{[l]} * \bm{a}^{[l-1]} + \bm{b}^{[l]})
+    \end{align*}
+\end{frame}
+
+\subsection{Convolution Operation}
+\begin{frame}{\insertsubsec}
+    \begin{alertblock}{Important}
+        What we call \textit{Convolution} in ML it's actually the \textit{Cross-Correlation} operation
+        in signal analysis.
+    \end{alertblock}
+    
+    \begin{align*}
+        \left(
+        \begin{array}{cccccc}
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & \cellcolor{green!20}10 & \cellcolor{green!20}10 & \cellcolor{green!20}0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+            10 & 10 & 10 & 0 & 0 & 0 \\
+        \end{array}
+        \right)
+        *
+        \left(
+        \begin{array}{ccc}
+            1 & 0 & -1 \\
+            1 & 0 & -1 \\ 
+            1 & 0 & -1 \\
+        \end{array}
+        \right)
+        = 
+        \left(
+        \begin{array}{cccc}
+            0 & \cellcolor{green!20}30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+            0 & 30 & 30 & 0 \\
+        \end{array}
+        \right)
+    \end{align*}
+    $$
+        10 \cdot 1 + 10 \cdot 1 + 10 \cdot 1 +
+        10 \cdot 0 + 10 \cdot 0 + 10 \cdot 0 +
+        0 \cdot -1 + 0 \cdot -1 + 0 \cdot -1 = 30
+    $$
+\end{frame}
+
+\subsection{Pooling operation}
+\begin{frame}{\insertsubsec}
+    We use pooling to reduce the volume width and height size
+    \begin{block}{Max-Pooling}
+        \begin{align*}
+            \operatorname{max\,pool}
+            \left(
+            \begin{array}{cccc}
+                \cellcolor{green!20} 0 & \cellcolor{green!20} 7 & 12 &  9 \\
+                \cellcolor{green!20}15 & \cellcolor{green!20} 3 & 22 &  6 \\
+                 2 & 12 &  8 &  3 \\
+                 6 &  2 & 18 &  3 \\
+            \end{array}
+            \right)
+            =
+            \left(
+            \begin{array}{cc}
+                \cellcolor{green!20}15 & 22 \\
+                12 & 18
+            \end{array}
+            \right)
+        \end{align*}
+    \end{block}
+
+    \begin{block}{Avg-Pooling}
+        \begin{align*}
+            \operatorname{avg\,pool}
+            \left(
+            \begin{array}{cccc}
+                \cellcolor{green!20} 0 & \cellcolor{green!20} 7 & 12 &  9 \\
+                \cellcolor{green!20}15 & \cellcolor{green!20} 3 & 22 &  6 \\
+                 2 & 12 &  8 &  3 \\
+                 6 &  2 & 18 &  3 \\
+            \end{array}
+            \right)
+            =
+            \left(
+            \begin{array}{cc}
+                \cellcolor{green!20}6.25 & 12.25 \\
+                5.50 & 8.00
+            \end{array}
+            \right)
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\subsection{Residual Networks}
+\begin{frame}{\insertsubsec}
+    They are a type of network that can learn the identity function thus allowing us to do
+    very deep networks.
+    \input{drawings/resNet.tikz.tex}
+
+    \begin{align*}
+        \bm{a}^{[l+2]} = 
+        g(\underbrace{W^{[l+2]} \cdot \bm{a}^{[l + 1]} + \bm{b}^{[l + 2]}}
+        _{0 \text{ if using regularization}} + \bm{a}^{[l]})
+    \end{align*}
+\end{frame}
