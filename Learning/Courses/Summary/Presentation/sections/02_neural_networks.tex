@@ -52,3 +52,47 @@
         we have to minimize the cost function $J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y})$.
     \end{columns}
 \end{frame}
+
+\subsection{Regularization}
+\begin{frame}{\insertsubsec}
+    To prevent overfitting add the weights to the cost function so we also try to minimize
+    big weights.
+
+    \begin{align*}
+        J(\bm{W}, \bm{b}, \hat{\bm{y}}, \bm{y}) &= 
+        \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{\bm{y}}, \bm{y}) + 
+        \frac{\lambda}{2m} \sum_{l=1}^L ||W^{[l]}||^2_F \\ 
+        \underbrace{||W^{[l]}||^2_F}_{\text{Frobenius Norm}} &= \sum_i \sum_j (w_{ij}^{[l]}) \\
+        \lambda &\rightarrow \text{Regularization parameter}
+    \end{align*}
+
+    It cancels some effects from some units creating a simple model.
+\end{frame}
+\begin{frame}[fragile]{Dropout Regularization}
+    Go through each layer of the network and set some probability of elimination for each unit. 
+    This is done for \textbf{each sample}.
+
+    \begin{figure}
+        \begin{verbatim}
+drop = np.random.randn(*a_prev.shape) < keep_prob
+a_next = np.multiply(a_prev, drop)
+a_next /= keep_prob
+        \end{verbatim}
+        \caption{Example using \texttt{numpy}}
+    \end{figure}
+
+    \begin{alertblock}{Predictions during test time}
+        No dropout is used during test time since it wouldn't make sense.
+    \end{alertblock}
+\end{frame}
+
+\subsection{Training}
+\begin{frame}{\insertsubsec}
+    Training a NN is a minimization problem. In this case we always use gradient descent
+    to find the minimum.
+\end{frame}
+
+\subsection{Hyper-parameters}
+\begin{frame}{\insertsubsec}
+    
+\end{frame}
