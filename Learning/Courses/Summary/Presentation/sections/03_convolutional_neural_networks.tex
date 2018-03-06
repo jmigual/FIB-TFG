@@ -11,8 +11,7 @@
     \end{align*}
 \end{frame}
 
-\subsection{Convolution Operation}
-\begin{frame}{\insertsubsec}
+\begin{frame}{Convolution Operation}
     \begin{alertblock}{Important}
         What we call \textit{Convolution} in ML it's actually the \textit{Cross-Correlation} operation
         in signal analysis.
@@ -54,14 +53,13 @@
     $$
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Volume}
     With convolutions the Neural Network parameters ($w$) are the convolution matrix elements
     and so we do multiple convolutions to filter different features.
     \input{drawings/convolutional_block.tikz.tex}
 \end{frame}
 
-\subsection{Pooling operation}
-\begin{frame}{\insertsubsec}
+\begin{frame}{Pooling operation}
     We use pooling to reduce the volume width and height size
     \begin{block}{Max-Pooling}
         \begin{align*}
@@ -127,4 +125,34 @@
     \end{figure}
 \end{frame}
 
+\subsection{Methods for improving CNN}
+\begin{frame}{\insertsubsec}
+    \begin{onlyenv}<1>
+        \begin{block}{Transfer Learning}
+            With transfer learning it's possible to download someone elses pre-trained weights, 
+            remove the softmax (output) layer and add your own and then only train this last layer.
+            \begin{itemize}
+                \item \textbf{Fine tuning}: continue to train the weights then adding your own data
+                \item The exit values of the last layer can also be pre-computed and stored to disk
+                to speed-up learning
+            \end{itemize}
+        \end{block}
+    \end{onlyenv}
+    \begin{onlyenv}<2>
+        \begin{block}{Data augmentation}
+            Apply different transformations to the image
+            \begin{itemize}
+                \item Mirroring
+                \item Random cropping
+                \item Rotation
+                \item Shearing
+                \item Color shifting
+                \begin{itemize}
+                    \item Distort the color channels
+                    \item Apply different types of illumination, makes the algorithm more robust
+                \end{itemize}
+            \end{itemize}
+        \end{block}
+    \end{onlyenv}
+\end{frame}
 
