@@ -89,16 +89,18 @@ a_next /= keep_prob
 
 \begin{frame}{Adam optimization algorithm}
     Training a NN is a minimization problem. In this case we always use gradient descent
-    to find the minimum. Sometimes the gradient can go to fast or in the wrong direction.
+    to find the minimum. Sometimes the gradient can go too fast.
 
-    \begin{align*}
-        V_{dW} &= \beta_1 V_{dW} + (1 - \beta_1) \cdot dW \\
-        S_{dW} &= \beta_2 S_{dW} + (1 - \beta_2) \cdot dW^2 \\
-        V_{dW}^{\text{corr}} &= \frac{V_{dW}}{1 - \beta_1^t}; \quad
-        S_{dW}^{\text{corr}} = \frac{S_{dW}}{1 - \beta_2^t} \\
-        W &:= W - \alpha \cdot \frac{V_{dW}^{\text{corr}}}
-        {\sqrt{S_{dW}^{\text{corr}}} + \varepsilon}
-    \end{align*}
+    \begin{onlyenv}<1>
+        \begin{align*}
+            V_{dW} &= \beta_1 V_{dW} + (1 - \beta_1) \cdot dW \\
+            S_{dW} &= \beta_2 S_{dW} + (1 - \beta_2) \cdot dW^2 \\
+            W &:= W - \alpha \cdot \frac{V_{dW}}{\sqrt{S_{dW}} + \varepsilon}
+        \end{align*}
+    \end{onlyenv}
+    \begin{onlyenv}<2>
+        \input{drawings/momentum.tikz.tex}
+    \end{onlyenv}
 \end{frame}
 
 \subsection{Hyper-parameters}

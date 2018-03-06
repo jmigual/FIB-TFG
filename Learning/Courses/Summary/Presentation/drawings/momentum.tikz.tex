@@ -1,0 +1,52 @@
+
+\begin{figure}[H]
+    \begin{tikzpicture}
+\begin{axis}[
+        width=.9\textwidth,
+        height=.6\textwidth,
+        xlabel=Day,
+        ylabel={T $(^{\circ}C)$},
+        every axis y label/.style={at={(current axis.north west)},above=2mm},
+        ymax = 45,legend style={font=\fontsize{4}{5}\selectfont},
+        clip marker paths=true
+    ]
+    \addplot[
+        mark=*,
+        mark size=1,
+        draw=cyan!50
+    ] table[
+        x index = 0, 
+        y index = 1, 
+        header=true, 
+        col sep = comma, 
+        only marks
+    ]{drawings/daily_temperature.csv};
+    \addlegendentry{Data}
+    \addplot[
+        mark=none,
+        draw=red!50,
+        thick
+    ] table[
+        x index = 0, 
+        y index = 2, 
+        header=true, 
+        col sep = comma
+    ]{drawings/daily_temperature.csv};
+    \addlegendentry{$\beta = .99$}
+    \addplot[
+        mark=none,
+        draw=violet,
+        thick
+    ] table[
+        x index = 0, 
+        y index = 4, 
+        header=true, 
+        col sep = comma
+    ]{drawings/daily_temperature.csv};
+    \addlegendentry{$\beta = .90$}
+\end{axis}
+    \end{tikzpicture}
+    
+\end{figure}
+
+
