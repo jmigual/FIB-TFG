@@ -1,0 +1,32 @@
+{
+    "cSpell.words": [
+        "Beamer",
+        "Catalunya",
+        "Goog",
+        "Kblue",
+        "Kpresentation",
+        "Politècnica",
+        "Universitat",
+        "convolutes",
+        "frametitle",
+        "lualatex",
+        "overfitting",
+        "randn",
+        "softmax"
+    ],
+    "latex-workshop.latex.outputDir": "./build",
+    "latex-workshop.latex.toolchain": [
+        {
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdflua",
+                "-output-directory=build",
+                "%DOC%"
+            ]
+        }
+    ],
+    "editor.rulers": [100],
+}
