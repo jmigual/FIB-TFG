@@ -65,10 +65,30 @@ approach started in the late 1990s and has slowly shifted from systems that are 
 by humans to systems that are trained by computers using example data
 ~\cite{survey-deep-learning}.
 
-One of the main problems in medical research is Survival Prediction models. This type of models are
+To use all this data Survival Prediction models have been created. This type of models are
 used to understand the relations between patients and effectiveness of various treatment options. 
-To see how well a certain algorithm is performing 
-\cites{DeepSurv}{deep-learning-radiomics-gbm}{ROC-precision-recall}.
+The survival and hazard functions are the two fundamental functions in survival analysis. The
+survival function \( S(t) = \Pr(T > t) \), is the probability that an individual has
+\emph{survived} beyond time \( t \). The hazard function is a measure of risk at time \( t \).
+The hazard function \( \lambda(t) \) is defined as:
+~\cite{DeepSurv}
+\[
+    \lambda(t) = \lim_{\delta \rightarrow 0}
+    \frac{\Pr(t \le T < t + \delta | T \ge t)}{\delta}
+\]
+
+
+Also, to compare if an algorithm is performing better than another one we usually use the ROC curve
+example which compares the \emph{False Positive Rate} against the \emph{True Positive Rate},
+see \autoref{fig:ROC-curve}. The Cox Proportional Hazards (CPH) model provides a starting point for a 
+survival model and the future models will be compared against this one.
+~\cites{ROC-precision-recall}{Cox}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\linewidth]{images/roc_curve}
+    \caption{ROC Curve example\label{fig:ROC-curve}}
+\end{figure}
 
 The objective of this project is to apply the current known methods to create a model for prediction
 of survival in head and neck cancer patients. The model should be able to determine the survival
