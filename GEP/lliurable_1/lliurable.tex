@@ -2,11 +2,23 @@
 
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
+\usepackage{xcolor}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[
+    backend=biber, 
+    citestyle=numeric
+]{biblatex}
 
 \setmainfont{CMU Serif}
+\setlength{\parskip}{\baselineskip}
 
-\usepackage[english]{babel}
+% Bibliography
+\addbibresource{lliurable.bib}
 
+    
 \begin{document}
 
 \begin{titlepage}
@@ -32,8 +44,41 @@
 
 \section{Context}
 
+\subsection{Problem formulation}
+
+Nowadays one of the most extensive uses of computing is artificial intelligence. This is being
+used from helping us to select what products we can buy based on our preferences to properly detect
+faces when taking a picture and focus the camera accordingly. The main advantage of this field is
+that once it's working it can continue to work without human intervention.
+
+One of the domains that has greatly increased during the last years is \emph{Machine Learning}.
+The main advantage is that it can solely learn from explicit examples without
+teaching, and thus reducing the human interaction during the learning process. One of the most used
+types is \emph{deep neural networks} and these have demonstrated impressive performance against
+task like the classification of digit from the MNIST data set.
+\cites{MNIST}{empirical-evaluation-deep-architectures}
+
+Regarding the medical field, deep learning algorithms, specially convolutional networks, have 
+rapidly become the chosen method. These are being used to analyze medical images for tasks such as
+image classification, object detection, segmentation and registration among other tasks. This
+approach started in the late 1990s and has slowly shifted from systems that are completely designed
+by humans to systems that are trained by computers using example data
+\cite{survey-deep-learning}.
+
+One of the main problems in medical research is Survival Prediction.
+\cite{DeepSurv}
+
+\subsection{Stakeholders}
+
+\subsubsection{Developer}
+\subsubsection{Physicians and Hospitals}
+\subsubsection{Patients}
+
 \section{State-of-the-art}
 
 \section{Scope}
+
+\pagebreak
+\printbibliography
 
 \end{document}
