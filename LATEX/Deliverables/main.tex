@@ -1,0 +1,53 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{graphicx}
+\usepackage[tuenc]{fontspec}
+\usepackage{xcolor}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+\usepackage[british]{babel}
+\usepackage[backend = biber, sorting = none, dateabbrev=false]{biblatex}
+
+\usepackage[left = 3.5cm, right = 2.5cm, top = 3cm, bottom = 3cm]{geometry}
+
+\setmainfont{CMU Serif}
+\setlength{\parskip}{\baselineskip}
+
+% Bibliography
+\addbibresource{../bibliography/all.bib}
+
+    
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace{1.5cm}
+    {\huge \textbf{\textsc{Unlock the potential of medical imaging data using deep learning}} \par}
+    \vspace{2cm}
+    {\Large \textit{Joan Marcè i Igual}\par}
+    \vfill
+    Director: Dr.Benjamin \textsc{Haibe-Kains}
+    
+    \vfill
+
+    \includegraphics[width=0.2\textwidth]{images/logo_upc}\par\vspace{1cm}
+    \vfill
+    
+    % Bottom of the page
+    {\LARGE Universitat Politècnica de Catalunya \par}
+    {\LARGE 2018 \par}
+\end{titlepage}
+
+\tableofcontents
+
+\pagebreak
+
+% Deliverable 1
+\input{001.tex}
+
+\pagebreak
+\emergencystretch=1em
+\printbibliography{}
+
+\end{document}
