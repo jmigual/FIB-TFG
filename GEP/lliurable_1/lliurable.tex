@@ -47,22 +47,23 @@
 \subsection{Problem formulation}
 
 Nowadays one of the most extensive uses of computing is artificial intelligence. This is being
-used from based on our preferences help us to select what products we can buy to properly detect
+used from, based on our preferences, help us select what products we can buy to properly detect
 and focus faces when taking a picture. The main advantage of this field is that it reduces the
-amount of human intervention and usually it performs better.
+amount of human intervention and it usually performs better.
 
 Inside AI one of the domains that has greatly increased during the last years is 
 \emph{Machine Learning}. The main advantage is that it can solely learn from examples without 
 explicit teaching, and thus reducing the human interaction during the learning process. One of the 
 most used types is \emph{deep neural networks} and these have demonstrated impressive performance 
-against task like the classification of digit from the MNIST data set.
+against tasks like the classification of digits from the MNIST data set.
 ~\cites{MNIST}{empirical-evaluation-deep-architectures}
 
-Regarding the medical field, recent deep learning algorithms, specially convolutional networks. 
-Traditionally medical predictions have been based on a few clinical parameters with poor accuracy.
+Regarding the medical field, recent deep learning algorithms, specially convolutional networks 
+have started to push the boundaries of precision medicine. 
+Traditionally, medical predictions have been based on a few clinical parameters with poor accuracy.
 However, other data types are available to improve such predictions. In this context, medical
 images generated from MRI, PET or CT scans are vastly underused due to the inability of radiologists
-to quantitatively analyze these complex data. 
+to quantitatively analyze this complex data.
 
 Different methods have appeared to analyze these images for tasks such as
 image classification, object detection, segmentation and registration among other tasks. This
@@ -70,12 +71,20 @@ approach started in the late 1990s and has slowly shifted from systems that are 
 by humans to systems that are trained by computers using example data. 
 ~\cite{survey-deep-learning}
 
-To use all this data Survival Prediction models have been created. This type of models are
+Professor Benjamin Haibe-Kains has helped in the development of \emph{Radiomics}, a new field to
+relying on pre-defined, hand-engineered features computed from medical images to better 
+characterize tumours and predict survival outcome. Although promising, radiomics suffers from 
+two several limitations: the number of features is limited and it is a slow process as it requires
+a radiologist to manually contour the tumor. Deep learning has the potential to address both issues
+by automatically extract more information from the images.
+~\cite{radiomics-ML-classifiers}
+
+To use all this data, Survival Prediction models have been created. This type of models are
 used to understand the relations between patients and effectiveness of various treatment options. 
 The survival and hazard functions are the two fundamental functions in survival analysis. The
 survival function \( S(t) = \Pr(T > t) \), is the probability that an individual has
-\emph{survived} beyond time \( t \). The hazard function is a measure of risk at time \( t \).
-The hazard function \( \lambda(t) \) is defined as:
+\emph{survived} beyond time \( t \). The hazard function \( \lambda(t) \) is a measure of risk at 
+time \( t \) and it's defined as:
 ~\cite{DeepSurv}
 \[
     \lambda(t) = \lim_{\delta \rightarrow 0}
@@ -84,8 +93,8 @@ The hazard function \( \lambda(t) \) is defined as:
 
 
 Also, to compare if an algorithm is performing better than another one we usually use the ROC curve
-example which compares the \emph{False Positive Rate} against the \emph{True Positive Rate},
-see \autoref{fig:ROC-curve}. The Cox Proportional Hazards (CPH) model provides a starting point for a 
+which compares the \emph{False Positive Rate} against the \emph{True Positive Rate}, see 
+\autoref{fig:ROC-curve}. The Cox Proportional Hazards (CPH) model provides a starting point for a 
 survival model and the future models will be compared against this one.
 ~\cites{ROC-precision-recall}{Cox}
 
@@ -95,48 +104,13 @@ survival model and the future models will be compared against this one.
     \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
 
-The goal of this project is to apply the current known methods to create a model for prediction
-of survival in head and neck cancer patients. This model will be created with 
-
-With help from professor Benjamin Haibe-Kains which has helped in the development of 
-\emph{Radiomics}, a new field to better characterize tumors and predict survival outcome and 
-Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at the Princess Margaret Cancer Centre. 
-Both have access to a unique set of \~500 scans of head-and-neck cancer patients with associated 
-survival data. 
-
-% TODO: I stopped here!
-Moreover, Benjamin Haibe-Kains lab has been involved in the development of radiomics, a new field 
-relying on pre-defined, hand-engineered features computed from medical images to better characterize 
-tumors and predict survival outcome. Although promising, radiomics suffers from two several 
-limitations: (i) the number of features is limited (~1200) and (ii) it is a slow process as it 
-requires a radiologist to manually contour the tumor. Deep learning has the potential to
-address both issues by automatically extracting more information from the images.
-~\cite{deep-learning-radiomics-gbm}
-
-I am happy to invite you in my lab from the 1st of February to the 31st of July through CFIS (Interdisciplinary
-Higher Education Centre) to work on the project entitled “Unlock the potential of medical imaging data using
-deep learning”. In this era of BIG data science, recent deep learning algorithms are pushing the boundaries of
-precision medicine in cancer with the aim to predict the best treatment strategy for each patient. Traditionally
-such predictions are based on a few clinical parameters with poor accuracy. However, other data types are
-available to improve such predictions. In this context, medical images generated from MRI, PET or CT scans
-are vastly underused due to the inability of radiologists to quantitatively analyze these complex data. My lab
-has been involved in the development of radiomics, a new field relying on pre-defined, hand-engineered
-features computed from medical images to better characterize tumors and predict survival outcome. Although
-promising, radiomics suffers from two severa limitations: (i) the number of features is limited (~1200) and (ii) it
-is a slow process as it requires a radiologist to manually contour the tumor. Deep learning has the potential to
-address both issues by automatically extracting more information from the images.
-Through our collaboration with Dr. Fei-Fei Liu, head of the Radiation Medicine Program at the Princess
-Margaret Cancer Centre, my lab has access to a unique set of ~500 scans of head-and-neck cancer patients
-with associated survival data. The goal of this project is to develop a new deep learning framework to analyze
-this private dataset in combination with public databases to improve the prediction rate of patients’ survival
-compared to models built on traditional radiomic features. I expect you to explore the use of dropout and image
-augmentation techniques to improve the fitting of neural networks from medical images. You will work in close
-collaboration with radiologists and experts in machine learning in my lab and will participate to the redaction of
-the manuscript describing the analysis results.
-
-
-The main objective of this project is to try to apply the current known methods, like DeepSurv, 
-for survival prediction and create a 
+Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
+Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \~500 scans of
+head-and-neck cancer patients with associated survival data. The goal of this project is to develop
+a new deep learning framework to analyze this private dataset in combination with public databases
+to improve the prediction rate of patients' survival compared to models built on traditional 
+radiomic features. Two of the methods that will be explored are dropout and image augmentation 
+techniques to improve the fitting of neural networks from medical images. 
 
 \subsection{Stakeholders}
 
