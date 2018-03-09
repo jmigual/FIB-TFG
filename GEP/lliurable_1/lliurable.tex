@@ -6,8 +6,8 @@
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{csquotes}
-\usepackage[english]{babel}
-\usepackage[backend = biber, sorting = none]{biblatex}
+\usepackage[british]{babel}
+\usepackage[backend = biber, sorting = none, dateabbrev=false]{biblatex}
 
 \usepackage[left = 3.5cm, right = 2.5cm, top = 3cm, bottom = 3cm]{geometry}
 
@@ -42,9 +42,7 @@
 \tableofcontents
 
 \pagebreak
-\section{Context}
-
-\subsection{Problem formulation}
+\section{Context and Problem formulation}
 
 Nowadays one of the most extensive uses of computing is artificial intelligence. This is being
 used from, based on our preferences, help us select what products we can buy to properly detect
@@ -75,7 +73,7 @@ Professor Benjamin Haibe-Kains has helped in the development of \emph{Radiomics}
 relying on pre-defined, hand-engineered features computed from medical images to better 
 characterize tumours and predict survival outcome. Although promising, radiomics suffers from 
 two several limitations: the number of features is limited and it is a slow process as it requires
-a radiologist to manually contour the tumor. Deep learning has the potential to address both issues
+a radiologist to manually contour the tumour. Deep learning has the potential to address both issues
 by automatically extract more information from the images.
 ~\cite{radiomics-ML-classifiers}
 
@@ -105,24 +103,81 @@ survival model and the future models will be compared against this one.
 \end{figure}
 
 Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
-Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \~500 scans of
-head-and-neck cancer patients with associated survival data. The goal of this project is to develop
-a new deep learning framework to analyze this private dataset in combination with public databases
-to improve the prediction rate of patients' survival compared to models built on traditional 
-radiomic features. Two of the methods that will be explored are dropout and image augmentation 
-techniques to improve the fitting of neural networks from medical images. 
-
-\subsection{Stakeholders}
-
-\subsubsection{Developer}
-\subsubsection{Physicians and Hospitals}
-\subsubsection{Patients}
+Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
+scans of head-and-neck cancer patients with associated survival data. The goal of this project is 
+to develop a new deep learning framework to analyze this private dataset in combination with public 
+databases to improve the prediction rate of patients' survival compared to models built on 
+traditional radiomic features. Two of the methods that will be explored are dropout and image 
+augmentation techniques to improve the fitting of neural networks from medical images. 
 
 \section{State-of-the-art}
 
+A lot of research is being done in the medical field using deep learning during these days. Image
+classification is one of the first areas in which there's a major contribution to medical analysis.
+Usually in image classification one has one or multiple images as input and a single diagnostic 
+variable as output (e.g.~ill or not). With this approach the use of transfer learning has been a
+great improvement.
+~\cite{survey-deep-learning}
+
+Through transfer learning is the use of pre-trained networks to try to reduce the requirement of 
+large data sets for deep network training. Usually there are two possible strategies: (1) using a 
+pre-trained NN as a feature extractor and (2) fine-tuning a pre-trained network on medical data.
+Both strategies are popular and have been widely applied. One of the networks that allow this type
+of retrain is GoogLeNet Inception v3.
+~\cites{GoogLeNet}{NNRetrain}{inceptionRetrain}
+
+Moreover, regarding the prediction of survival models there have been different approaches but
+almost all of them use MRI, PET or CT scans and the medical records. The typical one is to extract
+hand-crafted radiomic features using own methods or using libraries such as
+\href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted features are
+based in things like tumour shape intensity, shape or texture.
+~\cites{PyRadiomics}{tumour-radiomics}
+
+The other approach is using a deep learning-based model for prediction. In this case too, 
+hand-crafted features are extracted but besides a Convolutional Neural Network is used to extract
+features. So this way the number of extracted features is bigger. There's the problem that when
+extracting hand-crafted features from a CT scan this is a 3D image while when working with a 
+CNN only 2D images can be used, since there's still no pre-trained CNN on 3D images. Although
+this method seems promising still requires further work to train a dedicated feature extractor 
+explicitly designed for medical images.
+~\cite{deep-learning-radiomics-gbm}
+
+An implemented survival prediction model is \emph{DeepSurv} which based on survival data,
+comprised of three elements: patient's baseline data, failure event time and an event indicator.
+\emph{DeepSurv} is an Open Source Python module that applies recent deep learning techniques to
+a nonlinear Cox proportional hazards network. 
+~\cite{DeepSurv}
+
 \section{Scope}
 
+The first task will be learning and understanding how Neural Networks and specifically how 
+Convolutional Neural Networks Work. This way I will have a fully understanding of the background
+that all this methods use create models for survival prediction.
+
+The next task will be setting up and running the \emph{DeepSurv} python package on a local computer.
+This will mean trying to test all the methods that can be used and see which parts can be reused 
+to create a new Survival Prediction Model. Since this model does not seem to be adapted for images
+as input then an improvement will be focused in trying to pass medical images as input to train
+the survival model. Once this task is finished then th results will be compared to less complex
+survival methods such as random survival forests.
+
+An extension of the previous task will be to convert the survival problem with head-and-neck data
+to a binary classification problem and implement different CNN architectures (starting from 
+shallow to deep). Performance measurements will be important and also prevent overfitting, since 
+this can lead to wrong results, to ensure a successful training.
+
+\section{Methodology}
+
+This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
+Computational Genomics Laboratory. This means that every week there will be a laboratory meeting
+where progress will be presented to all the lab members and feedback will be received accordingly. 
+
+Also since there are different ways of development this means that it will have a process of trial
+and error until the proper solution is found. This means that during this process the
+tasks will be assigned on a weekly basis.
+
 \pagebreak
+\emergencystretch=1em
 \printbibliography{}
 
 \end{document}
