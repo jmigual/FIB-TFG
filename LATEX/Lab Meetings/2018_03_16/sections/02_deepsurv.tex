@@ -1,0 +1,56 @@
+\section{DeepSurv}
+
+\begin{frame}{\insertsec}
+    Paper published by Jared L.Katzman \emph{et al.} (2017) using a deep learning approach for
+    the Survival Prediction problem.
+    
+    \begin{itemize}
+        \item Shows an application of deep learning to survival analysis
+        \item It uses this deep learning model to create a personalized treatment 
+        recommender system
+        \item Uses the Cox Proportional Hazards Model
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{The Survival Prediction Problem}
+    Survival data has three elements: patient's baseline data \( x \), a failure event 
+    time \( T \) and an event indicator \( E \).
+    
+    There's the survival function (\( S(t) = \Pr(T > t) \)) and the hazard function
+    \( \lambda(t) \):
+    \[
+        \lambda(t) = \lim_{\delta \rightarrow 0} 
+        \frac{\Pr(t \le T < t + \delta | T \ge t)}{\delta} 
+    \]
+
+    Given baseline data \( x \) the hazard function is assumed to have the form:
+    \[
+        \lambda(t | x) = \lambda_0 (t) \cdot e^{\bm{h(x)}}
+    \]
+\end{frame}
+
+\begin{frame}{Linear Survival Models}
+Cox Proportional Hazards model estimates that the risk function \( h(x) \) is linear 
+\( \hat{h}_{\beta}(x) = \beta^T x \). The partial likelihood, parameterized by \( \beta \) is 
+defined:
+
+\[
+    L_c (\beta) = \prod_{i:E_i = 1} \frac{\exp(\hat{h}_{\beta}(x_i))}
+    {\sum_{j \in \mathfrak{R}(T_i)} \exp(\hat{h}_{\beta}(x_j))}
+\]
+\[
+    \mathfrak{R}(t) = \{i: T_i \ge t\}
+\]
+    
+\end{frame}
+
+\begin{frame}{Nonlinear survival models}
+The used loss function is the following one
+    
+\[
+    l(\theta) := -\sum_{i:E_i = 1} \left(
+    \hat{h}_{\theta}(x_i) - \log \sum_{j \in \mathfrak{R}(T_i)} e^{\hat{h}_{\theta} (x_j)}
+    \right)
+\]
+\end{frame}
