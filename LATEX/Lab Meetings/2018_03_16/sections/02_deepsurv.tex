@@ -45,12 +45,49 @@ defined:
     
 \end{frame}
 
-\begin{frame}{Nonlinear survival models}
-The used loss function is the following one
-    
+\begin{frame}[fragile]{Loss function}
+The paper loss equation is the following one:
 \[
     l(\theta) := -\sum_{i:E_i = 1} \left(
     \hat{h}_{\theta}(x_i) - \log \sum_{j \in \mathfrak{R}(T_i)} e^{\hat{h}_{\theta} (x_j)}
     \right)
 \]
+
+The code function is the following one:
+\[
+    l(\theta) := - \frac{1}{m} \sum_{i:E_i = 1} \left(
+    \hat{h}_{\theta}(x_i) - \log \sum_{j} e^{\hat{h}_{\theta} (x_j)}
+    \right)
+\]
+
+\footnotesize
+\begin{verbatim}
+risk = self.risk(deterministic)
+hazard_ratio = T.exp(risk)
+log_risk = T.log(T.extra_ops.cumsum(hazard_ratio))
+uncensored_likelihood = risk.T - log_risk
+censored_likelihood = uncensored_likelihood * E
+num_observed_events = T.sum(E)
+neg_likelihood = -T.sum(censored_likelihood)/num_observed_events
+return neg_likelihood
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{DeepSurv Results}
+
+\begin{center}
+    \begin{tabular}{l|rrr}
+        Experiment & CPH & DeepSurv & RSF \\
+        \hline
+        Simulated Linear & 0.774 & 0.774 & 0.765 \\
+        Simulated Non-linear &  0.507 & 0.649 & 0.646 \\
+        WHAS & 0.818 & 0.863 & 0.894 \\
+        SUPPORT & 0.583 & 0.618 & 0.613 \\
+        METABRIC & 0.631 & 0.643 & 0.624 \\
+        Simulated Treatment & 0.482 & 0.583 & 0.570 \\
+        Rotterdam \& GBSG & 0.658 & 0.668 & 0.651
+    \end{tabular}
+\end{center}
+    
+
 \end{frame}
