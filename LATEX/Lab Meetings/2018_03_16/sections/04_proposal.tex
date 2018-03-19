@@ -1,0 +1,65 @@
+\section{Proposal}
+
+\begin{frame}{\insertsec}
+\begin{itemize}
+  \item Use Cox Proportional Hazards model like DeepSurv
+  \item Use a Convolutional Neural Network 3D. If it does not work well then:
+  \begin{itemize}
+    \item Select best slice
+    \item Use a Convolutional Neural Network 2D
+  \end{itemize}
+  \item Use radiomics features
+  \item Combine both radiomics features (scalar values) and images using a similar model 
+  like the Hand-Eye Coordination paper
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsec}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+        \item Start with a simple example:
+        \begin{itemize}
+          \item 1 CNN layer
+          \item 1 FN layer
+          \item Spatial Filling
+          \item Combine layers
+          \item 1 CNN layer
+          \item 1 FC layer
+        \end{itemize}
+    \end{itemize}
+  \end{column}
+  \begin{column}{.5\textwidth}
+    
+    \begin{center}
+        \begin{tikzpicture}[node distance = .5cm]
+            \tikzstyle{neuron}=[rectangle, draw=black]
+            \node [neuron] (I-Image) at (0, 0) {Image input};
+            \node [neuron, left = of I-Image] (I-Scalar) {Scalar input};
+
+            \node [neuron, below = of I-Image] (CNN-01) {CNN layer};
+            \node [neuron, below = of I-Scalar] (FC-01) {FC layer};
+            \node [neuron, below = of FC-01, text width = 2cm] (aug) {Spatial Filling}; 
+
+            \node [circle, draw = black, below right = .7 of aug] (join) {\(+\)};
+
+            \node [neuron, below = of join] (CNN-02) {CNN layer};
+            \node [neuron, below = of CNN-02] (FC-02) {FC layer};
+
+            \node [neuron, below = of FC-02] (output) {Output};
+
+            \draw [-latex] (I-Image) -- (CNN-01);
+            \draw [-latex] (I-Scalar) -- (FC-01);
+            \draw [-latex] (FC-01) -- (aug);
+            \draw [-latex] (aug) -- (join);
+            \draw [-latex] (CNN-01) -- (join);
+            \draw [-latex] (join) -- (CNN-02);
+            \draw [-latex] (CNN-02) -- (FC-02);
+            \draw [-latex] (FC-02) -- (output);
+
+        \end{tikzpicture}
+
+    \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
