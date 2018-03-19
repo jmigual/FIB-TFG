@@ -13,7 +13,9 @@
 \usepackage[british]{babel}
 \usepackage[backend = biber, sorting = none, dateabbrev=false]{biblatex}
 
-\usepackage[left = 3.5cm, right = 2.5cm, top = 3cm, bottom = 3cm]{geometry}
+\usepackage[left = 3.4cm, right = 2.5cm, top = 3cm, bottom = 3cm]{geometry}
+
+\usepackage{pgfgantt}
 
 \setmainfont{CMU Serif}
 \setlength{\parskip}{\baselineskip}
@@ -31,7 +33,7 @@
     \vspace{2cm}
     {\Large \textit{Joan Marcè i Igual}\par}
     \vfill
-    Director: Dr.Benjamin \textsc{Haibe-Kains}
+    Director: Dr.~Benjamin \textsc{Haibe-Kains}
     
     \vfill
 
@@ -47,8 +49,9 @@
 
 \pagebreak
 
+% Just comment this lines to enable/disable some parts of the document
 % Deliverable 1
-% \include{001}
+\include{001}
 
 % Deliverable 2
 \include{002}

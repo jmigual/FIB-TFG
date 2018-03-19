@@ -59,8 +59,77 @@ I should compare the code implementation with the theoretical models
 \cites{Cox}{DeepSurv}.
 This process will take around two weeks.
 
+\subsubsection{Get familiar with Tensorflow}
+
+One week
+
+\subsubsection{Create the regression model}
+
+\subsubsection{Create the classification model}
+
+\subsubsection{Compare the model against other ones}
+
 \subsection{Estimated time}
 
+In \autoref{tab:time} an estimation of the number of hours dedicated to each task is shown.
+
+\begin{table}
+    \centering{}
+    \begin{tabular}{|l|r|}
+        \hline
+        Task & Estimated duration (h) \\ \hline \hline
+        Acquire background in CNN & 70 \\ \hline
+    
+        \hline \hline
+        \textbf{Total} & 450 \\
+        \hline
+    \end{tabular}
+    \caption{Estimated time for each task \label{tab:time}}
+\end{table}
+
 \subsection{Gantt chart}
+
+\autoref{fig:gantt} shows the planning of the different tasks of the project in a Gantt chart.
+
+\begin{figure}
+    \centering{}
+    \def\gantttext{4cm}
+    \begin{ganttchart}[
+            time slot format=isodate,
+            x unit = .8mm,
+            y unit title = 0.7cm,
+            y unit chart = 0.8cm,
+            group label font = \tiny\bf,
+            title label font = \tiny,
+            bar label font = \tiny,
+            vgrid,
+            hgrid,
+            calendar week text = {\startday},
+            link bulge = 2,
+        ]{2018-02-14}{2018-06-29}
+        \gantttitlecalendar{year, month=shortname, week} \\
+
+
+        % Start gantt itself
+        \ganttgroup{Preamble}{2018-02-14}{2018-03-18} \\
+        \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
+        \ganttlinkedbar{\parbox[c]{\gantttext}{Learn about CNN}}{2018-02-19}{2018-03-09} \\
+        \ganttlinkedbar{\parbox[c]{\gantttext}{Learn about DeepSurv}}{2018-03-10}{2018-03-16} \\
+
+        \ganttgroup{\parbox[c]{\gantttext}{Create regression model}}{2018-03-19}{2018-04-08} \\
+        \ganttbar{Analysis}{2018-03-19}{2018-03-25} \\
+        \ganttlinkedbar{Implementation}{2018-03-26}{2018-04-01} \\
+        \ganttlinkedbar{Test}{2018-04-01}{2018-04-09} \\
+
+        \ganttgroup{\parbox[c]{\gantttext}{Create classification model}}{2018-04-09}{2018-04-29} \\
+
+        \ganttgroup{\parbox[c]{\gantttext}{Compare different models}}{2018-04-30}{2018-05-27} \\
+
+        \ganttgroup{Final Stage}{2018-06-04}{2018-06-29} \\
+        \ganttbar{Presentation}{2018-06-25}{2018-06-29} \\
+
+    \end{ganttchart}
+    \caption{Gantt chart of the project \label{fig:gantt}}
+\end{figure}
 
 \subsection{Alternatives and action plan}
