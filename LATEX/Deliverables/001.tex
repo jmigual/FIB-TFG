@@ -190,3 +190,62 @@ where progress will be presented to all the lab members and feedback will be rec
 Also since there are different ways of development this means that it will have a process of trial
 and error until the proper solution is found. This means that during this process the
 tasks will be assigned on a weekly basis.
+computer. Once running, all the different parts of the package should be tested to see which
+ones are best suited to be reused to create a new Survival Prediction Model. Since the package
+is not prepared to have images as an input, a improvement will be to add the possibility to 
+pass medical images to train the survival model.
+
+Afterwards, a deep learning model will be created starting from zero but trying to reuse
+as many parts as possible. However, this model will not be using the Cox Proportional
+Hazards because the objective, in this case, will be to try to directly optimize the C-index.
+Since the C-index is computed using pairs of patients, a siamese neural network will be built.
+This type of network is suited for comparison tasks such as face recognition, but this 
+time the task will be to compare the survival time of different pairs.
+
+\subsection{Methodology}
+
+This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
+Computational Genomics Laboratory. This means that every week there will be a laboratory meeting
+where progress will be presented to all the lab members and feedback will be received accordingly. 
+
+Also since there are different ways of development this means that it will have a process of trial
+and error until the proper solution is found. This means that during this process the
+tasks will be assigned on a weekly basis.
+
+
+\subsection{Possible obstacles and solutions}
+
+\subsubsection{Training time}
+
+Since this project involves Convolutional Neural Networks training time can be a problem. 
+The convolution operation is computationally expensive, so depending on the network the 
+training time can be of several days. Also, while just inferring the values does not require
+much power, training needs a lot more power. 
+
+To solve this problem the training will be done at \emph{SharcNet} a computing facility. 
+This way the training will be much faster.
+
+\subsubsection{Bugs}
+
+Considering the software development process. It's no big surprise that it's really easy to
+introduce bugs while writing or modifying the source code. To ensure no bugs are present,
+some unit tests will be written to check if the model is still giving correct results.
+However, this will be a difficult task since it's not easy to check whether a deep 
+learning model is just overfitting or that it's giving wrong results.
+
+\subsubsection{Scheduling}
+
+Although four months seems plenty of time, spending more time than estimated in a single task
+can happen. To avoid this problem weekly meetings will be scheduled with my Principal Investigator
+to see which is the best way to continue to keep on track.
+
+\subsubsection{Not enough data}
+
+Since the starting dataset is quite small (\( \sim 500 \) samples) overfitting may be a problem
+and different methods should be used to avoid it. The possible solutions are:
+\begin{itemize}
+  \item Using regularization to avoid units with a very high weight.
+  \item Using dropout to force each unit to learn with part of the data, and thus generalize.
+  \item Using data augmentation techniques such as random crops or random rotations to increase
+  the number of images in the dataset.
+\end{itemize}
