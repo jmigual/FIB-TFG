@@ -162,7 +162,26 @@ to the Cox model.
 
 \subsection{Stakeholders}
 
+\subsubsection{Developer}
+Is the person in charge of the research, document and implement all the required software.
+In addition he is responsible for the project management and the writing of the report
+and all the required documentation. This actor works as agreed with the director and
+he is, ultimately, the person in charge of accomplishing the deadlines.
 
+\subsubsection{Director}
+He is the main responsible for guiding, giving advice and, in general, helping the developer.
+His action is key to determine possible errors in the project, both in its proposal and 
+execution. In particular, Benjamin Haibe-Kains from the Bioinformatics and Computational
+Genomics Laboratory has acted as director.
+
+\subsubsection{Beneficiaries}
+The project beneficiaries will depend on its outcome. If a more efficient model is found the
+beneficiaries will be the researchers trying to test a new cancer treatment method. Moreover,
+the final patient will also be benefited because more modern research techniques will be used.
+
+However, if a more efficient model is not found the beneficiaries will be the researchers
+trying to find the best model for survival analysis since this would have proved which 
+methods do not work well.
 
 \subsection{Scope}
 
@@ -170,26 +189,7 @@ The first task will be learning and understanding how Neural Networks and specif
 Convolutional Neural Networks Work. This way I will have a fully understanding of the background
 that all this methods use create models for survival prediction.
 
-The next task will be setting up and running the \emph{DeepSurv} python package on a local 
-computer. This will mean trying to test all the methods that can be used and see which parts 
-can be reused to create a new Survival Prediction Model. Since this model is not prepared
-to have images as input, an improvement will be to add the possibility to pass medical 
-images as input to train the survival model. 
-
-Afterwards a deep learning model will be created starting from zero but trying to reuse
-as many parts as possible. This model will not be using Cox Proportional Hazards but instead
-it will be created using a Siamese Network. This type of networks are useful for comparison
-tasks such as face recognition. 
-
-\subsection{Methodology}
-
-This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
-Computational Genomics Laboratory. This means that every week there will be a laboratory meeting
-where progress will be presented to all the lab members and feedback will be received accordingly. 
-
-Also since there are different ways of development this means that it will have a process of trial
-and error until the proper solution is found. This means that during this process the
-tasks will be assigned on a weekly basis.
+The next task will be setting up and running the \emph{DeepSurv} python package on a local
 computer. Once running, all the different parts of the package should be tested to see which
 ones are best suited to be reused to create a new Survival Prediction Model. Since the package
 is not prepared to have images as an input, a improvement will be to add the possibility to 
