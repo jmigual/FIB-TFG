@@ -96,9 +96,9 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
     \def\gantttext{4cm}
     \begin{ganttchart}[
             time slot format=isodate,
-            x unit = .8mm,
+            x unit = .95mm,
             y unit title = 0.7cm,
-            y unit chart = 0.8cm,
+            y unit chart = 0.6cm,
             group label font = \tiny\bf,
             title label font = \tiny,
             bar label font = \tiny,
@@ -113,19 +113,21 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
         % Start gantt itself
         \ganttgroup{Preamble}{2018-02-14}{2018-03-18} \\
         \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
-        \ganttlinkedbar{\parbox[c]{\gantttext}{Learn about CNN}}{2018-02-19}{2018-03-09} \\
-        \ganttlinkedbar{\parbox[c]{\gantttext}{Learn about DeepSurv}}{2018-03-10}{2018-03-16} \\
+        \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-09} \\
+        \ganttlinkedbar{Learn about DeepSurv}{2018-03-10}{2018-03-16} \\
 
-        \ganttgroup{\parbox[c]{\gantttext}{Create regression model}}{2018-03-19}{2018-04-08} \\
+        \ganttgroup{Regression model}{2018-03-19}{2018-04-08} \\
         \ganttbar{Analysis}{2018-03-19}{2018-03-25} \\
         \ganttlinkedbar{Implementation}{2018-03-26}{2018-04-01} \\
         \ganttlinkedbar{Test}{2018-04-01}{2018-04-09} \\
 
-        \ganttgroup{\parbox[c]{\gantttext}{Create classification model}}{2018-04-09}{2018-04-29} \\
+        \ganttgroup{Classification model}{2018-04-09}{2018-04-29} \\
 
-        \ganttgroup{\parbox[c]{\gantttext}{Compare different models}}{2018-04-30}{2018-05-27} \\
+        \ganttgroup{Compare models}{2018-04-30}{2018-05-27} \\
 
-        \ganttgroup{Final Stage}{2018-06-04}{2018-06-29} \\
+        \ganttgroup{Final Stage}{2018-06-11}{2018-06-29} \\
+        \ganttbar{End project}{2018-06-11}{2018-06-17} \\
+        \ganttbar{Manual}{2018-06-18}{2018-06-24} \\
         \ganttbar{Presentation}{2018-06-25}{2018-06-29} \\
 
     \end{ganttchart}
