@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 
 \section{Context and scope of the project}
-\subsection{Context and Problem formulation}
+\subsection{Context}
 
 Nowadays one of the most extensive uses of computing is artificial intelligence. This is being
 used from, based on our preferences, help us select what products we can buy to properly detect
@@ -36,25 +36,46 @@ a radiologist to manually contour the tumour. Deep learning has the potential to
 by automatically extract more information from the images.
 ~\cite{radiomics-ML-classifiers}
 
-To use all this data, Survival Prediction models have been created. This type of models are
-used to understand the relations between patients and effectiveness of various treatment options. 
+\subsection{Problem Formulation}
+
+To use all this data, Survival Prediction models have been created. Data from these models have
+three elements: a patient's baseline data \( x \), a failure event time 
+\( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
+interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
+data was collected and event's time, and the event indicator is \( E = 1 \). If an
+event is not observed, the time interval \( T \) corresponds to the time elapsed between
+the collection of the baseline data and the last contact with the patient, and the 
+event indicator is \( E = 0 \). In this case, the patient is said to be
+\emph{right-censored}.
+~\cite{DeepSurv}
+
 The survival and hazard functions are the two fundamental functions in survival analysis. The
-survival function \( S(t) = \Pr(T > t) \), is the probability that an individual has
+survival function \( S(t) = \Pr(T \ge t) \), is the probability that an individual has
 \emph{survived} beyond time \( t \). The hazard function \( \lambda(t) \) is a measure of risk at 
 time \( t \) and it's defined as:
-~\cite{DeepSurv}
+~\cite{Cox}
 \[
-  \lambda(t) = \lim_{\delta \rightarrow 0}
-  \frac{\Pr(t \le T < t + \delta | T \ge t)}{\delta}
+  \lambda(t) = \lim_{\Delta t \rightarrow 0}
+  \frac{\Pr(t \le T < t + \Delta t | T \ge t)}{\Delta t}
 \]
 
+Casting the survival analysis as a ranking problem is a way of dealing with the biased
+distributions of survival times and the censoring data. Two subjects' survival times can be 
+ordered only if:
+\begin{enumerate}
+  \item Both of them are uncensored (\( E_i = E_j = 0\))
+  \item The uncensored time of one is smaller than the censored survival time of the other
+  (\( T_i < T_j | E_i = 1; E_j = 0 \))
+\end{enumerate}
+This can be visualized by means of an order graph,
+
 % C-index explanation
-To the standard performance measure to compare if a survival model is performing better 
-than another is the \emph{Concordance Index} (C-index). This index is 1 for a perfect data
-fit and 0.5 for a random model. Also, another comparison chart is the ROC
-curve which compares the \emph{False Positive Rate} against the \emph{True Positive Rate},
-see \autoref{fig:ROC-curve}. Also another comparison value is the \emph{concordance index}. 
-Usually the C-index is seen as the area under the ROC curve.
+The standard performance measure, to compare if a survival 
+model is performing better than another, is the \emph{Concordance Index} (C-index). This 
+index is 1 for a perfect data fit and 0.5 for a random model. Also, another comparison 
+element is the ROC curve which represents the \emph{False Positive Rate} against the 
+\emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the C-index is seen as 
+the area under the ROC curve.
 ~\cites{ROC-precision-recall}{RankingCI}
 
 \begin{figure}
@@ -112,16 +133,6 @@ Although this method seems promising still requires further work to train a dedi
 feature extractor explicitly designed for medical images.
 ~\cite{deep-learning-radiomics-gbm}
 
-When working with Survival Prediction models the type of data usually has always the same form.
-Survival data has three elements: a patient's baseline data \( x \), a failure event time 
-\( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
-interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
-data was collected and event's time, and the event indicator is \( E = 1 \). If an
-event is not observed, the time interval \( T \) corresponds to the time elapsed between
-the collection of the baseline data and the last contact with the patient, and the 
-event indicator is \( E = 0 \). In this case, the patient is said to be
-\emph{right-censored}.
-
 An implemented survival prediction model is \emph{DeepSurv} which is based on survival data
 and uses the Cox Proportional Hazards model an individual's survival given the baseline data
 \( x \). It's an Open Source Python module that applies recent deep learning techniques 
@@ -134,17 +145,16 @@ The first task will be learning and understanding how Neural Networks and specif
 Convolutional Neural Networks Work. This way I will have a fully understanding of the background
 that all this methods use create models for survival prediction.
 
-The next task will be setting up and running the \emph{DeepSurv} python package on a local computer.
-This will mean trying to test all the methods that can be used and see which parts can be reused 
-to create a new Survival Prediction Model. Since this model does not seem to be adapted for images
-as input then an improvement will be focused in trying to pass medical images as input to train
-the survival model. Once this task is finished then th results will be compared to less complex
-survival methods such as random survival forests.
+The next task will be setting up and running the \emph{DeepSurv} python package on a local 
+computer. This will mean trying to test all the methods that can be used and see which parts 
+can be reused to create a new Survival Prediction Model. Since this model is not prepared
+to have images as input, an improvement will be to add the possibility to pass medical 
+images as input to train the survival model. 
 
-An extension of the previous task will be to convert the survival problem with head-and-neck data
-to a binary classification problem and implement different CNN architectures (starting from 
-shallow to deep). Performance measurements will be important and also prevent overfitting, since 
-this can lead to wrong results, to ensure a successful training.
+Afterwards a deep learning model will be created starting from zero but trying to reuse
+as many parts as possible. This model will not be using Cox Proportional Hazards but instead
+it will be created using a Siamese Network. This type of networks are useful for comparison
+tasks such as face recognition. 
 
 \subsection{Methodology}
 
