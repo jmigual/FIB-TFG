@@ -44,68 +44,89 @@ survival function \( S(t) = \Pr(T > t) \), is the probability that an individual
 time \( t \) and it's defined as:
 ~\cite{DeepSurv}
 \[
-    \lambda(t) = \lim_{\delta \rightarrow 0}
-    \frac{\Pr(t \le T < t + \delta | T \ge t)}{\delta}
+  \lambda(t) = \lim_{\delta \rightarrow 0}
+  \frac{\Pr(t \le T < t + \delta | T \ge t)}{\delta}
 \]
 
-
-Also, to compare if an algorithm is performing better than another one we usually use the ROC curve
-which compares the \emph{False Positive Rate} against the \emph{True Positive Rate}, see 
-\autoref{fig:ROC-curve}. The Cox Proportional Hazards (CPH) model provides a starting point for a 
-survival model and the future models will be compared against this one.
-~\cites{ROC-precision-recall}{Cox}
+% C-index explanation
+To the standard performance measure to compare if a survival model is performing better 
+than another is the \emph{Concordance Index} (C-index). This index is 1 for a perfect data
+fit and 0.5 for a random model. Also, another comparison chart is the ROC
+curve which compares the \emph{False Positive Rate} against the \emph{True Positive Rate},
+see \autoref{fig:ROC-curve}. Also another comparison value is the \emph{concordance index}. 
+Usually the C-index is seen as the area under the ROC curve.
+~\cites{ROC-precision-recall}{RankingCI}
 
 \begin{figure}
-    \centering
-    \includegraphics[width=.5\linewidth]{images/roc_curve}
-    \caption{ROC Curve example\label{fig:ROC-curve}}
+  \centering
+  \includegraphics[width=.5\linewidth]{images/roc_curve}
+  \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
 
 Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
 Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
-scans of head-and-neck cancer patients with associated survival data. The goal of this project is 
-to develop a new deep learning framework to analyze this private dataset in combination with public 
-databases to improve the prediction rate of patients' survival compared to models built on 
-traditional radiomic features. Two of the methods that will be explored are dropout and image 
-augmentation techniques to improve the fitting of neural networks from medical images. 
+scans of head-and-neck cancer patients with associated survival data. 
+
+The goal of this project is to develop a new deep learning model to analyze this private 
+dataset in combination with public databases to improve the prediction rate of patients' 
+survival compared to models built on traditional radiomic features. The model should be 
+able to get better results than the ones obtained using the radiomic \texttt{VOLUME} feature
+which usually achieves a C-index of 0.65. The developed model should try to improve this value.
+
+
+\subsection{Stakeholders}
+
 
 \subsection{State-of-the-art}
 
-A lot of research is being done in the medical field using deep learning during these days. Image
+Nowadays, a lot of research is being done in the medical field using deep learning. Image
 classification is one of the first areas in which there's a major contribution to medical analysis.
 Usually in image classification one has one or multiple images as input and a single diagnostic 
 variable as output (e.g.~ill or not). With this approach the use of transfer learning has been a
 great improvement.
 ~\cite{survey-deep-learning}
 
-Through transfer learning is the use of pre-trained networks to try to reduce the requirement of 
-large data sets for deep network training. Usually there are two possible strategies: (1) using a 
-pre-trained NN as a feature extractor and (2) fine-tuning a pre-trained network on medical data.
+Transfer learning is the use of pre-trained networks to reduce the requirement of large data
+sets for deep network training. Usually, there are two possible strategies: 
+\begin{itemize}
+  \item Using a pre-trained NN as a feature extractor
+  \item Fine-tuning a pre-trained network on medical data.
+\end{itemize}
 Both strategies are popular and have been widely applied. One of the networks that allow this type
 of retrain is GoogLeNet Inception v3.
 ~\cites{GoogLeNet}{NNRetrain}{inceptionRetrain}
 
 Moreover, regarding the prediction of survival models there have been different approaches but
-almost all of them use MRI, PET or CT scans and the medical records. The typical one is to extract
+almost all of them use MRI, PET or CT scans and the clinical data. The typical one is to extract
 hand-crafted radiomic features using own methods or using libraries such as
 \href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted features are
-based in things like tumour shape intensity, shape or texture.
+based in things like tumour shape intensity, shape, volume or texture.
 ~\cites{PyRadiomics}{tumour-radiomics}
 
-The other approach is using a deep learning-based model for prediction. In this case too, 
-hand-crafted features are extracted but besides a Convolutional Neural Network is used to extract
-features. So this way the number of extracted features is bigger. There's the problem that when
-extracting hand-crafted features from a CT scan this is a 3D image while when working with a 
-CNN only 2D images can be used, since there's still no pre-trained CNN on 3D images. Although
-this method seems promising still requires further work to train a dedicated feature extractor 
-explicitly designed for medical images.
+The other approach, is using a deep learning-based model for prediction. In this case too, 
+hand-crafted features are extracted but, a Convolutional Neural Network is used to extract
+features instead. So, this way, the number of extracted features is bigger. However,
+there's the additional problem that usually medical imaging data is 3D but, when working 
+with CNN, only 2D images can be used, since there is still no pre-trained CNN on 3D images.
+Although this method seems promising still requires further work to train a dedicated 
+feature extractor explicitly designed for medical images.
 ~\cite{deep-learning-radiomics-gbm}
 
-An implemented survival prediction model is \emph{DeepSurv} which based on survival data,
-comprised of three elements: patient's baseline data, failure event time and an event indicator.
-\emph{DeepSurv} is an Open Source Python module that applies recent deep learning techniques to
-a nonlinear Cox proportional hazards network. 
-~\cite{DeepSurv}
+When working with Survival Prediction models the type of data usually has always the same form.
+Survival data has three elements: a patient's baseline data \( x \), a failure event time 
+\( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
+interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
+data was collected and event's time, and the event indicator is \( E = 1 \). If an
+event is not observed, the time interval \( T \) corresponds to the time elapsed between
+the collection of the baseline data and the last contact with the patient, and the 
+event indicator is \( E = 0 \). In this case, the patient is said to be
+\emph{right-censored}.
+
+An implemented survival prediction model is \emph{DeepSurv} which is based on survival data
+and uses the Cox Proportional Hazards model an individual's survival given the baseline data
+\( x \). It's an Open Source Python module that applies recent deep learning techniques 
+to the Cox model.
+~\cites{DeepSurv}{Cox}
 
 \subsection{Scope}
 
