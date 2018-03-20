@@ -36,7 +36,7 @@ a radiologist to manually contour the tumour. Deep learning has the potential to
 by automatically extract more information from the images.
 ~\cite{radiomics-ML-classifiers}
 
-\subsection{Problem Formulation}
+\subsubsection{Survival Analysis}
 
 To use all this data, Survival Prediction models have been created. Data from these models have
 three elements: a patient's baseline data \( x \), a failure event time 
@@ -69,6 +69,23 @@ ordered only if:
 \end{enumerate}
 This can be visualized by means of an order graph,
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{.4\textwidth}
+    \centering
+    \input{images/graph_no_censored.tikz.tex}
+    \caption{No censored data}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{.4\textwidth}
+    \centering
+    \input{images/graph_censored.tikz.tex}
+    \caption{Censored data}
+  \end{subfigure}
+
+  \caption{Order graphs representing the ranking constraints}
+\end{figure}
+
 % C-index explanation
 The standard performance measure, to compare if a survival 
 model is performing better than another, is the \emph{Concordance Index} (C-index). This 
@@ -83,6 +100,8 @@ the area under the ROC curve.
   \includegraphics[width=.5\linewidth]{images/roc_curve}
   \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
+
+\subsection{Problem Formulation}
 
 Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
 Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
