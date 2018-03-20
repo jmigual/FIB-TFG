@@ -67,7 +67,11 @@ ordered only if:
   \item The uncensored time of one is smaller than the censored survival time of the other
   (\( T_i < T_j | E_i = 1; E_j = 0 \))
 \end{enumerate}
-This can be visualized by means of an order graph,
+This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph}.
+The set of vertices \( V \) represents all the individuals, where each filled vertex indicates
+an \emph{uncensored} survival time, while an empty circle denotes a \emph{censored} observation.
+Existence of an edge \( E_{ij} \) implies that \( T_i < T_j \). An edge cannot originate 
+from a censored point.
 
 \begin{figure}
   \centering
@@ -83,7 +87,7 @@ This can be visualized by means of an order graph,
     \caption{Censored data}
   \end{subfigure}
 
-  \caption{Order graphs representing the ranking constraints}
+  \caption{Order graphs representing the ranking constraints \label{fig:graph}}
 \end{figure}
 
 % C-index explanation
