@@ -62,11 +62,12 @@ time \( t \) and it's defined as:
 Casting the survival analysis as a ranking problem is a way of dealing with the biased
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
-\begin{enumerate}
+\begin{enumerate}[noitemsep, topsep=0pt]
   \item Both of them are uncensored (\( E_i = E_j = 0\))
   \item The uncensored time of one is smaller than the censored survival time of the other
   (\( T_i < T_j | E_i = 1; E_j = 0 \))
 \end{enumerate}
+
 This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph}.
 The set of vertices \( V \) represents all the individuals, where each filled vertex indicates
 an \emph{uncensored} survival time, while an empty circle denotes a \emph{censored} observation.
@@ -117,10 +118,6 @@ survival compared to models built on traditional radiomic features. The model sh
 able to get better results than the ones obtained using the radiomic \texttt{VOLUME} feature
 which usually achieves a C-index of 0.65. The developed model should try to improve this value.
 
-
-\subsection{Stakeholders}
-
-
 \subsection{State-of-the-art}
 
 Nowadays, a lot of research is being done in the medical field using deep learning. Image
@@ -132,10 +129,11 @@ great improvement.
 
 Transfer learning is the use of pre-trained networks to reduce the requirement of large data
 sets for deep network training. Usually, there are two possible strategies: 
-\begin{itemize}
+\begin{itemize}[noitemsep, topsep=0pt]
   \item Using a pre-trained NN as a feature extractor
   \item Fine-tuning a pre-trained network on medical data.
 \end{itemize}
+
 Both strategies are popular and have been widely applied. One of the networks that allow this type
 of retrain is GoogLeNet Inception v3.
 ~\cites{GoogLeNet}{NNRetrain}{inceptionRetrain}
@@ -161,6 +159,10 @@ and uses the Cox Proportional Hazards model an individual's survival given the b
 \( x \). It's an Open Source Python module that applies recent deep learning techniques 
 to the Cox model.
 ~\cites{DeepSurv}{Cox}
+
+\subsection{Stakeholders}
+
+
 
 \subsection{Scope}
 
