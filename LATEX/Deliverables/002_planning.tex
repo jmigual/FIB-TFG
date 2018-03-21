@@ -47,25 +47,78 @@ and published at Coursera~\cite{Coursera} related to Convolutional Neural Networ
     object detection, are taught too.
 \end{itemize}
 
-\subsubsection{Get familiar with survival models and DeepSurv}
+All the tasks where done in three weeks.
 
-Survival Prediction models are a bit different from the typical Machine Learning model. This is
-because, in this case, the loss function is not done by comparing the predicted values with 
-the validation ones. DeepSurv is one of the machine learning papers using a survival model.
+\subsubsection{Get familiar with survival models like DeepSurv}
+
+Survival Prediction models are a bit different from the typical Machine Learning problem. 
+In this case, the desired output values are not the event indicator \( E \) and the time
+interval \( T \). What we want to obtain is the survival function \( S(t) \) or the 
+hazard function \( \lambda(t) \).
+
+DeepSurv is one of the machine learning papers using a survival model, in this case the
+Cox Proportional Hazards model which is not the same I will be planning to use.
 
 To see how to properly use a survival model in a deep learning application i should fully 
-understand how this is applied in the construction of the DeepSurv neural network. During the task
-I should compare the code implementation with the theoretical models
+understand how this is applied in the construction of the DeepSurv neural network. During 
+the task I should compare the code implementation with the theoretical models so this way
+I can see how to properly use \emph{vectorization} to speed-up computation
 \cites{Cox}{DeepSurv}.
+
 This process will take around two weeks.
+
+\subsubsection{Preprocess data}
+
+The input data for this project are:
+\begin{itemize}
+  \item RAW data from CT scans. There are around 88 slices for each patient, each one of 
+  a size of \( 512 \times 512 \) pixels.
+  \item Tumour annotations for the CT scans. For each RAW scan there's another slice which
+  is a mask of 1s and 0s where the value is 1 if there's a tumour in that pixel.
+  \item Clinical data. Which has information for each patient such as:
+  \begin{itemize}
+    \item Age
+    \item Gender
+    \item Smoking Pack Years
+    \item Treatment
+    \item Survival time
+    \item Survival event
+  \end{itemize}
+\end{itemize}
+
+All these data needs to be processed and for each CT scan, the 3D slice of the tumour needs to
+be extracted and the pixel values need to be normalized (setting the variance to 1 and the 
+mean to 0). These operations can be done in the period of a week.
 
 \subsubsection{Get familiar with Tensorflow}
 
-One week
+To be able to build a proper deep learning network a fully understanding of the framework 
+is required. Also, Tensorflow is a big piece of software and it offers many possibilities.
 
-\subsubsection{Create the regression model}
+Starting by just being able to run simple code and doing the tutorials. Then,
+starting to build different models and learn how to use the different API methods.
+Moreover, we have to understand how the data flow works and how to use the tensors to 
+compute operations and create a computing graph.
 
-\subsubsection{Create the classification model}
+This task won't take more than a week.
+
+\subsubsection{Build shallow siamese network}
+
+Since the final design will be a siamese network the first step is to design one of the 
+sisters in the network see \autoref{fig:siamese}. 
+
+\begin{figure}
+  \centering
+  \input{drawings/siamese_network.tikz.tex}
+  \caption{Siamese Network basic structure \label{fig:siamese}}
+\end{figure}
+
+The design is one of the most important parts of the project, since it will have a huge
+impact in the final results. It will take around 4 weeks to complete and more or less
+it will be a trial and error process to try to see which architecture for the sister
+network is bes suited to solve the problem.
+
+\subsubsection{Build deep siamese network}
 
 \subsubsection{Compare the model against other ones}
 
@@ -78,7 +131,9 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
   \begin{tabular}{|l|r|}
     \hline
     Task & Estimated duration (h) \\ \hline \hline
-    Acquire background in CNN & 70 \\ \hline
+    Acquire background in CNN & 105 \\ \hline
+    Get familiar with survival models & 35 \\ \hline
+    Preprocess data & 35 \\
   
     \hline \hline
     \textbf{Total} & 450 \\
@@ -135,3 +190,12 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
 \end{figure}
 
 \subsection{Alternatives and action plan}
+
+
+\subsubsection{Complexity of the built model}
+
+\subsubsection{Bugs}
+
+\subsubsection{Unavailability of SharcNet}
+
+\subsubsection{Training times}
