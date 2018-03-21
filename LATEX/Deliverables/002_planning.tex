@@ -171,7 +171,7 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
       group label font = \tiny\bf,
       title label font = \tiny,
       bar label font = \tiny,
-      vgrid,
+      vgrid={*{4}{draw=none},dotted,*{2}{draw=none}},
       hgrid,
       calendar week text = {\startday},
       link bulge = 2,
@@ -180,15 +180,16 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
 
 
     % Start gantt itself
-    \ganttgroup{Preamble}{2018-02-14}{2018-03-18} \\
+    \ganttgroup{Preamble}{2018-02-14}{2018-03-25} \\
     \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
     \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-09} \\
-    \ganttlinkedbar{Learn about DeepSurv}{2018-03-10}{2018-03-16} \\
+    \ganttlinkedbar{Learn about DeepSurv}{2018-03-10}{2018-03-25} \\
 
-    \ganttgroup{Regression model}{2018-03-19}{2018-04-08} \\
-    \ganttbar{Analysis}{2018-03-19}{2018-03-25} \\
-    \ganttlinkedbar{Implementation}{2018-03-26}{2018-04-01} \\
-    \ganttlinkedbar{Test}{2018-04-01}{2018-04-09} \\
+    
+    \ganttgroup{Build siamese network}{2018-03-26}{2018-05-20} \\
+    \ganttbar{Preprocess data}{2018-03-26}{2018-04-01} \\
+    \ganttlinkedbar{Build shallow network}{2018-04-02}{2018-05-06} \\
+    \ganttlinkedbar{Build deep network}{2018-05-07}{2018-05-20} \\
 
     \ganttgroup{Classification model}{2018-04-09}{2018-04-29} \\
 
