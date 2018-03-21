@@ -104,8 +104,10 @@ This task won't take more than a week.
 
 \subsubsection{Build shallow siamese network}
 
-Since the final design will be a siamese network the first step is to design one of the 
-sisters in the network see \autoref{fig:siamese}. 
+To build a siamese network a proper design for the sister network must be done first
+see \autoref{fig:siamese}. Designing the siamese network will be an iterative task where first
+the sister network is designed, then it's duplicated, since both sister networks share the
+same parameters, and then it's joined.
 
 \begin{figure}
   \centering
@@ -114,13 +116,22 @@ sisters in the network see \autoref{fig:siamese}.
 \end{figure}
 
 The design is one of the most important parts of the project, since it will have a huge
-impact in the final results. It will take around 4 weeks to complete and more or less
-it will be a trial and error process to try to see which architecture for the sister
-network is bes suited to solve the problem.
+impact in the final results. It will take around four weeks to complete and more or less
+and it will be a trial and error process to try to see which architecture for the sister
+network is best suited to solve the problem.
 
-The task will take four weeks to complete
+In this phase the designed networks will be very shallow to make small and fast improvements
+since the training time could be an issue.
 
 \subsubsection{Build deep siamese network}
+
+Once a initial shallow network is already created then the next step will be to try an create
+a more deep version, either using a pre-trained model or training a deep model from zero.
+
+Using a pre-trained network will improve the development process since it will allow us
+to make use of transfer learning and will have a low training time. However training the model
+from zero may give us better results but although with the cost of spending too much time.
+The deep network process should take two more weeks to complete.
 
 \subsubsection{Compare the model against other ones}
 
