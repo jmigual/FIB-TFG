@@ -111,10 +111,15 @@ This task won't take more than a week.
 
 \subsubsection{Build shallow siamese network}
 
-To build a siamese network a proper design for the sister network must be done first
-see \autoref{fig:siamese}. Designing the siamese network will be an iterative task where first
-the sister network is designed, then it's duplicated, since both sister networks share the
-same parameters, and then it's joined.
+A siamese network is a type of neural network that is suited for tasks such as face recognition.
+Its design usually is made from two more networks, usually called sisters, then the output
+of the two sisters gets joined in an extra layer which gives us the final output 
+see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
+architecture so after one is designed then it's duplicated and added the joining layer.
+
+To build it, a proper design for the sister network must be done first. Designing it will
+be an iterative task where the proposed model will be trained optimizing the hyperparameters.
+Then the results will be compared and some few changes will be made to try to get better results.
 
 \begin{figure}
   \centering
