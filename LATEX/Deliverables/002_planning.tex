@@ -147,6 +147,18 @@ The deep network process should take two more weeks to complete.
 
 \subsubsection{Compare the model against other ones}
 
+Once the final deep model is created then it will be compared against different methods of 
+survival analysis. Since this method will be the first one using both image data and scalar 
+data it will be compared against models using only one or the other. 
+
+The comparison will be against models using a Cox Proportional Hazards model using either
+the \emph{radiomics} features extracted with \texttt{PyRadiomics} from CT scans or using 
+directly the RAW image data extracted from the scans.
+
+To do all this comparisons the same original data, the head and neck dataset, must be 
+used so it may require running again the training process using the compared method. 
+That's why it will take two weeks for this task to complete.
+
 \subsection{Estimated time}
 
 In \autoref{tab:time} an estimation of the number of hours dedicated to each task is shown.
