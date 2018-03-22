@@ -1,0 +1,31 @@
+
+\begin{tikzpicture}[node distance = .5]
+
+  \tikzstyle{module}=[rounded corners, draw]
+  
+  \node [module] (CNN-1) at (0, 0) {Convolution};
+  \node [below = .5 of CNN-1] (aux-1) {};
+  \node [module, below = .5 of aux-1] (SF) {Spatial Filling};
+
+  \node [circle, draw, right = of aux-1] (join) {\( + \)};
+
+  \node [module, right = of join] (CNN-2) {Convolution};
+  \node [module, right = of CNN-2] (FC-2) {FC};
+  \node [right = of FC-2] (out) {To siamese};
+
+  \node [left = 2 of CNN-1] (image) {Image};
+  \node [module, left = of SF] (FC-1) {FC};
+  \node [left = of FC-1] (scalar) {Scalar};
+
+  \draw [-latex] (CNN-1) -- (join);
+  \draw [-latex] (SF) -- (join);
+  \draw [-latex] (join) -- (CNN-2);
+  \draw [-latex] (CNN-2) -- (FC-2);
+  \draw [-latex] (FC-2) -- (out);
+
+  \draw [-latex] (image) -- (CNN-1);
+  \draw [-latex] (scalar) -- (FC-1);
+  \draw [-latex] (FC-1) -- (SF);
+\end{tikzpicture}
+
+
