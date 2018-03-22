@@ -2,19 +2,21 @@
 \begin{tikzpicture}[node distance = .5]
 
   \tikzstyle{module}=[rounded corners, draw]
+  \tikzstyle{FC}=[module, fill=green!30]
+  \tikzstyle{conv}=[module, fill=orange!30]
   
-  \node [module] (CNN-1) at (0, 0) {Convolution};
+  \node [conv] (CNN-1) at (0, 0) {Convolution};
   \node [below = .5 of CNN-1] (aux-1) {};
-  \node [module, below = .5 of aux-1] (SF) {Spatial Filling};
+  \node [module, below = .5 of aux-1, fill=blue!20] (SF) {Spatial Filling};
 
-  \node [circle, draw, right = of aux-1] (join) {\( + \)};
+  \node [circle, draw, right = of aux-1, fill=red!20] (join) {\( + \)};
 
-  \node [module, right = of join] (CNN-2) {Convolution};
-  \node [module, right = of CNN-2] (FC-2) {FC};
+  \node [conv, right = of join] (CNN-2) {Convolution};
+  \node [FC, right = of CNN-2] (FC-2) {FC};
   \node [right = of FC-2] (out) {To siamese};
 
   \node [left = 2 of CNN-1] (image) {Image};
-  \node [module, left = of SF] (FC-1) {FC};
+  \node [FC, left = of SF] (FC-1) {FC};
   \node [left = of FC-1] (scalar) {Scalar};
 
   \draw [-latex] (CNN-1) -- (join);
