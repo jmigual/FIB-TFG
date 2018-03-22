@@ -120,6 +120,11 @@ of the two sisters gets joined in an extra layer which gives us the final output
 see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
 architecture so after one is designed then it's duplicated and added the joining layer.
 
+Through this approach the survival problem will be transformed into a order learning problem
+where for two elements \( x_1 \) and \( x_2 \) the network learns the sorting function
+\( f(x_1, x_2) = \hat{T}(x_1) > \hat{T}(x_2) \), where \( \hat{T}(x) \) is the predicted 
+survival time.
+
 To build it, a proper design for the sister network must be done first. Designing it will
 be an iterative task where the proposed model will be trained optimizing the hyperparameters.
 Then the results will be compared and some few changes will be made to try to get better results.
@@ -146,13 +151,14 @@ since the training time could be an issue.
 
 \subsubsection{Build deep siamese network}
 
-Once a initial shallow network is already created then the next step will be to try an create
-a more deep version, either using a pre-trained model or training a deep model from zero.
+Once an initial shallow network is already created then the next step will be to try 
+and create a more deep version. To do so it will be done step by step adding one layer
+at a time and seeing how the network is performing.
 
-Using a pre-trained network will improve the development process since it will allow us
-to make use of transfer learning and will have a low training time. However training the model
-from zero may give us better results but although with the cost of spending too much time.
-The deep network process should take two more weeks to complete.
+The main advantage of deep networks against shallow networks is that they are able to
+identify more complex features and thus they usually perform better. However, its 
+main drawback is that training time is longer and so the development process is 
+slower.
 
 \subsubsection{Compare the model against other ones}
 
