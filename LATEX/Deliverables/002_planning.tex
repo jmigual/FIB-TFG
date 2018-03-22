@@ -90,9 +90,12 @@ The input data for this project are:
   \end{itemize}
 \end{itemize}
 
-All these data needs to be processed and for each CT scan, the 3D slice of the tumour needs to
-be extracted and the pixel values need to be normalized (setting the variance to 1 and the 
-mean to 0). These operations can be done in the period of a week.
+The imaging data needs to be preprocessed so, for each CT scan, the tumour's bounding
+box needs to be found and then extract the 3D slice. This slice needs to be resized 
+normalized, to a value \( x \in [0, 1] \), and afterwards resized as a 3D image of 
+\( 64 \times 64 \times 64 \) voxels. Additionally if data augmentation techniques are 
+used then random crops and rotations to the image can be added before extracting the
+3D slice. These operations can be don in the period of a week.
 
 \subsubsection{Get familiar with Tensorflow}
 
