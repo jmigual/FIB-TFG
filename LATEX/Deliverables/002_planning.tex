@@ -168,13 +168,17 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
   \begin{tabular}{|l|r|}
     \hline
     Task & Estimated duration (h) \\ \hline \hline
-    Acquire background in CNN & 105 \\ \hline
-    Get familiar with survival models & 35 \\ \hline
-    Preprocess data & 35 \\ \hline
-    Build shallow siamese network & 140 \\
+    Acquire background in CNN & 120 \\ \hline
+    Get familiar with survival models & 80 \\ \hline
+    Preprocess data & 40 \\ \hline
+    Build shallow siamese network & 200 \\ \hline
+    Build deep siamese network & 80 \\ \hline
+    Compare models & 80 \\ \hline
+    Final stage & 160 \\ 
+
   
     \hline \hline
-    \textbf{Total} & 450 \\
+    \textbf{Total} & 760 \\
     \hline
   \end{tabular}
   \caption{Estimated time for each task \label{tab:time}}
@@ -200,14 +204,14 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
       calendar week text = {\startday},
       link bulge = 2,
     ]{2018-02-14}{2018-06-29}
-    \gantttitlecalendar{year, month=shortname, week} \\
+    \gantttitlecalendar{month=shortname, week} \\
 
 
     % Start gantt itself
     \ganttgroup{Preamble}{2018-02-14}{2018-03-25} \\
     \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
-    \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-09} \\
-    \ganttlinkedbar{Learn about DeepSurv}{2018-03-10}{2018-03-25} \\
+    \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-11} \\
+    \ganttlinkedbar{Learn about DeepSurv}{2018-03-12}{2018-03-25} \\
 
     
     \ganttgroup{Build siamese network}{2018-03-26}{2018-05-20} \\
