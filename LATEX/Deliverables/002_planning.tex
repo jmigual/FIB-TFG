@@ -237,19 +237,41 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
 \subsection{Alternatives and action plan}
 
 As it has already been said, the fact that there will be weekly meetings will allow to 
-revise and adapt the initial planning. This means that the real duration compared to the 
-planned one of a specific task may differ, and thus the planning will be changed 
-accordingly. If a task is finished before planned then the next task will start
-immediately. Moreover, if a task duration is longer than expected then the following tasks
-will need to be rescheduled or, in the worst case, omitted. In this 
+revise and adapt the initial planning. This means that, for each task, the real duration, 
+compared to the planned one may differ, and thus the planning will be changed accordingly. 
+If a task is finished before planned, then the next task will start immediately. 
+Moreover, if a task duration is longer than expected, then the following tasks will need 
+to be rescheduled or, in the worst case, omitted, although not all the tasks can be excluded.
+
+Having weekly meetings with the Principal Investigator should mitigate the possible problems,
+and give enough time to detect possible delays or differences with the original time, and
+thus fix them as soon as possible.
+
+Below, there are some examples of potential sources of delays.
 
 \subsubsection{Complexity of the built model}
 
-Since the model that I am aiming to build is quite complex it will have a constant trial
-and error and so it may take longer than expected to finish. To 
+Since the model that it's going to be built is quite complex it will have a constant trial
+and error. This can cause delays if a wrong architecture it's chosen, and it's not detected
+in time, because a lot of time can be lost until the wrong choice is noticed. 
 
 \subsubsection{Bugs}
 
-\subsubsection{Unavailability of SharcNet}
+Using complex software such as Tensorflow is prone to errors in many ways. Programming errors
+are not an exception and while writing the code some bugs can be introduced. If a bug is not 
+noticed soon it can cause long delays while trying to fix them.
+
+\subsubsection{Unavailability of Compute Canada}
+
+Since this project involves training Convolutional Neural Networks it needs a lot of computing 
+power so a computing cluster will be used to train the data. If the cluster it's not available
+then the training will need to be done with local resources which will be slower and thus 
+more time will be lost.
 
 \subsubsection{Training times}
+
+The training time is one of the biggest drawbacks from this project. Since this task
+can take a huge amount of time depending on the chosen architecture it can cause
+huge delays from the original plan. This should be mitigated by doing small tests
+instead of a whole training session to make sure that no bugs are found in the code 
+because, otherwise, all the training results would become invalid.
