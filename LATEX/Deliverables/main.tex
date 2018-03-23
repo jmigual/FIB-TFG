@@ -19,14 +19,21 @@
 \usepackage{pgfgantt}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{array}
 \usepackage{enumitem}
+\usepackage{multirow}
 
 \usetikzlibrary{positioning}
 
 \setmainfont{CMU Serif}
 \setlength{\parskip}{\baselineskip}
 
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
 % Bibliography
+\setcounter{biburlnumpenalty}{5000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
 \addbibresource{../bibliography/all.bib}
 \addbibresource{../bibliography/medical.bib}
 \addbibresource{../bibliography/neural.bib}
@@ -69,7 +76,6 @@
 \include{003_budget}
 
 \pagebreak
-\emergencystretch=2em
 \section{References}
 \printbibliography[heading=none]{}
 
