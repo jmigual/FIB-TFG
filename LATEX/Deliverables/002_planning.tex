@@ -125,8 +125,15 @@ where for two elements \( x_1 \) and \( x_2 \) the network learns the sorting fu
 \( f(x_1, x_2) = \hat{T}(x_1) > \hat{T}(x_2) \), where \( \hat{T}(x) \) is the predicted 
 survival time.
 
-To build it, a proper design for the sister network must be done first. Designing it will
-be an iterative task where the proposed model will be trained optimizing the hyperparameters.
+Too build this model, a proper design for the sister network must be done first. This, will be
+an iterative task where the proposed model will be created and then, trained optimizing
+the hyperparameters. Afterwards, a new change will be made trying to get better results and
+it will be compared against the previous one. 
+
+The starting point can be seen in \autoref{fig:shallow-sister} which is inspired in a paper
+\cite{neural:hand-eye-coordination} published by Google where they made a combination of 
+scalar and image inputs in a Convolutional Neural Network.
+
 Then the results will be compared and some few changes will be made to try to get better results.
 
 \begin{figure}
@@ -138,10 +145,10 @@ Then the results will be compared and some few changes will be made to try to ge
 \begin{figure}
   \centering
   \input{drawings/shallow_network.tex}
-  \caption{Shallow sister network design \label{fig:shallow}}
+  \caption{Shallow sister network design \label{fig:shallow-sister}}
 \end{figure}
 
-The design is one of the most important parts of the project, since it will have a huge
+ is one of the most important parts of the project, since it will have a huge
 impact in the final results. It will take around four weeks to complete and more or less
 and it will be a trial and error process to try to see which architecture for the sister
 network is best suited to solve the problem.
