@@ -114,7 +114,8 @@ This task won't take more than a week.
 
 \subsubsection{Build shallow siamese network}
 
-A siamese network is a type of neural network that is suited for tasks such as face recognition.
+A siamese network is a type of neural network that is suited for comparison tasks such as 
+face recognition or signature verification \cite{neural:siamese}.
 Its design usually is made from two more networks, usually called sisters, then the output
 of the two sisters gets joined in an extra layer which gives us the final output 
 see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
@@ -176,6 +177,7 @@ data it will be compared against models using only one or the other.
 The comparison will be against models using a Cox Proportional Hazards model using either
 the \emph{radiomics} features extracted with \texttt{PyRadiomics} from CT scans or using 
 directly the RAW image data extracted from the scans.
+~\cites{medical:PyRadiomics}{medical:Cox}
 
 To do all this comparisons the same original data, the head and neck dataset, must be 
 used so it may require running again the training process using the compared method. 
