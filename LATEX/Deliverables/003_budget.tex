@@ -218,6 +218,19 @@ resources.
 
 \subsection{Budget monitoring}
 
+In order to control the budget, at the end of each task the budget will be updated with the
+effective amount of hours, the cost of the resources used and the expenses of the unexpected
+events that may have occurred. Afterwards, these values will be compared against the previous
+estimations to get indicators that show the amount of deviation from the initial planning.
+The following formulas will be applied:
+
+\[
+  \text{Cost deviation} = (EC - RC) \cdot RH
+\]
+\[
+  \text{Consumption deviation} = (EH - RH) \cdot EC
+\]
+
 \subsection{Sustainability and social commitment}
 
 \subsubsection{Environmental dimension}
