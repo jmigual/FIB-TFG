@@ -70,7 +70,9 @@ project.
 
 To develop this software some roles will be taken. There will be the Project Manager role,
 the Software Developer role and the Tester role. Each role is differentiated in the total
-of the 760 hours.
+of the 760 hours. \autoref{tab:salary} shows the estimated costs for each role and the
+Human Resources cost, \autoref{tab:time-estimation} shows an estimation of the time 
+inverted on each role for each task.
 
 \begin{table}[H]
   \centering
@@ -78,21 +80,21 @@ of the 760 hours.
     \hline
     \textbf{Role} & \textbf{Hours} & \textbf{€/hour} & \textbf{Salary} \\ \hline\hline
 
-    Project Manager & 70 & 26 & 1.820 \\ \hline
-    Software Developer & 460 & 18 & 8.280 \\ \hline
-    Tester & 230 & 15 & 3.450 \\ \hline
+    Project Manager & 70 & 26 & 1.820 € \\ \hline
+    Software Developer & 510 & 18 & 9.180 € \\ \hline
+    Tester & 180 & 15 & 2.700 € \\ \hline
 
     \hline\hline 
-    Total & 760 & & \\
+    Total & 760 & & 13.700 € \\
     \hline
   \end{tabular}
 
-  \caption{Human resources budget, salary according to \cite{ine:salary}}
+  \caption{Human resources budget, salary according to \cite{ine:salary} \label{tab:salary}}
 \end{table}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|P{5cm}|r|r|r|r|}
+  \begin{tabular}{|P{4cm}|r|r|r|r|}
     \hline
     \multirow{2}{*}[-1em]{\textbf{Task}} & 
     \multirow{2}{*}[-1em]{\textbf{Duration}} & 
@@ -102,25 +104,117 @@ of the 760 hours.
      \parbox[c][1.5cm]{2.2cm}{\textbf{Software \\ Developer}} & 
      \textbf{Tester} \\ \hline\hline
 
-     Acquire back\-ground in CNN & 120 & & & \\ \hline
-     Get familiar with survival models & 80 & & & \\ \hline
-     Preprocess data & 40 & & & \\ \hline
-     Build shallow siamese network & 200 & & & \\ \hline
-     Build deep siamese network & 80 & & & \\ \hline
-     Compare models & 80 & & & \\ \hline
-     Final stage & 160 & & & \\ 
+     Acquire background in CNN & 120 & 10 & 110 & 0 \\ \hline
+     Get familiar with survival models & 80 & 10 & 70 & 0 \\ \hline
+     Preprocess data & 40 & 10 & 20 & 10 \\ \hline
+     Build shallow siamese network & 200 & 15 & 110 & 75 \\ \hline
+     Build deep siamese network & 80 & 10 & 50 & 20 \\ \hline
+     Compare models & 80 & 10 & 40 & 30 \\ \hline
+     Final stage & 160 & 5 & 110 & 45 \\ 
 
      \hline\hline
-     \textbf{Total} & 760 & 70 & 460 & 230 \\
+     \textbf{Total} & 760 & 70 & 510 & 180 \\
      \hline
   \end{tabular}
+
+  \caption{Time estimation by role \label{tab:time-estimation}}
 \end{table}
 
 \subsubsection{Unexpected costs}
 
+As there may be unexpected changes in the project, an extra budget has to be added to compensate
+for such problems. \autoref{tab:unexpected-costs} shows the distribution of this budget per role.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Role} & \textbf{Hours} & \textbf{€ / hour} & \textbf{Salary} \\ \hline\hline
+    Project Manager & 10 & 26 & 260 € \\ \hline
+    Software Developer & 20 & 18 & 360 € \\ \hline
+    Tester & 10 & 15 & 150 € \\ \hline
+
+    \hline\hline
+    \textbf{Total} & 40 & & 770 € \\ 
+    \hline
+  \end{tabular}
+  \caption{Unexpected costs \label{tab:unexpected-costs}}
+\end{table}
+
 \subsubsection{Indirect costs}
 
+In a project, there are some costs that cannot be added in neither of the previous categories,
+this are estimated in \autoref{tab:indirect-costs}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Cost} \\ \hline\hline
+
+    Electricity & 0,12 €/kWh & 550 kWh & 66 € \\ \hline
+    Internet + phone & 70 €/month & 4 months & 280 € \\ \hline
+    
+    \hline\hline
+    \textbf{Total} & & & 346 € \\ \hline
+  \end{tabular}
+  \caption{Indirect costs \label{tab:indirect-costs}}
+\end{table}
+
 \subsubsection{Total budget}
+
+By adding all the previously provided budgets, the total estimated budget for this project
+is obtained, as shown in table \autoref{tab:total-costs}. Notice that a 5\% of contingency
+has been added over the cumulative total in order to cover unexpected expenses that may 
+occur during the development of the project.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{Concept} & \textbf{Estimated Costs} \\ \hline\hline
+
+    Hardware resources & 83 € \\ \hline
+    Software resources & 0 € \\ \hline
+    Human resources & 13.700 € \\ \hline
+    Unexpected costs & 770 € \\ \hline
+    Indirect costs & 346 € \\ \hline
+
+    \hline\hline
+    \textbf{Subtotal} & 14.899 € \\
+    \hline\hline
+    Contingency (5\%) & 744.95 € \\
+    \hline\hline
+    \textbf{Total} & \textbf{15.643,95 €} \\ \hline
+  \end{tabular}
+
+  \caption{Total project costs \label{tab:total-costs}}
+\end{table}
+
+Finally, an estimation of the approximate budget per task is also provided in table 9. The
+cost of each task is computed using the number of hours spent in the task and the required
+resources.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{Task} & \textbf{Estimated cost} \\ 
+    \hline\hline
+
+    Acquire background in CNN & 2.436,04 € \\ \hline
+    Get familiar with survival models & 1.653,03 € \\ \hline
+    Preprocess data & 837,39 € \\ \hline
+    Build shallow siamese network & 3.800,88 € \\ \hline
+    Build deep siamese network & 1.587,78 € \\ \hline
+    Compare models & 1.555,15 € \\ \hline
+    Final stage & 3.028,74 € \\ 
+
+    \hline\hline
+    \textbf{Total} & 14.899,00 € \\ \hline
+  \end{tabular}
+\end{table}
+
 
 \subsection{Budget monitoring}
 
