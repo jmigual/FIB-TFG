@@ -198,12 +198,12 @@ is not prepared to have images as an input, a improvement will be to add the pos
 pass medical images to train the survival model.
 \cite{medical:deep-surv-github}
 
-Afterwards, a deep learning model will be created starting from zero but trying to reuse
-as many parts as possible. However, this model will not be using the Cox Proportional
-Hazards because the objective, in this case, will be to try to directly optimize the C-index.
-Since the C-index is computed using pairs of patients, a siamese neural network will be built.
-This type of network is suited for comparison tasks such as face recognition, but this 
-time the task will be to compare the survival time of different pairs.
+Afterwards, a deep learning model will be created starting from zero but trying to use 
+some ideas from other completed projects. This model, unlike \emph{DeepSurv}, will not be 
+using the Cox Proportional Hazards because, in this case, the approach will be to compare
+pairs and not to get the hazard function. Since the C-index is computed using pairs of patients, 
+a siamese neural network will be built. This type of network is suited for comparison 
+tasks such as face recognition, but this time it will be comparing the pair's survival time.
 
 \subsection{Methodology}
 
