@@ -31,16 +31,21 @@
 
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-% Bibliography
+% Fix bibliography parameters for overfull
 \setcounter{biburlnumpenalty}{5000}
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
+
+% Bibliography
 \addbibresource{../bibliography/all.bib}
 \addbibresource{../bibliography/medical.bib}
 \addbibresource{../bibliography/neural.bib}
   
+
+%%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
 \begin{document}
 
+% Title page can be commented to remove it
 \begin{titlepage}
   \centering
   \vspace{1.5cm}
