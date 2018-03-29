@@ -3,23 +3,17 @@
 \section{Context and scope of the project}
 \subsection{Context}
 
-Nowadays one of the most extensive uses of computing is artificial intelligence. Some examples
-are when getting recommendations for products that we can buy, based in previous purchases,
-or setting the proper camera parameters when taking a picture.
-This is being 
-used to give us recommendations in which products we can buy based in our previous purchases, 
-like Amazon does \cite{neural:amazon}.
-
-This is being
-used from, based on our preferences, help us select what products we can buy to properly detect
-and focus faces when taking a picture. The main advantage of this field is that it reduces the
-amount of human intervention and it usually performs better.
+Nowadays one of the most extensive uses of computing is artificial intelligence. A few 
+examples are Amazon purchase recommendations, based on previous purchases, or help users
+interact with their phone by only using voice commands like Google Assistant. 
+~\cites{neural:amazon}{neural:google-assistant}
 
 Inside AI one of the domains that has greatly increased during the last years is 
 \emph{Machine Learning}. The main advantage is that it can solely learn from examples without 
 explicit teaching, and thus reducing the human interaction during the learning process. One of the 
 most used types is \emph{deep neural networks} and these have demonstrated impressive performance 
-against tasks like the classification of digits from the MNIST data set.
+against computer vision and Natural Language Processing tasks like the classification of 
+digits from the MNIST data set.
 ~\cites{neural:MNIST}{neural:empirical-evaluation-deep-architectures}
 
 Regarding the medical field, recent deep learning algorithms, specially convolutional networks 
@@ -45,9 +39,9 @@ are end-to-end and, for a given task, they drive features from the data.
 
 \subsubsection{Survival Analysis}
 
-To use all this data, Survival Prediction models have been created. Data from these models have
-three elements: a patient's baseline data \( x \), a failure event time 
-\( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
+To use all the medical imaging and clinical data, Survival Prediction models have been created. 
+Data from these models have three elements: a patient's baseline data \( x \), a failure event 
+time \( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
 interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
 data was collected and event's time, and the event indicator is \( E = 1 \). If an
 event is not observed, the time interval \( T \) corresponds to the time elapsed between
@@ -121,50 +115,50 @@ scans of head-and-neck cancer patients with associated survival data.
 
 The goal of this project is to develop a new deep learning model to analyze this private 
 dataset in combination with public databases to improve the prediction rate of patients' 
-survival compared to models built on traditional radiomic features. The model should be 
-able to get better results than the ones obtained using the radiomic \texttt{VOLUME} feature
-which usually achieves a C-index of 0.65. The developed model should try to improve this value.
+survival compared to models built on traditional radiomic features. We would like to 
+investigate and compare the performance of the deep learning-based method 
+to the more conventional methods, such as hand-engineered radiomics features and the tumor 
+\emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
+of the volume for the set of patients at hand, is ~0.65.
 
 \subsection{State-of-the-art}
 
 Nowadays, a lot of research is being done in the medical field using deep learning. Image
 classification is one of the first areas in which there's a major contribution to medical analysis.
 Usually in image classification one has one or multiple images as input and a single diagnostic 
-variable as output (e.g.~ill or not). With this approach the use of transfer learning has been a
-great improvement.
+variable as output (e.g.~ill or not).
 ~\cite{medical:survey-deep-learning}
 
-Transfer learning is the use of pre-trained networks to reduce the requirement of large data
+Regarding the prediction of survival models, there have been different approaches although
+almost all of them use MRI, PET or CT scans and the clinical data. The typical one is to extract
+hand-crafted radiomic features using own methods or using libraries such as
+\href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted 
+features are based in aspects like tumour shape, intensity, volume or texture.
+~\cites{medical:tumour-radiomics}{medical:PyRadiomics}
+
+The other approach, is to use a deep learning-based model for prediction and for feature
+extraction. In this case, hand-crafted features are extracted too but a Convolutional
+Neural Network is used instead. With this approach the use of transfer learning has been a
+great improvement. It is the use of pre-trained networks to reduce the requirement of large data
 sets for deep network training. Usually, there are two possible strategies: 
 \begin{itemize}[noitemsep, topsep=0pt]
   \item Using a pre-trained NN as a feature extractor
   \item Fine-tuning a pre-trained network on medical data.
 \end{itemize}
 
-Both strategies are popular and have been widely applied. One of the networks that allow this type
-of retrain is GoogLeNet Inception v3.
-~\cites{neural:GoogLeNet}{neural:NNRetrain}{neural:inceptionRetrain}
-
-Moreover, regarding the prediction of survival models there have been different approaches but
-almost all of them use MRI, PET or CT scans and the clinical data. The typical one is to extract
-hand-crafted radiomic features using own methods or using libraries such as
-\href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted features are
-based in things like tumour shape intensity, shape, volume or texture.
-~\cites{medical:tumour-radiomics}{medical:PyRadiomics}
-
-The other approach, is using a deep learning-based model for prediction. In this case too, 
-hand-crafted features are extracted but, a Convolutional Neural Network is used to extract
-features instead. So, this way, the number of extracted features is bigger. However,
-there's the additional problem that usually medical imaging data is 3D but, when working 
-with CNN, only 2D images can be used, since there is still no pre-trained CNN on 3D images.
-Although this method seems promising still requires further work to train a dedicated 
-feature extractor explicitly designed for medical images.
+Both strategies are popular and have been widely applied. A network that allows this type
+of retrain is GoogLeNet Inception v3
+~\cites{neural:GoogLeNet}{neural:NNRetrain}{neural:inceptionRetrain}.
+However, there's the added problem that medical imaging data are usually 3D images but, 
+when working with pre-trained CNN, only 2D images can be used, because there are still no 
+pre-trained networks on 3D images. Although this method seems promising, still requires 
+further work to train a dedicated feature extractor explicitly designed for medical images.
 ~\cite{medical:deep-learning-radiomics-gbm}
 
 An implemented survival prediction model is \emph{DeepSurv} which is based on survival data
-and uses the Cox Proportional Hazards model an individual's survival given the baseline data
+and uses the Cox Proportional Hazards model for an individual's survival given the baseline data
 \( x \). It's an Open Source Python module that applies recent deep learning techniques 
-to the Cox model.
+to a Cox model.
 ~\cites{medical:DeepSurv}{medical:Cox}
 
 \subsection{Stakeholders}
