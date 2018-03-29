@@ -64,7 +64,7 @@ Casting the survival analysis as a ranking problem is a way of dealing with the 
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
 \begin{enumerate}[noitemsep, topsep=0pt]
-  \item Both of them are uncensored (\( E_i = E_j = 0\))
+  \item Both of them are uncensored (\( E_i = E_j = 1\))
   \item The uncensored time of one is smaller than the censored survival time of the other
   (\( T_i < T_j | E_i = 1; E_j = 0 \))
 \end{enumerate}
@@ -136,8 +136,8 @@ hand-crafted radiomic features using own methods or using libraries such as
 features are based in aspects like tumour shape, intensity, volume or texture.
 ~\cites{medical:tumour-radiomics}{medical:py-radiomics}
 
-The other approach, is to use a deep learning-based model for prediction and for feature
-extraction. In this case, hand-crafted features are extracted too but a Convolutional
+An alternative approach, is to use a deep learning-based model for prediction and for feature
+extraction. In this case, features are extracted too but a Convolutional
 Neural Network is used instead. With this approach the use of transfer learning has been a
 great improvement. It is the use of pre-trained networks to reduce the requirement of large data
 sets for deep network training. Usually, there are two possible strategies: 
