@@ -14,7 +14,7 @@ explicit teaching, and thus reducing the human interaction during the learning p
 most used types is \emph{deep neural networks} and these have demonstrated impressive performance 
 against computer vision and Natural Language Processing tasks like the classification of 
 digits from the MNIST data set.
-~\cites{neural:MNIST}{neural:empirical-evaluation-deep-architectures}
+~\cites{neural:mnist}{neural:empirical-evaluation-deep-architectures}
 
 Regarding the medical field, recent deep learning algorithms, specially convolutional networks 
 have started to push the boundaries of precision medicine. 
@@ -35,7 +35,7 @@ characterize tumours and predict survival outcome. Although promising, radiomics
 several limitations. The most important one is that it relies on hand-engineered features,
 these features are not guaranteed to be the most discriminant ones. Deep learning methods
 are end-to-end and, for a given task, they drive features from the data.
-~\cite{medical:radiomics-ML-classifiers}
+~\cite{medical:radiomics-ml-classifiers}
 
 \subsubsection{Survival Analysis}
 
@@ -48,13 +48,13 @@ event is not observed, the time interval \( T \) corresponds to the time elapsed
 the collection of the baseline data and the last contact with the patient, and the 
 event indicator is \( E = 0 \). In this case, the patient is said to be
 \emph{right-censored}.
-~\cite{medical:DeepSurv}
+~\cite{medical:deep-surv}
 
 The survival and hazard functions are the two fundamental functions in survival analysis. The
 survival function \( S(t) = \Pr(T \ge t) \), is the probability that an individual has
 \emph{survived} beyond time \( t \). The hazard function \( \lambda(t) \) is a measure of risk at 
 time \( t \) and it's defined as:
-~\cite{medical:Cox}
+~\cite{medical:cox}
 \[
   \lambda(t) = \lim_{\Delta t \rightarrow 0}
   \frac{\Pr(t \le T < t + \Delta t | T \ge t)}{\Delta t}
@@ -99,7 +99,7 @@ index is 1 for a perfect data fit and 0.5 for a random model. Also, another comp
 element is the ROC curve which represents the \emph{False Positive Rate} against the 
 \emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the C-index is seen as 
 the area under the ROC curve.
-~\cites{neural:ROC-precision-recall}{medical:RankingCI}
+~\cites{neural:roc-precision-recall}{medical:ranking-ci}
 
 \begin{figure}
   \centering
@@ -134,7 +134,7 @@ almost all of them use MRI, PET or CT scans and the clinical data. The typical o
 hand-crafted radiomic features using own methods or using libraries such as
 \href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted 
 features are based in aspects like tumour shape, intensity, volume or texture.
-~\cites{medical:tumour-radiomics}{medical:PyRadiomics}
+~\cites{medical:tumour-radiomics}{medical:py-radiomics}
 
 The other approach, is to use a deep learning-based model for prediction and for feature
 extraction. In this case, hand-crafted features are extracted too but a Convolutional
@@ -148,7 +148,7 @@ sets for deep network training. Usually, there are two possible strategies:
 
 Both strategies are popular and have been widely applied. A network that allows this type
 of retrain is GoogLeNet Inception v3
-~\cites{neural:GoogLeNet}{neural:NNRetrain}{neural:inceptionRetrain}.
+~\cites{neural:goog-le-net}{neural:retrain}{neural:inception-retrain}.
 However, there's the added problem that medical imaging data are usually 3D images but, 
 when working with pre-trained CNN, only 2D images can be used, because there are still no 
 pre-trained networks on 3D images. Although this method seems promising, still requires 
@@ -159,7 +159,7 @@ An implemented survival prediction model is \emph{DeepSurv} which is based on su
 and uses the Cox Proportional Hazards model for an individual's survival given the baseline data
 \( x \). It's an Open Source Python module that applies recent deep learning techniques 
 to a Cox model.
-~\cites{medical:DeepSurv}{medical:Cox}
+~\cites{medical:deep-surv}{medical:cox}
 
 \subsection{Stakeholders}
 
@@ -174,7 +174,7 @@ He is the main responsible for guiding, giving advice and, in general, helping t
 His action is key to determine possible errors in the project, both in its proposal and 
 execution. In particular, Benjamin Haibe-Kains from the Bioinformatics and Computational
 Genomics Laboratory has acted as director
-~\cites{BHKLab}.
+~\cites{bhklab}.
 
 \subsubsection{Beneficiaries}
 The project beneficiaries will depend on its outcome. If a more efficient model is found the
@@ -196,7 +196,7 @@ computer. Once running, all the different parts of the package should be tested 
 ones are best suited to be reused to create a new Survival Prediction Model. Since the package
 is not prepared to have images as an input, a improvement will be to add the possibility to 
 pass medical images to train the survival model.
-\cite{medical:DeepSurv-github}
+\cite{medical:deep-surv-github}
 
 Afterwards, a deep learning model will be created starting from zero but trying to reuse
 as many parts as possible. However, this model will not be using the Cox Proportional
@@ -208,7 +208,7 @@ time the task will be to compare the survival time of different pairs.
 \subsection{Methodology}
 
 This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
-Computational Genomics Laboratory \cite{BHKLab}. This means that every week there will be a 
+Computational Genomics Laboratory \cite{bhklab}. This means that every week there will be a 
 laboratory meeting where progress will be presented to all the lab members and feedback will 
 be received accordingly.
 
@@ -238,7 +238,7 @@ some tools to allow multiple contributors in the same project. Moreover,
 Git projects can be stored in a server, GitHub it's an online platform that allows
 remote Git repositories, also it has integrated an issue system, a milestone system
 and it's really integrated with Git's contributor system.
-~\cites{tool:Git}{tool:GitHub}
+~\cites{tool:git}{tool:github}
 
 \subsubsection{Bugs}
 

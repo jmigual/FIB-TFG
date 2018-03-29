@@ -29,23 +29,23 @@ The first step is to acquire a better understanding in how a convolutional neura
 Therefore, in the las month I've been learning about Convolutional Neural Networks and how they
 can be used. 
 I started with basic statistics applied to \emph{Machine Learning} by reading the book 
-\emph{The Elements of Statistical Learning}.~\cite{neural:ElementsStatisticalLearning}
+\emph{The Elements of Statistical Learning}.~\cite{neural:elements-statistical-learning}
 
 Then, I continued by doing three courses made by \href{https://www.deeplearning.ai}{Deeplearning.ai}
-and published at Coursera~\cite{neural:Coursera} related to Convolutional Neural Networks:
+and published at Coursera~\cite{neural:coursera} related to Convolutional Neural Networks:
 \begin{itemize}
   \item \href{https://www.coursera.org/learn/neural-networks-deep-learning}{Neural Networks and 
-    Deep Learning}~\cite{neural:Coursera:NN}: Where the basic elements of a neural network and how
+    Deep Learning}~\cite{neural:coursera:nn}: Where the basic elements of a neural network and how
     to train it are explained.
 
   \item \href{https://www.coursera.org/learn/deep-neural-network}{Improving Deep Neural Networks: 
-    Hyperparameter tuning, Regularization and Optimization}~\cite{neural:Coursera:NNHyperparameters}: 
+    Hyperparameter tuning, Regularization and Optimization}~\cite{neural:coursera:nn-hyperparameters}: 
     In this course it's shown the importance of hyperparameters and how each one works. 
     This way then it can be easier to design a proper network. Also, the different methods 
     of regularization are explained too, so overfitting can be avoided.
 
   \item \href{https://www.coursera.org/learn/convolutional-neural-networks}{Convolutional Neural 
-    Networks}~\cite{neural:Coursera:CNN}:
+    Networks}~\cite{neural:coursera:cnn}:
     How the \emph{convolution} operation works and why it's used in Machine Learning. 
     Different methods of using a Convolutional Neural Network, like face recognition or 
     object detection, are taught too.
@@ -67,7 +67,7 @@ To see how to properly use a survival model in a deep learning application i sho
 understand how this is applied in the construction of the DeepSurv neural network. During 
 the task I should compare the code implementation with the theoretical models so this way
 I can see how to properly use \emph{vectorization} to speed-up computation
-\cites{medical:Cox}{medical:DeepSurv}.
+\cites{medical:cox}{medical:deep-surv}.
 
 This process will take around two weeks.
 
@@ -99,7 +99,7 @@ used then random crops and rotations to the image can be added before extracting
 
 \subsubsection{Get familiar with Tensorflow}
 
-Tensorflow\cite{neural:Tensorflow} is one of the biggest libraries for developing deep neural 
+Tensorflow\cite{neural:tensorflow} is one of the biggest libraries for developing deep neural 
 networks. It hides from the user the underlying details of how to train a model, like how to 
 compute de derivatives for each operation to be able to implement the back propagation 
 algorithm. Also, it's open source so it comes at no cost.
@@ -177,7 +177,7 @@ data it will be compared against models using only one or the other.
 The comparison will be against models using a Cox Proportional Hazards model using either
 the \emph{radiomics} features extracted with \texttt{PyRadiomics} from CT scans or using 
 directly the RAW image data extracted from the scans.
-~\cites{medical:PyRadiomics}{medical:Cox}
+~\cites{medical:py-radiomics}{medical:cox}
 
 To do all this comparisons the same original data, the head and neck dataset, must be 
 used so it may require running again the training process using the compared method. 
