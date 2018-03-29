@@ -1,33 +1,23 @@
 
-\begin{tikzpicture}[node distance = .5]
+\begin{tikzpicture}[node distance = 1]
 
   \tikzstyle{module}=[rounded corners, draw]
   \tikzstyle{FC}=[module, fill=green!30]
   \tikzstyle{conv}=[module, fill=orange!30]
+
+  \node [conv] (CNN-1) at (0, 0) {Convolution 1};
   
-  \node [conv] (CNN-1) at (0, 0) {Convolution};
-  \node [below = .5 of CNN-1] (aux-1) {};
-  \node [module, below = .5 of aux-1, fill=blue!20] (SF) {Spatial Filling};
-
-  \node [circle, draw, right = of aux-1, fill=red!20] (join) {\( + \)};
-
-  \node [conv, right = of join] (CNN-2) {Convolution};
+  \node [left = of CNN-1] (image) {Image};
+  \node [conv, right = of CNN-1] (CNN-2) {Convolution 2};
   \node [FC, right = of CNN-2] (FC-2) {FC};
   \node [right = of FC-2] (out) {To siamese};
 
-  \node [left = 2 of CNN-1] (image) {Image};
-  \node [FC, left = of SF] (FC-1) {FC};
-  \node [left = of FC-1] (scalar) {Scalar};
 
-  \draw [-latex] (CNN-1) -- (join);
-  \draw [-latex] (SF) -- (join);
-  \draw [-latex] (join) -- (CNN-2);
+  \draw [-latex] (CNN-1) -- (CNN-2);
   \draw [-latex] (CNN-2) -- (FC-2);
   \draw [-latex] (FC-2) -- (out);
 
   \draw [-latex] (image) -- (CNN-1);
-  \draw [-latex] (scalar) -- (FC-1);
-  \draw [-latex] (FC-1) -- (SF);
 \end{tikzpicture}
 
 
