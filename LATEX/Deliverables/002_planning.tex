@@ -174,9 +174,10 @@ Once the final deep model is created then it will be compared against different 
 survival analysis. Since this method will be the first one using both image data and scalar 
 data it will be compared against models using only one or the other. 
 
-The comparison will be against models using a Cox Proportional Hazards model using either
-the \emph{radiomics} features extracted with \texttt{PyRadiomics} from CT scans or using 
-directly the RAW image data extracted from the scans.
+To compare the model the cross-validation C-index will be obtained first. Afterwards,
+it will be compared against a models trained using the same dataset but that use the
+\emph{radiomics} features extracted with \texttt{PyRadiomics} from the CT scans but 
+use a Cox Proportional Hazards model instead.
 ~\cites{medical:py-radiomics}{medical:cox}
 
 To do all this comparisons the same original data, the head and neck dataset, must be 
