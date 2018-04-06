@@ -1,4 +1,40 @@
 \section{Introduction}
 \begin{frame}{\insertsec}
-	
+	\begin{itemize}
+    \item Nowadays Machine Learning it's widely used
+    \item Medical images can be obtained using MRI, PET or CT scans but are underused
+    \item Different methods have appeared to analyze these data for image classification,
+    object detection, segmentation...
+    \item Deep learning models aim to be able to unlock the full potential of medical imaging
+  \end{itemize}
+\end{frame}
+
+\subsection{Survival Analysis}
+\begin{frame}{\insertsubsec}
+  Survival analysis models usually have:
+  \begin{itemize}
+    \item Baseline data \( x \)
+    \item Event \( E \in \{0, 1\} \)
+    \item Time \( T \)
+  \end{itemize}
+
+  Casting the survival problem as a ranking is a way of dealing with censored data.
+  \vspace{.3cm}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{drawings/graph_no_censored.tikz.tex}
+        \caption{Uncensored data}
+      \end{figure}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{drawings/graph_censored.tikz.tex}
+        \caption{Censored data}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  
 \end{frame}
