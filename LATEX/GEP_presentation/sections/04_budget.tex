@@ -1,7 +1,162 @@
 \section{Budget}
 \subsection{Hardware}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \footnotesize
+    \begin{tabular}{|p{3cm}|r|r|r|r|}
+      \hline
+      \textbf{Product} & \textbf{Price (\euro)} & \textbf{Units} & \textbf{Useful life} 
+      & \textbf{Amortization (\euro)} \\ \hline\hline
+  
+      MSI GL62M 7RD-429XES & 1.000 \euro & 1 & 5 years & 83 \euro \\ \hline
+      Lab iMac & 0 \euro & 1 & -- & 0 \euro \\ \hline
+      Compute Canada platform & 0 \euro & 1 & -- & 0 \euro \\ \hline
+  
+      \hline\hline
+      \textbf{Total} & 1.000 \euro & \multicolumn{2}{|c|}{} & 83 \euro \\ \hline
+    \end{tabular}
+    \caption{Hardware budget \label{tab:hardware-budget}}
+  \end{table}
+\end{frame}
+
 \subsection{Software}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|r|r|}
+      \hline
+      \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Amortization} \\ \hline\hline
+  
+      Python & 0 \euro & 1 & 0 \euro \\ \hline
+      Tensorflow & 0 \euro & 1 & 0 \euro \\ \hline
+      PyDicom & 0 \euro & 1 & 0 \euro \\ \hline
+      NumPy & 0 \euro & 1 & 0 \euro \\ \hline
+      Scikit & 0 \euro & 1 & 0 \euro \\ \hline
+      Visual Studio Code & 0 \euro & 1 & 0 \euro \\ \hline
+      Git & 0 \euro & 1 & 0 \euro \\ \hline
+      GitHub & 0 \euro & 1 & 0 \euro \\ \hline
+      PyCharm Community Edition & 0 \euro & 1 & 0 \euro \\ \hline
+      \LaTeX & 0 \euro & 1 & 0 \euro \\ \hline
+      Vim & 0 \euro & 1 & 0 \euro \\ \hline
+  
+      \hline\hline
+      \textbf{Total} & 0 \euro &  & 0  \euro \\ \hline
+    \end{tabular}
+    \caption{Software budget \label{tab:software-budget}}
+  \end{table}
+\end{frame}
+
 \subsection{Human resources}
+\begin{frame}[allowframebreaks]{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|r|r|}
+      \hline
+      \textbf{Role} & \textbf{Hours} & \textbf{\euro/hour} & \textbf{Salary} \\ \hline\hline
+  
+      Project Manager & 70 & 26 & 1.820 \euro \\ \hline
+      Software Developer & 510 & 18 & 9.180 \euro \\ \hline
+      Tester & 180 & 15 & 2.700 \euro \\ \hline
+  
+      \hline\hline 
+      Total & 760 & & 13.700 \euro \\
+      \hline
+    \end{tabular}
+  
+    \caption{Human resources budget \label{tab:salary}}
+  \end{table}
+  \framebreak
+  \footnotesize
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|P{3cm}|r|r|r|r|}
+      \hline
+      \multirow{2}{*}[-1em]{\textbf{Task}} & 
+      \multirow{2}{*}[-1em]{\textbf{Duration}} & 
+      \multicolumn{3}{|c|}{\textbf{Dedication}} \\ \cline{3-5}
+  
+       & & \parbox[c][1.5cm]{1.6cm}{\textbf{Project \\ Manager}} & 
+       \parbox[c][1.5cm]{1.6cm}{\textbf{Software \\ Developer}} & 
+       \textbf{Tester} \\ \hline\hline
+  
+       Acquire background in CNN & 120 & 10 & 110 & 0 \\ \hline
+       Get familiar with survival models & 80 & 10 & 70 & 0 \\ \hline
+       Preprocess data & 40 & 10 & 20 & 10 \\ \hline
+       Build shallow siamese network & 200 & 15 & 110 & 75 \\ \hline
+       Build deep siamese network & 80 & 10 & 50 & 20 \\ \hline
+       Compare models & 80 & 10 & 40 & 30 \\ \hline
+       Final stage & 160 & 5 & 110 & 45 \\ 
+  
+       \hline\hline
+       \textbf{Total} & 760 & 70 & 510 & 180 \\
+       \hline
+    \end{tabular}
+  
+    \caption{Time estimation by role \label{tab:time-estimation}}
+  \end{table}
+\end{frame}
+
 \subsection{Unexpected costs}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|r|r|}
+      \hline
+      \textbf{Role} & \textbf{Hours} & \textbf{\euro / hour} & \textbf{Salary} \\ \hline\hline
+      Project Manager & 10 & 26 & 260 \euro \\ \hline
+      Software Developer & 20 & 18 & 360 \euro \\ \hline
+      Tester & 10 & 15 & 150 \euro \\ \hline
+  
+      \hline\hline
+      \textbf{Total} & 40 & & 770 \euro \\ 
+      \hline
+    \end{tabular}
+    \caption{Unexpected costs \label{tab:unexpected-costs}}
+  \end{table}
+\end{frame}
+
 \subsection{Indirect costs}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|r|r|}
+      \hline
+      \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Cost} \\ \hline\hline
+  
+      Electricity & 0,12 \euro/kWh & 550 kWh & 66 \euro \\ \hline
+      Internet + phone & 70 \euro/month & 4 months & 280 \euro \\ \hline
+      
+      \hline\hline
+      \textbf{Total} & & & 346 \euro \\ \hline
+    \end{tabular}
+    \caption{Indirect costs \label{tab:indirect-costs}}
+  \end{table}
+\end{frame}
+
 \subsection{Total budget}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|}
+      \hline
+      \textbf{Concept} & \textbf{Estimated Costs} \\ \hline\hline
+  
+      Hardware resources & 83 \euro \\ \hline
+      Software resources & 0 \euro \\ \hline
+      Human resources & 13.700 \euro \\ \hline
+      Unexpected costs & 770 \euro \\ \hline
+      Indirect costs & 346 \euro \\ \hline
+  
+      \hline\hline
+      \textbf{Subtotal} & 14.899 \euro \\
+      \hline\hline
+      Contingency (5\%) & 744.95 \euro \\
+      \hline\hline
+      \textbf{Total} & \textbf{15.643,95 \euro} \\ \hline
+    \end{tabular}
+  
+    \caption{Total project costs \label{tab:total-costs}}
+  \end{table}
+\end{frame}
+

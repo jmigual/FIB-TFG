@@ -1,4 +1,95 @@
 \section{Planning}
 \subsection{Tasks}
+\begin{frame}{\insertsubsec}
+  \begin{itemize}
+    \item Acquire background in Convolutional Neural Networks
+    \item Get familiar with survival models
+    \item Preprocess data
+    \item Get familiar with Tensorflow
+    \item Build siamese network
+    \item Build deep siamese network
+    \item Compare model against other ones
+  \end{itemize}
+\end{frame}
+
 \subsection{Estimated time}
-\subsection{Alternatives}
+\begin{frame}{\insertsubsec}
+  \begin{table}[H]
+    \centering{}
+    \begin{tabular}{|l|r|}
+      \hline
+      Task & Estimated duration (h) \\ \hline \hline
+      Acquire background in CNN & 120 \\ \hline
+      Get familiar with survival models & 80 \\ \hline
+      Preprocess data & 40 \\ \hline
+      Build shallow siamese network & 200 \\ \hline
+      Build deep siamese network & 80 \\ \hline
+      Compare models & 80 \\ \hline
+      Final stage & 160 \\ 
+  
+    
+      \hline \hline
+      \textbf{Total} & 760 \\
+      \hline
+    \end{tabular}
+    \caption{Estimated time for each task \label{tab:time}}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}[H]
+    \centering{}
+    \def\gantttext{4cm}
+    \begin{ganttchart}[
+        time slot format=isodate,
+        x unit = .6mm,
+        y unit title = 0.7cm,
+        y unit chart = 0.4cm,
+        group label font = \tiny\bf,
+        title label font = \tiny,
+        bar label font = \tiny,
+        vgrid={*{4}{draw=none},dotted,*{2}{draw=none}},
+        hgrid,
+        calendar week text = {\startday},
+        link bulge = 2
+      ]{2018-02-14}{2018-06-29}
+      \gantttitlecalendar{month=shortname, week} \\
+  
+  
+      % Start gantt itself
+      \ganttgroup{Preamble}{2018-02-14}{2018-03-25} \\
+      \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
+      \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-11} \\
+      \ganttlinkedbar{Learn about DeepSurv}{2018-03-12}{2018-03-25} \\
+  
+      
+      \ganttgroup{Build siamese network}{2018-03-26}{2018-05-20} \\
+      \ganttbar{Preprocess data}{2018-03-26}{2018-04-01} \\
+      \ganttlinkedbar{Build shallow network}{2018-04-02}{2018-05-06} \\
+      \ganttlinkedbar{Build deep network}{2018-05-07}{2018-05-20} \\
+  
+      \ganttgroup{\parbox[r]{2.3cm}{Compare models and extract conclusions}}{2018-05-21}
+      {2018-06-03} \\
+  
+      \ganttbar{Compare models}{2018-05-21}{2018-05-27} \\
+      \ganttlinkedbar{Extract conclusions}{2018-05-28}{2018-06-03} \\
+  
+      \ganttgroup{Final Stage}{2018-06-04}{2018-06-29} \\
+      \ganttbar{Write final report}{2018-06-04}{2018-06-17} \\
+      \ganttbar{End project}{2018-06-18}{2018-06-24} \\
+      \ganttbar{Presentation}{2018-06-25}{2018-06-29} \\
+  
+    \end{ganttchart}
+    \caption{Gantt chart of the project \label{fig:gantt}}
+  \end{figure}
+\end{frame}
+
+\subsection{Alternatives and action plan}
+\begin{frame}{\insertsubsec}
+  \begin{itemize}
+    \item Complexity of the built model
+    \item Bugs
+    \item Unavailability of Compute Canada
+    \item Training times
+  \end{itemize}
+\end{frame}
