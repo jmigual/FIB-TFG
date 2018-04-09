@@ -90,12 +90,12 @@ The input data for this project are:
   \end{itemize}
 \end{itemize}
 
-The imaging data needs to be preprocessed so, for each CT scan, the tumour's bounding
+The imaging data need to be preprocessed so, for each CT scan, the tumour's bounding
 box needs to be found and then extract the 3D slice. This slice needs to be resized 
 normalized, to a value \( x \in [0, 1] \), and afterwards resized as a 3D image of 
 \( 64 \times 64 \times 64 \) voxels. Additionally if data augmentation techniques are 
 used then random crops and rotations to the image can be added before extracting the
-3D slice. These operations can be don in the period of a week.
+3D slice. These operations can be done in the period of a week.
 
 \subsubsection{Get familiar with Tensorflow}
 
@@ -116,7 +116,7 @@ This task won't take more than a week.
 
 A siamese network is a type of neural network that is suited for comparison tasks such as 
 face recognition or signature verification \cite{neural:siamese}.
-Its design usually is made from two more networks, usually called sisters, then the output
+Its design usually is made of two more networks, usually called sisters, then the output
 of the two sisters gets joined in an extra layer which gives us the final output 
 see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
 architecture so after one is designed then it's duplicated and added the joining layer.
@@ -126,7 +126,7 @@ where for two elements \( x_1 \) and \( x_2 \) the network learns the sorting fu
 \( f(x_1, x_2) = \hat{T}(x_1) > \hat{T}(x_2) \), where \( \hat{T}(x) \) is the predicted 
 survival time.
 
-Too build this model, a proper design for the sister network must be done first. This, will be
+To build this model, a proper design for the sister network must be done first. This, will be
 an iterative task where the proposed model will be created and then, trained optimizing
 the hyperparameters. Afterwards, a new change will be made trying to get better results and
 it will be compared against the previous one. 
@@ -170,17 +170,17 @@ slower.
 
 \subsubsection{Compare the model against other ones}
 
-Once the final deep model is created then it will be compared against different methods of 
+Once the final deep model is created, it will be compared against different methods of 
 survival analysis. Since this method will be the first one using both image data and scalar 
 data it will be compared against models using only one or the other. 
 
 To compare the model the cross-validation C-index will be obtained first. Afterwards,
-it will be compared against a models trained using the same dataset but that use the
+it will be compared against models trained using the same dataset but that use the
 \emph{radiomics} features extracted with \texttt{PyRadiomics} from the CT scans but 
 use a Cox Proportional Hazards model instead.
 ~\cites{medical:py-radiomics}{medical:cox}
 
-To do all this comparisons the same original data, the head and neck dataset, must be 
+To do all this comparisons, the same original data, the head and neck dataset, must be 
 used so it may require running again the training process using the compared method. 
 That's why it will take two weeks for this task to complete.
 
