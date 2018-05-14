@@ -37,6 +37,10 @@ these features are not guaranteed to be the most discriminant ones. Deep learnin
 are end-to-end and, for a given task, they drive features from the data.
 ~\cite{medical:radiomics-ml-classifiers}
 
+Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
+Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
+Computed Tomography scans of head-and-neck cancer patients with associated survival data. 
+
 \sssecc{Survival Analysis}
 
 Survival Analysis is a branch of statistics that analyzes the duration time of the observed
@@ -128,20 +132,6 @@ the area under the ROC curve.
   \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
 
-\ssecc{Problem Formulation}
-
-Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
-Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
-scans of head-and-neck cancer patients with associated survival data. 
-
-The goal of this project is to develop a new deep learning model to analyze this private 
-dataset in combination with public databases to improve the prediction rate of patients' 
-survival compared to models built on traditional radiomic features. We would like to 
-investigate and compare the performance of the deep learning-based method 
-to the more conventional methods, such as hand-engineered radiomics features and the tumor 
-\emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
-of the volume for the set of patients at hand, is ~0.65.
-
 \ssecc{State-of-the-art}
 
 Nowadays, a lot of research is being done in the medical field using deep learning. Image
@@ -181,6 +171,20 @@ and uses the Cox Proportional Hazards model for an individual's survival given t
 \( x \). It's an Open Source Python module that applies recent deep learning techniques 
 to a Cox model.
 ~\cites{medical:deep-surv}{medical:cox}
+
+% TODO: Add 3D imaging field
+In the 3D imaging filled there has been some work already. 3D Convolutional Neural Networks have
+been used for brain lesion segmentation on multi-channel MRI scans. \cite{neural:3d-cnn-crf}
+
+\ssecc{Problem Formulation}
+
+The goal of this project is to develop a new deep learning model to analyze this private 
+dataset in combination with public databases to improve the prediction rate of patients' 
+survival compared to models built on traditional radiomic features. We would like to 
+investigate and compare the performance of the deep learning-based method 
+to the more conventional methods, such as hand-engineered radiomics features and the tumor 
+\emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
+of the volume for the set of patients at hand, is ~0.65.
 
 \ssecc{Stakeholders}
 
