@@ -1,0 +1,88 @@
+% !TEX spellcheck = en_US
+% !TEX encoding = UTF-8
+
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{graphicx}
+\usepackage[tuenc]{fontspec}
+\usepackage{xcolor}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+\usepackage[british]{babel}
+\usepackage[backend=biber, sorting=none, dateabbrev=false]{biblatex}
+
+\usepackage[left=3.4cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
+
+\usepackage{tikz}
+\usepackage{pgfgantt}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{hhline}
+
+\usetikzlibrary{positioning}
+
+\setmainfont{CMU Serif}
+\setlength{\parskip}{\baselineskip}
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Fix bibliography parameters for overfull
+\setcounter{biburlnumpenalty}{5000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% Bibliography
+\addbibresource{../bibliography/all.bib}
+\addbibresource{../bibliography/medical.bib}
+\addbibresource{../bibliography/neural.bib}
+  
+
+%%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Title page can be commented to remove it
+\begin{titlepage}
+  \centering
+  \vspace{1.5cm}
+  {\huge \textbf{\textsc{Unlock the potential of medical imaging data using deep learning}} \par}
+  \vspace{2cm}
+  {\Large \textit{Joan Marcè i Igual}\par}
+  \vfill
+  Director: Dr.~Benjamin \textsc{Haibe-Kains}
+  
+  \vfill
+
+  \includegraphics[width=0.2\textwidth]{images/logo_upc}\par\vspace{1cm}
+  \vfill
+  
+  % Bottom of the page
+  {\LARGE Universitat Politècnica de Catalunya \par}
+  {\LARGE 2018 \par}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\pagebreak
+
+% Just comment this lines to enable/disable some parts of the document
+% Deliverable 1
+\include{001_context}
+
+% Deliverable 2
+\include{002_planning}
+
+% Deliverable 3
+\include{003_budget}
+
+\pagebreak
+\section{References}
+\printbibliography[heading=none]{}
+
+\end{document}

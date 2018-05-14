@@ -1,0 +1,302 @@
+% !TEX root = main.tex
+
+
+\section{Project Planning}
+
+\subsection{Planning and scheduling}
+
+The estimated project duration is of about 4 months. The project starts on Wednesday 14th of 
+February, 2018 and the deadline is on Sunday 17th June, 2018, the week before the 
+presentations start.
+
+During the development of the project there will be weekly lab meetings with my Principal
+Investigator, prof. Benjamin Haibe-Kains, where the development of the project will be 
+discussed. There I should show my work done and how to approach each of the problems as
+they appear.
+
+Every week there's a lab meeting. Its objective is to show the development and improvements 
+of different lab members and receive feedback. Once in a while I will be showing work
+done there.
+
+It must be noticed that the initial planning can be revised and updated as a result of the 
+project's evolution, feedback received from the lab members and from my Principal Investigator. 
+
+\subsection{Task description}
+
+\subsubsection{Acquire background in Convolutional Neural Networks}
+
+The first step is to acquire a better understanding in how a convolutional neural network works.
+Therefore, in the las month I've been learning about Convolutional Neural Networks and how they
+can be used. 
+I started with basic statistics applied to \emph{Machine Learning} by reading the book 
+\emph{The Elements of Statistical Learning}.~\cite{neural:elements-statistical-learning}
+
+Then, I continued by doing three courses made by \href{https://www.deeplearning.ai}{Deeplearning.ai}
+and published at Coursera~\cite{neural:coursera} related to Convolutional Neural Networks:
+\begin{itemize}
+  \item \href{https://www.coursera.org/learn/neural-networks-deep-learning}{Neural Networks and 
+    Deep Learning}~\cite{neural:coursera:nn}: Where the basic elements of a neural network and how
+    to train it are explained.
+
+  \item \href{https://www.coursera.org/learn/deep-neural-network}{Improving Deep Neural Networks: 
+    Hyperparameter tuning, Regularization and Optimization}~\cite{neural:coursera:nn-hyperparameters}: 
+    In this course it's shown the importance of hyperparameters and how each one works. 
+    This way then it can be easier to design a proper network. Also, the different methods 
+    of regularization are explained too, so overfitting can be avoided.
+
+  \item \href{https://www.coursera.org/learn/convolutional-neural-networks}{Convolutional Neural 
+    Networks}~\cite{neural:coursera:cnn}:
+    How the \emph{convolution} operation works and why it's used in Machine Learning. 
+    Different methods of using a Convolutional Neural Network, like face recognition or 
+    object detection, are taught too.
+\end{itemize}
+
+All the tasks where done in three weeks.
+
+\subsubsection{Get familiar with survival models like DeepSurv}
+
+Survival Prediction models are a bit different from the typical Machine Learning problem. 
+In this case, the desired output values are not the event indicator \( E \) and the time
+interval \( T \). What we want to obtain is the survival function \( S(t) \) or the 
+hazard function \( \lambda(t) \).
+
+DeepSurv is one of the machine learning papers using a survival model, in this case the
+Cox Proportional Hazards model which is not the same I will be planning to use.
+
+To see how to properly use a survival model in a deep learning application i should fully 
+understand how this is applied in the construction of the DeepSurv neural network. During 
+the task I should compare the code implementation with the theoretical models so this way
+I can see how to properly use \emph{vectorization} to speed-up computation
+\cites{medical:cox}{medical:deep-surv}.
+
+This process will take around two weeks.
+
+\subsubsection{Preprocess data}
+
+The input data for this project are:
+\begin{itemize}
+  \item RAW data from CT scans. There are around 88 slices for each patient, each one of 
+  a size of \( 512 \times 512 \) pixels.
+  \item Tumour annotations for the CT scans. For each RAW scan there's another slice which
+  is a mask of 1s and 0s where the value is 1 if there's a tumour in that pixel.
+  \item Clinical data. Which has information for each patient such as:
+  \begin{itemize}
+    \item Age
+    \item Gender
+    \item Smoking Pack Years
+    \item Treatment
+    \item Survival time
+    \item Survival event
+  \end{itemize}
+\end{itemize}
+
+The imaging data need to be preprocessed so, for each CT scan, the tumour's bounding
+box needs to be found and then extract the 3D slice. This slice needs to be resized 
+normalized, to a value \( x \in [0, 1] \), and afterwards resized as a 3D image of 
+\( 64 \times 64 \times 64 \) voxels. Additionally if data augmentation techniques are 
+used then random crops and rotations to the image can be added before extracting the
+3D slice. These operations can be done in the period of a week.
+
+\subsubsection{Get familiar with Tensorflow}
+
+Tensorflow\cite{neural:tensorflow} is one of the biggest libraries for developing deep neural 
+networks. It hides from the user the underlying details of how to train a model, like how to 
+compute de derivatives for each operation to be able to implement the back propagation 
+algorithm. Also, it's open source so it comes at no cost.
+
+Since it's a big piece of software and it offers many possibilities, it's very important to 
+understand how it works and what is the best way to use it. The first step is to start by 
+just being able to run the simple code that comes with the tutorials. Then, I should build
+some simple models to test and see how to properly use the \texttt{Tensor} class that it
+provides to create a computing graph and do the mathematical calculations.
+
+This task won't take more than a week.
+
+\subsubsection{Build shallow siamese network}
+
+A siamese network is a type of neural network that is suited for comparison tasks such as 
+face recognition or signature verification \cite{neural:siamese}.
+Its design usually is made of two more networks, usually called sisters, then the output
+of the two sisters gets joined in an extra layer which gives us the final output 
+see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
+architecture so after one is designed then it's duplicated and added the joining layer.
+
+Through this approach the survival problem will be transformed into a order learning problem
+where for two elements \( x_1 \) and \( x_2 \) the network learns the sorting function
+\( f(x_1, x_2) = \hat{T}(x_1) > \hat{T}(x_2) \), where \( \hat{T}(x) \) is the predicted 
+survival time.
+
+To build this model, a proper design for the sister network must be done first. This, will be
+an iterative task where the proposed model will be created and then, trained optimizing
+the hyperparameters. Afterwards, a new change will be made trying to get better results and
+it will be compared against the previous one. 
+
+The starting point can be seen in \autoref{fig:shallow-sister} which is inspired in a paper
+\cite{neural:hand-eye-coordination} published by Google where they made a combination of 
+scalar and image inputs in a Convolutional Neural Network.
+
+Then the results will be compared and some few changes will be made to try to get better results.
+
+\begin{figure}
+  \centering
+  \input{drawings/siamese_network.tikz.tex}
+  \caption{Siamese Network basic structure \label{fig:siamese}}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \input{drawings/shallow_network.tex}
+  \caption{Shallow sister network design \label{fig:shallow-sister}}
+\end{figure}
+
+This is one of the most important parts of the project, since it will have a huge
+impact in the final results. It will take around four weeks to complete more or less
+and it will be a trial and error process to try to see which architecture for the sister
+network is best suited to solve the problem.
+
+In this phase the designed networks will be very shallow to make small and fast improvements
+since the training time could be an issue.
+
+\subsubsection{Build deep siamese network}
+
+Once an initial shallow network is already created then the next step will be to try 
+and create a more deep version. To do so it will be done step by step adding one layer
+at a time and seeing how the network is performing.
+
+The main advantage of deep networks against shallow networks is that they are able to
+identify more complex features and thus they usually perform better. However, its 
+main drawback is that training time is longer and so the development process is 
+slower.
+
+\subsubsection{Compare the model against other ones}
+
+Once the final deep model is created, it will be compared against different methods of 
+survival analysis. Since this method will be the first one using both image data and scalar 
+data it will be compared against models using only one or the other. 
+
+To compare the model the cross-validation C-index will be obtained first. Afterwards,
+it will be compared against models trained using the same dataset but that use the
+\emph{radiomics} features extracted with \texttt{PyRadiomics} from the CT scans but 
+use a Cox Proportional Hazards model instead.
+~\cites{medical:py-radiomics}{medical:cox}
+
+To do all this comparisons, the same original data, the head and neck dataset, must be 
+used so it may require running again the training process using the compared method. 
+That's why it will take two weeks for this task to complete.
+
+\subsection{Estimated time}
+
+In \autoref{tab:time} an estimation of the number of hours dedicated to each task is shown.
+
+\begin{table}[H]
+  \centering{}
+  \begin{tabular}{|l|r|}
+    \hline
+    Task & Estimated duration (h) \\ \hline \hline
+    Acquire background in CNN & 120 \\ \hline
+    Get familiar with survival models & 80 \\ \hline
+    Preprocess data & 40 \\ \hline
+    Build shallow siamese network & 200 \\ \hline
+    Build deep siamese network & 80 \\ \hline
+    Compare models & 80 \\ \hline
+    Final stage & 160 \\ 
+
+  
+    \hline \hline
+    \textbf{Total} & 760 \\
+    \hline
+  \end{tabular}
+  \caption{Estimated time for each task \label{tab:time}}
+\end{table}
+
+\subsection{Gantt chart}
+
+\autoref{fig:gantt} shows the planning of the different tasks of the project in a Gantt chart.
+
+\begin{figure}[H]
+  \centering{}
+  \def\gantttext{4cm}
+  \begin{ganttchart}[
+      time slot format=isodate,
+      x unit = .9mm,
+      y unit title = 0.7cm,
+      y unit chart = 0.5cm,
+      group label font = \tiny\bf,
+      title label font = \tiny,
+      bar label font = \tiny,
+      vgrid={*{4}{draw=none},dotted,*{2}{draw=none}},
+      hgrid,
+      calendar week text = {\startday},
+      link bulge = 2,
+    ]{2018-02-14}{2018-06-29}
+    \gantttitlecalendar{month=shortname, week} \\
+
+
+    % Start gantt itself
+    \ganttgroup{Preamble}{2018-02-14}{2018-03-25} \\
+    \ganttbar{Getting started}{2018-02-14}{2018-02-18} \\
+    \ganttlinkedbar{Learn about CNN}{2018-02-19}{2018-03-11} \\
+    \ganttlinkedbar{Learn about DeepSurv}{2018-03-12}{2018-03-25} \\
+
+    
+    \ganttgroup{Build siamese network}{2018-03-26}{2018-05-20} \\
+    \ganttbar{Preprocess data}{2018-03-26}{2018-04-01} \\
+    \ganttlinkedbar{Build shallow network}{2018-04-02}{2018-05-06} \\
+    \ganttlinkedbar{Build deep network}{2018-05-07}{2018-05-20} \\
+
+    \ganttgroup{\parbox[r]{2.3cm}{Compare models and extract conclusions}}{2018-05-21}
+    {2018-06-03} \\
+
+    \ganttbar{Compare models}{2018-05-21}{2018-05-27} \\
+    \ganttlinkedbar{Extract conclusions}{2018-05-28}{2018-06-03} \\
+
+    \ganttgroup{Final Stage}{2018-06-04}{2018-06-29} \\
+    \ganttbar{Write final report}{2018-06-04}{2018-06-17} \\
+    \ganttbar{End project}{2018-06-18}{2018-06-24} \\
+    \ganttbar{Presentation}{2018-06-25}{2018-06-29} \\
+
+  \end{ganttchart}
+  \caption{Gantt chart of the project \label{fig:gantt}}
+\end{figure}
+
+\subsection{Alternatives and action plan}
+
+As it has already been said, the fact that there will be weekly meetings will allow to 
+revise and adapt the initial planning. This means that, for each task, the real duration, 
+compared to the planned one may differ, and thus the planning will be changed accordingly. 
+If a task is finished before planned, then the next task will start immediately. 
+Moreover, if a task duration is longer than expected, then the following tasks will need 
+to be rescheduled or, in the worst case, omitted, although not all the tasks can be excluded.
+
+Having weekly meetings with the Principal Investigator should mitigate the possible problems,
+and give enough time to detect possible delays or differences with the original time, and
+thus fix them as soon as possible.
+
+Below, there are some examples of potential sources of delays.
+
+\subsubsection{Complexity of the built model}
+
+Since the model that it's going to be built is quite complex, it will have a constant trial
+and error. This can cause delays if a wrong architecture it's chosen, and it's not detected
+in time, because a lot of time can be lost until the wrong choice is noticed. 
+
+\subsubsection{Bugs}
+
+Using complex software such as Tensorflow is prone to errors in many ways. Programming errors
+are not an exception and while writing the code some bugs can be introduced. If a bug is not 
+noticed soon, it can cause long delays while trying to fix them.
+
+\subsubsection{Unavailability of Compute Canada}
+
+Since this project involves training Convolutional Neural Networks, it needs a lot of computing 
+power so a computing cluster will be used to train the data. If the cluster it's not available
+then the training will need to be done with local resources which will be slower and thus 
+more time will be lost.
+
+\subsubsection{Training times}
+
+The training time is one of the biggest drawbacks of this project. Since this task
+can take a huge amount of time depending on the chosen architecture it can cause
+huge delays in the original plan. This should be mitigated by doing small tests
+instead of a whole training session to make sure that no bugs are found in the code 
+because, otherwise, all the training results would become invalid.

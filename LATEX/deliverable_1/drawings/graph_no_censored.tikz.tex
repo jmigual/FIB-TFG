@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+  \tikzstyle{bDot}=[circle, fill=black, draw]
+  \foreach \y in {1,...,5} {
+    \node[bDot] (D-\y) at (0, \y) {};
+  }
+
+  \foreach \y in {1,...,4} {
+    \pgfmathsetmacro{\z}{int(\y + 1)}
+    \draw[-latex] (D-\y) -- ({D-\z}.south);
+  }
+
+  \foreach \y in {1,...,3} {
+    \pgfmathsetmacro{\z}{int(\y + 2)}
+    \foreach \j in {\z,...,5} {
+      \ifthenelse{\y=2 \OR \y=3}{
+        \draw[-latex] (D-\y) to[bend left=90] (D-\j);
+      }{
+        \draw[-latex] (D-\y) to[bend right=90] (D-\j);
+      }
+    }
+  }
+\end{tikzpicture}

@@ -1,0 +1,269 @@
+% !TEX root = main.tex
+
+\section{Context and scope of the project}
+\subsection{Context}
+
+Nowadays one of the most extensive uses of computing is artificial intelligence. A few 
+examples are Amazon purchase recommendations, based on previous purchases, or help users
+to interact with their phone by only using voice commands like Google Assistant. 
+~\cites{neural:amazon}{neural:google-assistant}
+
+Inside AI one of the domains that has greatly increased during the last years is 
+\emph{Machine Learning}. The main advantage is that it can solely learn from examples without 
+explicit teaching, and thus reducing the human interaction during the learning process. One of the 
+most used types is \emph{deep neural networks} and these have demonstrated impressive performance 
+against computer vision and Natural Language Processing tasks like the classification of 
+digits from the MNIST data set.
+~\cites{neural:mnist}{neural:empirical-evaluation-deep-architectures}
+
+Regarding the medical field, recent deep learning algorithms, specially convolutional networks 
+have started to push the boundaries of precision medicine. 
+Traditionally, medical predictions have been based on a few clinical parameters with poor accuracy.
+However, other data types are available to improve such predictions. In this context, medical
+images generated from MRI, PET or CT scans are vastly underused due to the inability of radiologists
+to quantitatively analyze this complex data.
+
+Different methods have appeared to analyze these images for tasks such as
+image classification, object detection, segmentation and registration among other tasks. This
+approach started in the late 1990s and has slowly shifted from systems that are completely designed
+by humans to systems that are trained by computers using example data. 
+~\cite{medical:survey-deep-learning}
+
+Professor Benjamin Haibe-Kains has helped in the development of \emph{Radiomics}, a new field to
+relying on pre-defined, hand-engineered features computed from medical images to better 
+characterize tumours and predict survival outcome. Although promising, radiomics suffers from 
+several limitations. The most important one is that it relies on hand-engineered features,
+these features are not guaranteed to be the most discriminant ones. Deep learning methods
+are end-to-end and, for a given task, they drive features from the data.
+~\cite{medical:radiomics-ml-classifiers}
+
+\subsubsection{Survival Analysis}
+
+Survival Analysis exists because we want to be able to use all these data (imaging, clinical,
+radiomics...) to predict the survival of the patient.
+Data from these models have three elements: a patient's baseline data \( x \), a failure event 
+time \( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
+interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
+data was collected and event's time, and the event indicator is \( E = 1 \). If an
+event is not observed, the time interval \( T \) corresponds to the time elapsed between
+the collection of the baseline data and the last contact with the patient, and the 
+event indicator is \( E = 0 \). In this case, the patient is said to be
+\emph{right-censored}.
+~\cite{medical:deep-surv}
+
+The survival and hazard functions are the two fundamental functions in survival analysis. The
+survival function \( S(t) = \Pr(T \ge t) \), is the probability that an individual has
+\emph{survived} beyond time \( t \). The hazard function \( \lambda(t) \) is a measure of risk at 
+time \( t \) and it's defined as:
+~\cite{medical:cox}
+\[
+  \lambda(t) = \lim_{\Delta t \rightarrow 0}
+  \frac{\Pr(t \le T < t + \Delta t | T \ge t)}{\Delta t}
+\]
+
+Casting the survival analysis as a ranking problem is a way of dealing with the biased
+distributions of survival times and the censoring data. Two subjects' survival times can be 
+ordered only if:
+\begin{enumerate}[noitemsep, topsep=0pt]
+  \item Both of them are uncensored (\( E_i = E_j = 1\))
+  \item The uncensored time of one is smaller than the censored survival time of the other
+  (\( T_i < T_j | E_i = 1; E_j = 0 \))
+\end{enumerate}
+
+This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph}.
+The set of vertices \( V \) represents all the individuals, where each filled vertex indicates
+an \emph{uncensored} survival time, while an empty circle denotes a \emph{censored} observation.
+Existence of an edge \( E_{ij} \) implies that \( T_i < T_j \). An edge cannot originate 
+from a censored point.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{.4\textwidth}
+    \centering
+    \input{drawings/graph_no_censored.tikz.tex}
+    \caption{No censored data}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{.4\textwidth}
+    \centering
+    \input{drawings/graph_censored.tikz.tex}
+    \caption{Censored data}
+  \end{subfigure}
+
+  \caption{Order graphs representing the ranking constraints \label{fig:graph}}
+\end{figure}
+
+% C-index explanation
+The standard performance measure, to compare if a survival 
+model is performing better than another, is the \emph{Concordance Index} (C-index). This 
+index is 1 for a perfect data fit and 0.5 for a random model. Also, another comparison 
+element is the ROC curve which represents the \emph{False Positive Rate} against the 
+\emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the C-index is seen as 
+the area under the ROC curve.
+~\cites{neural:roc-precision-recall}{medical:ranking-ci}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\linewidth]{images/roc_curve}
+  \caption{ROC Curve example\label{fig:ROC-curve}}
+\end{figure}
+
+\subsection{Problem Formulation}
+
+Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
+Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
+scans of head-and-neck cancer patients with associated survival data. 
+
+The goal of this project is to develop a new deep learning model to analyze this private 
+dataset in combination with public databases to improve the prediction rate of patients' 
+survival compared to models built on traditional radiomic features. We would like to 
+investigate and compare the performance of the deep learning-based method 
+to the more conventional methods, such as hand-engineered radiomics features and the tumor 
+\emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
+of the volume for the set of patients at hand, is ~0.65.
+
+\subsection{State-of-the-art}
+
+Nowadays, a lot of research is being done in the medical field using deep learning. Image
+classification is one of the first areas in which there's a major contribution to medical analysis.
+Usually in image classification we have one or multiple images as input and a single diagnostic 
+variable as output (e.g.~ill or not).
+~\cite{medical:survey-deep-learning}
+
+Regarding the prediction of survival models, there have been different approaches although
+almost all of them use MRI, PET or CT scans and the clinical data. The typical one is to extract
+hand-crafted radiomic features using own methods or using libraries such as
+\href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted 
+features are based in aspects like tumour shape, intensity, volume or texture.
+~\cites{medical:tumour-radiomics}{medical:py-radiomics}
+
+An alternative approach, is to use a deep learning-based model for prediction and for feature
+extraction. In this case, features are extracted too but a Convolutional
+Neural Network is used instead. With this approach the use of transfer learning has been a
+great improvement. Pre-trained networks are used to reduce the requirement of large data
+sets for deep network training. Usually, there are two possible strategies: 
+\begin{itemize}[noitemsep, topsep=0pt]
+  \item Using a pre-trained NN as a feature extractor
+  \item Fine-tuning a pre-trained network on medical data.
+\end{itemize}
+
+Both strategies are popular and have been widely applied. A network that allows this type
+of retrain is GoogLeNet Inception v3
+~\cites{neural:goog-le-net}{neural:retrain}{neural:inception-retrain}.
+However, there's the added problem that medical imaging data are usually 3D images but, 
+when working with pre-trained CNN, only 2D images can be used, because there are still no 
+pre-trained networks on 3D images. Although this method seems promising, still requires 
+further work to train a dedicated feature extractor explicitly designed for medical images.
+~\cite{medical:deep-learning-radiomics-gbm}
+
+An implemented survival prediction model is \emph{DeepSurv} which is based on survival data
+and uses the Cox Proportional Hazards model for an individual's survival given the baseline data
+\( x \). It's an Open Source Python module that applies recent deep learning techniques 
+to a Cox model.
+~\cites{medical:deep-surv}{medical:cox}
+
+\subsection{Stakeholders}
+
+\subsubsection{Developer}
+Is the person in charge of the research, document and implement all the required software.
+In addition he is responsible for the project management and the writing of the report
+and all the required documentation. This actor works as agreed with the director and
+he is, ultimately, the person in charge of accomplishing the deadlines.
+
+\subsubsection{Director}
+He is the main responsible for guiding, giving advice and, in general, helping the developer.
+His action is key to determine possible errors in the project, both in its proposal and 
+execution. In particular, Benjamin Haibe-Kains from the Bioinformatics and Computational
+Genomics Laboratory has acted as director
+~\cites{bhklab}.
+
+\subsubsection{Beneficiaries}
+The project beneficiaries will depend on its outcome. If a more efficient model is found, the
+beneficiaries will be the researchers trying to test a new cancer treatment method. Moreover,
+the final patient will also be benefited because more modern research techniques will be used.
+
+However, if a more efficient model is not found, the beneficiaries will be the researchers
+trying to find the best model for survival analysis since this would have proved which 
+methods do not work well.
+
+\subsection{Scope}
+
+The first task will be to learn and to understand how Neural Networks and specifically how 
+Convolutional Neural Networks Work. This way I will have a fully understanding of the background
+that all these methods use to create models for survival prediction.
+
+The next task will be to set up and to run the \emph{DeepSurv} python package on a local
+computer. Once running, all the different parts of the package should be tested to see which
+ones are best suited to be reused to create a new Survival Prediction Model. Since the package
+is not prepared to have images as an input, an improvement will be to add the possibility to 
+pass medical images to train the survival model.
+\cite{medical:deep-surv-github}
+
+Afterwards, a deep learning model will be created starting from zero but trying to use 
+some ideas from other completed projects. This model, unlike \emph{DeepSurv}, will not be 
+using the Cox Proportional Hazards because, in this case, the approach will be to compare
+pairs and not to get the hazard function. Since the C-index is computed using pairs of patients, 
+a siamese neural network will be built. This type of network is suited for comparison 
+tasks such as face recognition, but this time it will be comparing the pair's survival time.
+
+\subsection{Methodology}
+
+This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
+Computational Genomics Laboratory \cite{bhklab}. This means that every week there will be a 
+laboratory meeting where different members will be presenting their progress and feedback will
+be received accordingly. Once in a while this project's progress will be presented there.
+Moreover, a weekly meeting with the Principal Investigator will be scheduled to discuss
+the progress made.
+
+Also since there are different ways of development this means that it will have a process of trial
+and error until the proper solution is found. This means that during this process the
+tasks will be assigned on a weekly basis.
+
+
+\subsection{Possible obstacles and solutions}
+
+\subsubsection{Training time}
+
+Since this project involves Convolutional Neural Networks training time can be a problem. 
+The convolution operation is computationally expensive, so depending on the network the 
+training time can be of several days. Also, while just inferring the values does not require
+much power, training needs a lot more power. 
+
+To solve this problem the training will be done at \emph{SharcNet} a computing facility. 
+This way the training will be much faster.
+
+\subsubsection{Monitoring Tools}
+
+The work will be done with the help of Git and GitHub. This tools will help monitoring
+the project's evolution. The purpose of Git is to be able to do small revisions,
+named commits, and to document all the different changes in the project. Also it has
+some tools to allow multiple contributors in the same project. Moreover,
+Git projects can be stored in a server, GitHub it's an online platform that allows
+remote Git repositories, also it has integrated an issue system, a milestone system
+and it's really integrated with Git's contributor system.
+~\cites{tool:git}{tool:github}
+
+\subsubsection{Bugs}
+
+Considering the software development process, it's no big surprise that it's really easy to
+introduce bugs while writing or modifying the source code. To ensure no bugs are present,
+some unit tests will be written to check if the model is still giving correct results.
+However, this will be a difficult task since it's not easy to check whether a deep 
+learning model is just overfitting or that it's giving wrong results.
+
+\subsubsection{Scheduling}
+
+Although four months seems plenty of time, spending more time than estimated in a single task
+can happen. To avoid this problem weekly meetings will be scheduled with my Principal Investigator
+to see which is the best way to continue to keep on track.
+
+\subsubsection{Not enough data}
+
+Since the starting dataset is quite small (\( \sim 500 \) samples) overfitting may be a problem
+and different methods should be used to avoid it. The possible solutions are:
+\begin{itemize}
+  \item Using regularization to avoid units with a very high weight.
+  \item Using dropout to force each unit to learn with part of the data, and thus generalize.
+  \item Using data augmentation techniques such as random crops or random rotations to increase
+  the number of images in the dataset.
+\end{itemize}

@@ -1,0 +1,18 @@
+\begin{tikzpicture}
+  \foreach \y in {1,...,5} {
+    \ifthenelse{\y=2 \OR \y=4}{
+      \node [circle, fill=white, draw=black] (D-\y) at (0, \y) {};
+    }{
+      \node [circle, fill=black, draw=black] (D-\y) at (0, \y) {};
+    }
+
+    \foreach \y in {3,4,5} {
+      \draw [-latex] (D-1) to[bend right=90] (D-\y);
+    }
+
+    \foreach \y/\z in {1/2, 3/4} {
+      \draw [-latex] (D-\y) -- (D-\z);
+    }
+    \draw [-latex] (D-3) to[bend left=90] (D-5);
+  }
+\end{tikzpicture}
