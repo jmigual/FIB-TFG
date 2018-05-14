@@ -39,17 +39,19 @@ are end-to-end and, for a given task, they drive features from the data.
 
 \sssecc{Survival Analysis}
 
-Survival Analysis exists because we want to be able to use all these data (imaging, clinical,
-radiomics...) to predict the survival of the patient.
-Data from these models have three elements: a patient's baseline data \( x \), a failure event 
-time \( T \), and an event indicator \( E \). If an event (e.g. death) is observed, the time 
-interval \( T \) corresponds to the time elapsed between the time in which the \( x \)
-data was collected and event's time, and the event indicator is \( E = 1 \). If an
-event is not observed, the time interval \( T \) corresponds to the time elapsed between
-the collection of the baseline data and the last contact with the patient, and the 
-event indicator is \( E = 0 \). In this case, the patient is said to be
-\emph{right-censored}.
-~\cite{medical:deep-surv}
+Survival Analysis is a branch of statistics that analyzes the duration time of the observed
+events. Typically it refers to the time to the failure of a physical component or to death of a
+patient. It usually defines the following terms~\cite{neural:survival-analysis}:
+
+\begin{description}
+  \item[Event \( E \)] It can be death (\( E = 1 \)) or otherwise it can be recovery or withdrawal
+  (\( E = 0 \)).
+  \item[Time \( T \)] Time from the beginning of the observation period until an event, the end 
+  of the study or withdrawal from the study. 
+  \item[Baseline data \( x \)] Available data to predict the survival time.
+  \item[Censoring] If a subject does not have an event during the observation time they are
+  described as censored. This means that nothing is known about the subject after the censoring.
+\end{description}
 
 The survival and hazard functions are the two fundamental functions in survival analysis. The
 survival function \( S(t) = \Pr(T \ge t) \), is the probability that an individual has
@@ -70,9 +72,10 @@ ordered only if:
   (\( T_i < T_j | E_i = 1; E_j = 0 \))
 \end{enumerate}
 
-This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph}.
-The set of vertices \( V \) represents all the individuals, where each filled vertex indicates
-an \emph{uncensored} survival time, while an empty circle denotes a \emph{censored} observation.
+This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph-ci}.
+The set of vertices \( V \) represents all the individuals, where each filled circle 
+(\( \bullet \)) indicates an \emph{uncensored} survival time, while an empty circle 
+(\( \circ \) denotes a \emph{censored} observation.
 Existence of an edge \( E_{ij} \) implies that \( T_i < T_j \). An edge cannot originate 
 from a censored point.
 
@@ -87,20 +90,37 @@ from a censored point.
   \begin{subfigure}[b]{.4\textwidth}
     \centering
     \input{drawings/graph_censored.tikz.tex}
-    \caption{Censored data}
+    \caption{With censored data}
+    \label{fig:graph-ci:censored}
   \end{subfigure}
 
-  \caption{Order graphs representing the ranking constraints \label{fig:graph}}
+  \caption{Order graphs representing the ranking constraints \label{fig:graph-ci}}
+
+  Censored data is represented \( \circ \) and uncensored data is represented by \( \bullet \).
+  Every edge \( A \rightarrow B \) means \( T_A > T_B \). Note that in 
+  \autoref{fig:graph-ci:censored} some vertex are not connected since an edge 
+  \( \circ \rightarrow \bullet \) cannot be formed.
 \end{figure}
 
 % C-index explanation
 The standard performance measure, to compare if a survival 
-model is performing better than another, is the \emph{Concordance Index} (C-index). This 
-index is 1 for a perfect data fit and 0.5 for a random model. Also, another comparison 
+model is performing better than another, is the \emph{Concordance Index} (C-index). To obtain this 
+indicator, pairs are generated to compare the survival time. If 
+\( T_i > T_j \) and \( \hat{T}_i > \hat{T}_j \) then it's counted as a good prediction, otherwise
+it's counted as a bad prediction, note that \( T_i = \hat{T}_i \) it's not a required condition. 
+The number of good predictions is divided by the total
+number of predictions. This index is 1 for a perfect data fit and 0.5 for a random model.
+~\cite{medical:ranking-ci}
+
+\[
+  CI = \frac{\text{Good predictions}}{\text{Total predictions}}
+\]
+
+Also, another comparison 
 element is the ROC curve which represents the \emph{False Positive Rate} against the 
 \emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the C-index is seen as 
 the area under the ROC curve.
-~\cites{neural:roc-precision-recall}{medical:ranking-ci}
+~\cite{neural:roc-precision-recall}
 
 \begin{figure}
   \centering
