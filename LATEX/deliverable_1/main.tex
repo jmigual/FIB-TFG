@@ -63,6 +63,13 @@
   }
 }
 
+% Reduce the table of contents length
+\makeatletter
+\pretocmd{\secc}{\addtocontents{toc}{\protect\addvspace{15\p@}}}{}{}
+\pretocmd{\ssecc}{\addtocontents{toc}{\protect\addvspace{-5\p@}}}{}{}
+\pretocmd{\sssecc}{\addtocontents{toc}{\protect\addvspace{-9\p@}}}{}{}
+\makeatother
+
 %%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
 \begin{document}
 
