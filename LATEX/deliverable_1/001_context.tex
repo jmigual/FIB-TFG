@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 
-\section{Context and scope of the project}
-\subsection{Context}
+\secc{Context and scope of the project}
+\ssecc{Context}
 
 Nowadays one of the most extensive uses of computing is artificial intelligence. A few 
 examples are Amazon purchase recommendations, based on previous purchases, or help users
@@ -37,7 +37,7 @@ these features are not guaranteed to be the most discriminant ones. Deep learnin
 are end-to-end and, for a given task, they drive features from the data.
 ~\cite{medical:radiomics-ml-classifiers}
 
-\subsubsection{Survival Analysis}
+\sssecc{Survival Analysis}
 
 Survival Analysis exists because we want to be able to use all these data (imaging, clinical,
 radiomics...) to predict the survival of the patient.
@@ -108,7 +108,7 @@ the area under the ROC curve.
   \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
 
-\subsection{Problem Formulation}
+\ssecc{Problem Formulation}
 
 Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
 Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
@@ -122,7 +122,7 @@ to the more conventional methods, such as hand-engineered radiomics features and
 \emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
 of the volume for the set of patients at hand, is ~0.65.
 
-\subsection{State-of-the-art}
+\ssecc{State-of-the-art}
 
 Nowadays, a lot of research is being done in the medical field using deep learning. Image
 classification is one of the first areas in which there's a major contribution to medical analysis.
@@ -162,22 +162,22 @@ and uses the Cox Proportional Hazards model for an individual's survival given t
 to a Cox model.
 ~\cites{medical:deep-surv}{medical:cox}
 
-\subsection{Stakeholders}
+\ssecc{Stakeholders}
 
-\subsubsection{Developer}
+\sssecc{Developer}
 Is the person in charge of the research, document and implement all the required software.
 In addition he is responsible for the project management and the writing of the report
 and all the required documentation. This actor works as agreed with the director and
 he is, ultimately, the person in charge of accomplishing the deadlines.
 
-\subsubsection{Director}
+\sssecc{Director}
 He is the main responsible for guiding, giving advice and, in general, helping the developer.
 His action is key to determine possible errors in the project, both in its proposal and 
 execution. In particular, Benjamin Haibe-Kains from the Bioinformatics and Computational
 Genomics Laboratory has acted as director
 ~\cites{bhklab}.
 
-\subsubsection{Beneficiaries}
+\sssecc{Beneficiaries}
 The project beneficiaries will depend on its outcome. If a more efficient model is found, the
 beneficiaries will be the researchers trying to test a new cancer treatment method. Moreover,
 the final patient will also be benefited because more modern research techniques will be used.
@@ -186,7 +186,7 @@ However, if a more efficient model is not found, the beneficiaries will be the r
 trying to find the best model for survival analysis since this would have proved which 
 methods do not work well.
 
-\subsection{Scope}
+\ssecc{Scope}
 
 The first task will be to learn and to understand how Neural Networks and specifically how 
 Convolutional Neural Networks Work. This way I will have a fully understanding of the background
@@ -206,7 +206,7 @@ pairs and not to get the hazard function. Since the C-index is computed using pa
 a siamese neural network will be built. This type of network is suited for comparison 
 tasks such as face recognition, but this time it will be comparing the pair's survival time.
 
-\subsection{Methodology}
+\ssecc{Methodology}
 
 This project is part of a research project at Benjamin Haibe-Kains Bioinformatics and 
 Computational Genomics Laboratory \cite{bhklab}. This means that every week there will be a 
@@ -220,9 +220,9 @@ and error until the proper solution is found. This means that during this proces
 tasks will be assigned on a weekly basis.
 
 
-\subsection{Possible obstacles and solutions}
+\ssecc{Possible obstacles and solutions}
 
-\subsubsection{Training time}
+\sssecc{Training time}
 
 Since this project involves Convolutional Neural Networks training time can be a problem. 
 The convolution operation is computationally expensive, so depending on the network the 
@@ -232,7 +232,7 @@ much power, training needs a lot more power.
 To solve this problem the training will be done at \emph{SharcNet} a computing facility. 
 This way the training will be much faster.
 
-\subsubsection{Monitoring Tools}
+\sssecc{Monitoring Tools}
 
 The work will be done with the help of Git and GitHub. This tools will help monitoring
 the project's evolution. The purpose of Git is to be able to do small revisions,
@@ -243,7 +243,7 @@ remote Git repositories, also it has integrated an issue system, a milestone sys
 and it's really integrated with Git's contributor system.
 ~\cites{tool:git}{tool:github}
 
-\subsubsection{Bugs}
+\sssecc{Bugs}
 
 Considering the software development process, it's no big surprise that it's really easy to
 introduce bugs while writing or modifying the source code. To ensure no bugs are present,
@@ -251,13 +251,13 @@ some unit tests will be written to check if the model is still giving correct re
 However, this will be a difficult task since it's not easy to check whether a deep 
 learning model is just overfitting or that it's giving wrong results.
 
-\subsubsection{Scheduling}
+\sssecc{Scheduling}
 
 Although four months seems plenty of time, spending more time than estimated in a single task
 can happen. To avoid this problem weekly meetings will be scheduled with my Principal Investigator
 to see which is the best way to continue to keep on track.
 
-\subsubsection{Not enough data}
+\sssecc{Not enough data}
 
 Since the starting dataset is quite small (\( \sim 500 \) samples) overfitting may be a problem
 and different methods should be used to avoid it. The possible solutions are:

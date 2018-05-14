@@ -1,9 +1,9 @@
 % !TEX root = main.tex
 
 
-\section{Project Planning}
+\secc{Project Planning}
 
-\subsection{Planning and scheduling}
+\ssecc{Planning and scheduling}
 
 The estimated project duration is of about 4 months. The project starts on Wednesday 14th of 
 February, 2018 and the deadline is on Sunday 17th June, 2018, the week before the 
@@ -21,9 +21,9 @@ done there.
 It must be noticed that the initial planning can be revised and updated as a result of the 
 project's evolution, feedback received from the lab members and from my Principal Investigator. 
 
-\subsection{Task description}
+\ssecc{Task description}
 
-\subsubsection{Acquire background in Convolutional Neural Networks}
+\sssecc{Acquire background in Convolutional Neural Networks}
 
 The first step is to acquire a better understanding in how a convolutional neural network works.
 Therefore, in the las month I've been learning about Convolutional Neural Networks and how they
@@ -53,7 +53,7 @@ and published at Coursera~\cite{neural:coursera} related to Convolutional Neural
 
 All the tasks where done in three weeks.
 
-\subsubsection{Get familiar with survival models like DeepSurv}
+\sssecc{Get familiar with survival models like DeepSurv}
 
 Survival Prediction models are a bit different from the typical Machine Learning problem. 
 In this case, the desired output values are not the event indicator \( E \) and the time
@@ -71,7 +71,7 @@ I can see how to properly use \emph{vectorization} to speed-up computation
 
 This process will take around two weeks.
 
-\subsubsection{Preprocess data}
+\sssecc{Preprocess data}
 
 The input data for this project are:
 \begin{itemize}
@@ -97,7 +97,7 @@ normalized, to a value \( x \in [0, 1] \), and afterwards resized as a 3D image 
 used then random crops and rotations to the image can be added before extracting the
 3D slice. These operations can be done in the period of a week.
 
-\subsubsection{Get familiar with Tensorflow}
+\sssecc{Get familiar with Tensorflow}
 
 Tensorflow\cite{neural:tensorflow} is one of the biggest libraries for developing deep neural 
 networks. It hides from the user the underlying details of how to train a model, like how to 
@@ -112,7 +112,7 @@ provides to create a computing graph and do the mathematical calculations.
 
 This task won't take more than a week.
 
-\subsubsection{Build shallow siamese network}
+\sssecc{Build shallow siamese network}
 
 A siamese network is a type of neural network that is suited for comparison tasks such as 
 face recognition or signature verification \cite{neural:siamese}.
@@ -157,7 +157,7 @@ network is best suited to solve the problem.
 In this phase the designed networks will be very shallow to make small and fast improvements
 since the training time could be an issue.
 
-\subsubsection{Build deep siamese network}
+\sssecc{Build deep siamese network}
 
 Once an initial shallow network is already created then the next step will be to try 
 and create a more deep version. To do so it will be done step by step adding one layer
@@ -168,7 +168,7 @@ identify more complex features and thus they usually perform better. However, it
 main drawback is that training time is longer and so the development process is 
 slower.
 
-\subsubsection{Compare the model against other ones}
+\sssecc{Compare the model against other ones}
 
 Once the final deep model is created, it will be compared against different methods of 
 survival analysis. Since this method will be the first one using both image data and scalar 
@@ -184,7 +184,7 @@ To do all this comparisons, the same original data, the head and neck dataset, m
 used so it may require running again the training process using the compared method. 
 That's why it will take two weeks for this task to complete.
 
-\subsection{Estimated time}
+\ssecc{Estimated time}
 
 In \autoref{tab:time} an estimation of the number of hours dedicated to each task is shown.
 
@@ -209,7 +209,7 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
   \caption{Estimated time for each task \label{tab:time}}
 \end{table}
 
-\subsection{Gantt chart}
+\ssecc{Gantt chart}
 
 \autoref{fig:gantt} shows the planning of the different tasks of the project in a Gantt chart.
 
@@ -259,7 +259,7 @@ In \autoref{tab:time} an estimation of the number of hours dedicated to each tas
   \caption{Gantt chart of the project \label{fig:gantt}}
 \end{figure}
 
-\subsection{Alternatives and action plan}
+\ssecc{Alternatives and action plan}
 
 As it has already been said, the fact that there will be weekly meetings will allow to 
 revise and adapt the initial planning. This means that, for each task, the real duration, 
@@ -274,26 +274,26 @@ thus fix them as soon as possible.
 
 Below, there are some examples of potential sources of delays.
 
-\subsubsection{Complexity of the built model}
+\sssecc{Complexity of the built model}
 
 Since the model that it's going to be built is quite complex, it will have a constant trial
 and error. This can cause delays if a wrong architecture it's chosen, and it's not detected
 in time, because a lot of time can be lost until the wrong choice is noticed. 
 
-\subsubsection{Bugs}
+\sssecc{Bugs}
 
 Using complex software such as Tensorflow is prone to errors in many ways. Programming errors
 are not an exception and while writing the code some bugs can be introduced. If a bug is not 
 noticed soon, it can cause long delays while trying to fix them.
 
-\subsubsection{Unavailability of Compute Canada}
+\sssecc{Unavailability of Compute Canada}
 
 Since this project involves training Convolutional Neural Networks, it needs a lot of computing 
 power so a computing cluster will be used to train the data. If the cluster it's not available
 then the training will need to be done with local resources which will be slower and thus 
 more time will be lost.
 
-\subsubsection{Training times}
+\sssecc{Training times}
 
 The training time is one of the biggest drawbacks of this project. Since this task
 can take a huge amount of time depending on the chosen architecture it can cause

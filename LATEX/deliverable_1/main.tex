@@ -40,7 +40,28 @@
 \addbibresource{../bibliography/all.bib}
 \addbibresource{../bibliography/medical.bib}
 \addbibresource{../bibliography/neural.bib}
-  
+
+\newcommand{\secc}{
+  \ifdef{\chapter}{
+    \chapter
+  }{
+    \section
+  }
+}
+\newcommand{\ssecc}{
+  \ifdef{\chapter}{
+    \section
+  }{
+    \subsection
+  }
+}
+\newcommand{\sssecc}{
+  \ifdef{\chapter}{
+    \subsection
+  }{
+    \subsubsection
+  }
+}
 
 %%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -90,7 +111,7 @@
 \include{003_budget}
 
 \pagebreak
-\section{References}
+\secc{References}
 \printbibliography[heading=none]{}
 
 \end{document}
