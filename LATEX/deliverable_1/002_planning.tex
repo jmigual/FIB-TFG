@@ -300,3 +300,336 @@ can take a huge amount of time depending on the chosen architecture it can cause
 huge delays in the original plan. This should be mitigated by doing small tests
 instead of a whole training session to make sure that no bugs are found in the code 
 because, otherwise, all the training results would become invalid.
+
+\ssecc{Project budget \label{sec:budget}}
+
+In order to carry out this project some resources will be needed. In this document, 
+an estimation of the cost of the project is presented, keeping in mind the required
+hardware and software resources, and its corresponding amortizations. Also, the
+indirect costs of the project are counted too.
+
+\sssecc{Hardware budget}
+
+In order to implement the different models previously explained, some hardware will be
+needed. The training will usually be done in Compute Canada computing platform. The
+access to the different provided clusters it's provided by the Bioinformatics and 
+Computational Genomics Laboratory.
+
+\autoref{tab:hardware-budget} shows an estimation of the cost of the hardware used in the
+project, taking into account its useful life and its amortizations.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|r|}
+    \hline
+    \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Useful life} 
+    & \textbf{Amortization} \\ \hline\hline
+
+    MSI GL62M 7RD-429XES & 1.000 € & 1 & 5 years & 83 € \\ \hline
+    Lab iMac & 0 € & 1 & -- & 0 € \\ \hline
+    Compute Canada platform & 0 € & 1 & -- & 0 € \\ \hline
+
+    \hline\hline
+    \textbf{Total} & 1.000 € & \multicolumn{2}{|c|}{} & 83 € \\ \hline
+  \end{tabular}
+  \caption{Hardware budget \label{tab:hardware-budget}}
+\end{table}
+
+\sssecc{Software budget}
+
+Some software will be used to carry out the project. Since this project will be used using
+Open Source and free tools the total software cost of the project is zero. 
+\autoref{tab:software-budget} shows an estimation of the cost of the software used in the 
+project.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Amortization} \\ \hline\hline
+
+    Python & 0 € & 1 & 0 € \\ \hline
+    Tensorflow & 0 € & 1 & 0 € \\ \hline
+    PyDicom & 0 € & 1 & 0 € \\ \hline
+    NumPy & 0 € & 1 & 0 € \\ \hline
+    Scikit & 0 € & 1 & 0 € \\ \hline
+    Visual Studio Code & 0 € & 1 & 0 € \\ \hline
+    Git & 0 € & 1 & 0 € \\ \hline
+    GitHub & 0 € & 1 & 0 € \\ \hline
+    PyCharm Community Edition & 0 € & 1 & 0 € \\ \hline
+    \LaTeX & 0 € & 1 & 0 € \\ \hline
+    Vim & 0 € & 1 & 0 € \\ \hline
+
+    \hline\hline
+    \textbf{Total} & 0 € &  & 0  € \\ \hline
+  \end{tabular}
+  \caption{Software budget \label{tab:software-budget}}
+\end{table}
+
+
+\sssecc{Human resources budget}
+
+To develop this software some roles will be taken. There will be the Project Manager role,
+the Software Developer role and the Tester role. Each role is differentiated in the total
+of 760 hours. \autoref{tab:salary} shows the estimated costs for each role and the
+Human Resources cost, \autoref{tab:time-estimation} shows an estimation of the time 
+inverted on each role for each task.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Role} & \textbf{Hours} & \textbf{€/hour} & \textbf{Salary} \\ \hline\hline
+
+    Project Manager & 70 & 33,8 & 2.366 € \\ \hline
+    Software Developer & 510 & 23,4 & 11.914 € \\ \hline
+    Tester & 180 & 19,5 & 3.510 € \\ \hline
+
+    \hline\hline 
+    Total & 760 & & 17.810 € \\
+    \hline
+  \end{tabular}
+
+  \caption{Human resources budget, salary according to \cite{ine:salary} \label{tab:salary}}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|P{4cm}|r|r|r|r|}
+    \hline
+    \multirow{2}{*}[-1em]{\textbf{Task}} & 
+    \multirow{2}{*}[-1em]{\textbf{Duration}} & 
+    \multicolumn{3}{|c|}{\textbf{Dedication}} \\ \cline{3-5}
+
+     & & \parbox[c][1.5cm]{2.1cm}{\textbf{Project \\ Manager}} & 
+     \parbox[c][1.5cm]{2.2cm}{\textbf{Software \\ Developer}} & 
+     \textbf{Tester} \\ \hline\hline
+
+     Acquire background in CNN & 120 & 10 & 110 & 0 \\ \hline
+     Get familiar with survival models & 80 & 10 & 70 & 0 \\ \hline
+     Preprocess data & 40 & 10 & 20 & 10 \\ \hline
+     Build shallow siamese network & 200 & 15 & 110 & 75 \\ \hline
+     Build deep siamese network & 80 & 10 & 50 & 20 \\ \hline
+     Compare models & 80 & 10 & 40 & 30 \\ \hline
+     Final stage & 160 & 5 & 110 & 45 \\ 
+
+     \hline\hline
+     \textbf{Total} & 760 & 70 & 510 & 180 \\
+     \hline
+  \end{tabular}
+
+  \caption{Time estimation by role \label{tab:time-estimation}}
+\end{table}
+
+\sssecc{Unexpected costs}
+
+As there may be unexpected changes in the project, an extra budget has to be added to compensate
+for such problems. \autoref{tab:unexpected-costs} shows the distribution of this budget per role.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Role} & \textbf{Hours} & \textbf{€ / hour} & \textbf{Salary} \\ \hline\hline
+    Project Manager & 10 & 33.8 & 338 € \\ \hline
+    Software Developer & 20 & 23.4 & 468 € \\ \hline
+    Tester & 10 & 19.5 & 195 € \\ \hline
+
+    \hline\hline
+    \textbf{Total} & 40 & & 1001 € \\ 
+    \hline
+  \end{tabular}
+  \caption{Unexpected costs \label{tab:unexpected-costs}}
+\end{table}
+
+\sssecc{Indirect costs}
+
+In a project, there are some costs that cannot be added in neither of the previous categories,
+this are estimated in \autoref{tab:indirect-costs}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|r|r|}
+    \hline
+    \textbf{Product} & \textbf{Price} & \textbf{Units} & \textbf{Cost} \\ \hline\hline
+
+    Electricity & 0,12 €/kWh & 550 kWh & 66 € \\ \hline
+    Internet + phone & 70 €/month & 4 months & 280 € \\ \hline
+    
+    \hline\hline
+    \textbf{Total} & & & 346 € \\ \hline
+  \end{tabular}
+  \caption{Indirect costs \label{tab:indirect-costs}}
+\end{table}
+
+\sssecc{Total budget}
+
+By adding all the previously provided budgets, the total estimated budget for this project
+is obtained, as shown in table \autoref{tab:total-costs}. Notice that a 5\% of contingency
+has been added over the cumulative total in order to cover unexpected expenses that may 
+occur during the development of the project.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{Concept} & \textbf{Estimated Costs} \\ \hline\hline
+
+    Hardware resources & 83 € \\ \hline
+    Software resources & 0 € \\ \hline
+    Human resources & 17.810 € \\ \hline
+    Unexpected costs & 1001 € \\ \hline
+    Indirect costs & 346 € \\ \hline
+
+    \hline\hline
+    \textbf{Subtotal} & 19.240 € \\
+    \hline\hline
+    Contingency (5\%) & 962 € \\
+    \hline\hline
+    \textbf{Total} & \textbf{20.202 €} \\ \hline
+  \end{tabular}
+
+  \caption{Total project costs \label{tab:total-costs}}
+\end{table}
+
+Finally, an estimation of the approximate budget per task is also provided in table 9. The
+cost of each task is computed using the number of hours spent in the task and the required
+resources.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{Task} & \textbf{Estimated cost} \\ 
+    \hline\hline
+
+    Acquire background in CNN & 3.189,79 € \\ \hline
+    Get familiar with survival models & 2.126,53 € \\ \hline
+    Preprocess data & 1.063,26 € \\ \hline
+    Build shallow siamese network & 5.316,32 € \\ \hline
+    Build deep siamese network & 2.126,53 € \\ \hline
+    Compare models & 2.126,53 € \\ \hline
+    Final stage & 4,253.05 € \\ 
+
+    \hline\hline
+    \textbf{Total} & 14.899,00 € \\ \hline
+  \end{tabular}
+\end{table}
+
+\ssecc{Budget control}
+
+Controlling the spent budget is a very important part of the project. Using too much time or 
+having to buy unexpected hardware could be a problem but it's likely to happen. That's why
+some plans will be made to avoid, as much as possible, this situation.
+
+It may be necessary to buy extra software or to have more human resources although it's
+unlikely that it may be necessary more hardware. Solving the extra software requirement
+shouldn't be a big problem as there are many free or open source software solutions in
+the market.
+
+To control the human resources budget, the number of hours working as each role will be 
+recorded, this way then it can be seen if too much time has been used for a task and then
+it can be solved by rescheduling the next tasks.
+
+\ssecc{Sustainability and social commitment}
+
+In order to evaluate the project's sustainability, environmental impact will be analyzed
+regarding three major factors: environmental, social and economical. The analysis will be 
+based in the application of the sustainability matrix to the project shown in
+\autoref{tab:sustainability} and in the poll that can be accessed through 
+\url{https://goo.gl/kWLMLE}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \cline{2-4}
+    \multicolumn{1}{c|}{} & \textbf{PPP} & \textbf{Useful life} & \textbf{Risks} \\ 
+    \hhline{-===}
+
+    \multirow[c]{2}{*}{\textbf{Environmental}} & 
+    \makecell{Design \\ consumption} & \makecell{Ecological \\ footprint} & 
+    \makecell{Environmental \\ risks} \\ \cline{2-4}
+    & 2/10 & 19/20 & -2/-20 \\ \hline
+    
+    \multirow{2}{*}{\textbf{Economical}} & 
+    Bill & \makecell{Viability \\ plan} & \makecell{Economical \\ risks} \\ \cline{2-4}
+    & 7/10 & 18/20 & -15/-20 \\ \hline
+
+    \multirow{2}{*}{\textbf{Social}} &
+    \makecell{Personal \\ impact} & \makecell{Social \\ Impact} & 
+    \makecell{Social \\ risks} \\ \cline{2-4} 
+    & 9/10 & 18/20 & -5/-20 \\ \hline
+
+    \hline\hline
+    \multirow{2}{*}{\parbox[c]{3cm}{\centering\textbf{Sustainability \\ range}}} &
+    18/30 & 55/60 & -22/-60 \\ \cline{2-4}
+    & \multicolumn{3}{c|}{51/90} \\ \hline
+
+  \end{tabular}
+  \caption{Sustainability matrix of the project \label{tab:sustainability}}
+\end{table}
+
+\sssecc{Evaluation}
+
+Nowadays sustainability is a great issue, the progress made by humanity in the technology
+field it has some consequences too. Information and Communication Technologies are not 
+an exception although it has taken some time to gain importance. The appearance of 
+small devices like smartphones and the huge power requirements of big data centers have 
+helped in gaining conscience of power consumption. 
+
+When trying to build a new project now it's important to see project's sustainability. If the
+project involves building some hardware then it may have a negative impact on the environment
+so proper measures need to be taken to avoid future problems.
+
+Moreover, if the project it's software related then it has some implications too. In general
+when working with this type of projects the only part where it can be a problem is regarding
+power consumption, which is usually related to efficiency. As a general rule they should
+avoid using too much power but it depends on the project's type. Machine Learning ones
+usually have a big power consumption during the training phase since it requires a huge
+amount of computational power. However, smartphone related applications tend to have less
+consumption to allow for a longer battery life.
+
+However, regarding the budget, solutions that tend to be more sustainable usually are more
+expensive. When it is attempted to reduce consumption in software projects, this usually 
+translates in more programmer hours and thus a higher budget.
+
+\sssecc{Environmental dimension}
+
+Regarding the environmental dimension the project has two main stages. Since the main objective
+of the project is to develop a deep learning model the first stage is to create the model
+itself. The second one is to deploy the product and start using it.
+
+In the first stage many resources will be needed since the training process in machine learning
+requires a huge amount of computational power. This is directly translated to electricity 
+consumption so, during the development process the environmental impact will be hight.
+
+However, once a model is already trained, using it does not require much power since the
+data inference it's quite fast and thus, does not require many electricity consumption.
+That's why the second part of the project won't have a very hight environmental impact.
+
+\sssecc{Social dimension}
+
+As there is a lot of research regarding this topic, creating this project should help pushing 
+forward the development of new methods for survival analysis. Either if the project results 
+are positive or negative it should help to prove that a certain method is valid or not. 
+
+In addition, it's primary focus is medical, so it's very social oriented. Thus,
+in the long term, it should help cancer patients to receive better treatments 
+that will be developed with help of survival analysis models. 
+
+Regarding the personal and ethical implications, it will help having a better understanding
+of machine learning models, how to use them and how to develop them. Moreover, this project
+will not have any ethical issue but the contrary, knowing that the social outcome can be
+positive it's an incentive to work and do a good job.
+
+\sssecc{Economical dimension}
+
+A detailed exposition of all the related project costs has already been made including both
+human and material resources, as shown in \autoref{sec:budget}.
+
+This project should have a positive impact regarding the economical dimension. Improving
+the methods for survival detection helps reducing the costs of future research. However, 
+there's the downside that if the research has some kind of mistake that it's not noticed,
+a negative impact may occur due to the fact that some related researches may have to roll
+back some results.
+
