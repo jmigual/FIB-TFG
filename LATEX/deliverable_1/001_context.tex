@@ -37,10 +37,6 @@ these features are not guaranteed to be the most discriminant ones. Deep learnin
 are end-to-end and, for a given task, they drive features from the data.
 ~\cite{medical:radiomics-ml-classifiers}
 
-Through a collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
-Margaret Cancer Centre, prof. Benjamin Haibe-Kains has access to a unique set of \( {\sim}500 \) 
-Computed Tomography scans of head-and-neck cancer patients with associated survival data. 
-
 \sssecc{Survival Analysis}
 
 Survival Analysis is a branch of statistics that analyzes the duration time of the observed
@@ -79,7 +75,7 @@ ordered only if:
 This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph-ci}.
 The set of vertices \( V \) represents all the individuals, where each filled circle 
 (\( \bullet \)) indicates an \emph{uncensored} survival time, while an empty circle 
-(\( \circ \) denotes a \emph{censored} observation.
+(\( \circ \)) denotes a \emph{censored} observation.
 Existence of an edge \( E_{ij} \) implies that \( T_i < T_j \). An edge cannot originate 
 from a censored point.
 
@@ -109,15 +105,14 @@ from a censored point.
 % C-index explanation
 The standard performance measure, to compare if a survival 
 model is performing better than another, is the \emph{Concordance Index} (C-index). To obtain this 
-indicator, pairs are generated to compare the survival time. If 
-\( T_i > T_j \) and \( \hat{T}_i > \hat{T}_j \) then it's counted as a good prediction, otherwise
+indicator, pairs are generated to compare the survival time. A prediction is counted as good only
+if both \( T_i > T_j \) and \( \hat{T}_i > \hat{T}_j \), otherwise
 it's counted as a bad prediction, note that \( T_i = \hat{T}_i \) it's not a required condition. 
-The number of good predictions is divided by the total
-number of predictions. This index is 1 for a perfect data fit and 0.5 for a random model.
+Then, the number of good predictions is divided by the total predictions. 
 ~\cite{medical:ranking-ci}
 
 \[
-  CI = \frac{\text{Good predictions}}{\text{Total predictions}}
+  CI = \frac{\text{Good predictions}}{\text{Total predictions}} \in [0, 1]
 \]
 
 Also, another comparison 
@@ -132,11 +127,59 @@ the area under the ROC curve.
   \caption{ROC Curve example\label{fig:ROC-curve}}
 \end{figure}
 
+\sssecc{Dataset}
+
+The dataset that this project will be using to develop a model is provided through a 
+collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
+Margaret Cancer Centre. 
+
+We have access to a unique set of \( {\sim}500 \) Computed Tomography scans of head-and-neck 
+cancer patients. Each scan is 512 pixels wide by 512 pixels tall and is composed 
+of 100-200 slices in gray scale that together form a 3D image. To be able to slice the tumour
+fro the rest of the image, a mask of the same size as the scan is provided. It contains 1s 
+if the pixel contains a tumour and 0s otherwise, as it can be seen in \autoref{fig:dataset-example}.
+
+Also, there's the following clinical information for the patients:
+\begin{itemize}
+  \item Subject characteristics (age, gender, clinical status, smoking, drinking history)
+  \item Tumor characteristics (cancer location, staging, p16 status)
+  \item Treatment data (modality, radiation start/end dates, radiation dose/fractionation, 
+  treatment completion status)
+  \item Outcome data (status, cause of death, local failure, regional failure, distant failure)
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/IMG_example.png}
+    \caption{Original image}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/IMG_MASS_example.png}
+    \caption{Image mask}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/IMG_merge_example.png}
+    \caption{Mask applied to original}
+  \end{subfigure}
+
+  \caption{Example of images from the dataset \label{fig:dataset-example}}
+
+  Single CT's scan slice, a whole scans is composed of multiple slices. By applying the mask to 
+  the original image, the part of that only contains the tumour can be extracted.
+\end{figure}
+
+
 \ssecc{State-of-the-art}
 
 Nowadays, a lot of research is being done in the medical field using deep learning. Image
 classification is one of the first areas in which there's a major contribution to medical analysis.
-Usually in image classification we have one or multiple images as input and a single diagnostic 
+Usually in image classification there are one or multiple images as input and a single diagnostic 
 variable as output (e.g.~ill or not).
 ~\cite{medical:survey-deep-learning}
 
@@ -144,7 +187,7 @@ Regarding the prediction of survival models, there have been different approache
 almost all of them use MRI, PET or CT scans and the clinical data. The typical one is to extract
 hand-crafted radiomic features using own methods or using libraries such as
 \href{https://github.com/Radiomics/pyradiomics}{\emph{PyRadiomics}}. This hand-crafted 
-features are based in aspects like tumour shape, intensity, volume or texture.
+features are usually based in aspects like tumour shape, intensity, volume or texture.
 ~\cites{medical:tumour-radiomics}{medical:py-radiomics}
 
 An alternative approach, is to use a deep learning-based model for prediction and for feature
