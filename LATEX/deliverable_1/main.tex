@@ -1,7 +1,7 @@
 % !TEX spellcheck = en_US
 % !TEX encoding = UTF-8
 
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 12pt]{book}
 
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
@@ -23,6 +23,7 @@
 \usepackage{multirow}
 \usepackage{makecell}
 \usepackage{hhline}
+\usepackage{acronym}
 
 \usepackage{amsmath, amsfonts, amssymb}
 
@@ -41,26 +42,19 @@
 % Bibliography
 \addbibresource{../bibliography/mendeley.bib}
 
-\newcommand{\secc}{
-  \ifdef{\chapter}{
-    \chapter
-  }{
-    \section
-  }
-}
-\newcommand{\ssecc}{
-  \ifdef{\chapter}{
-    \section
-  }{
-    \subsection
-  }
-}
-\newcommand{\sssecc}{
-  \ifdef{\chapter}{
-    \subsection
-  }{
-    \subsubsection
-  }
+\newcommand{\secc}{\ifdef{\chapter}{\chapter}{\section}}
+\newcommand{\ssecc}{\ifdef{\chapter}{\section}{\subsection}}
+\newcommand{\sssecc}{\ifdef{\chapter}{\subsection}{\subsubsection}}
+
+\newcommand{\seccn}{\ifdef{\chapter}{chapter}{section}}
+\newcommand{\sseccn}{\ifdef{\chapter}{section}{subsection}}
+\newcommand{\ssseccn}{\ifdef{\chapter}{subsection}{subsubsection}}
+
+\newcommand{\addphantomsec}[1]{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{\seccn}{\numberline{}#1}
+  \secc*{#1}
 }
 
 % Reduce the table of contents length
@@ -102,8 +96,19 @@
 \end{titlepage}
 
 \tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{\seccn}{\numberline{}List of Figures}
 \listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{\seccn}{\numberline{}List of Tables}
 \listoftables
+
+\addphantomsec{List of acronyms}
+\input{acronyms.tex}
 
 \pagebreak
 
@@ -113,7 +118,8 @@
 \include{003_design}
 
 \pagebreak
-\secc{References}
+
+\addphantomsec{References}
 \printbibliography[heading=none]{}
 
 \end{document}
