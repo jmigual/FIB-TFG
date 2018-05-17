@@ -1,19 +1,19 @@
-\begin{tikzpicture}[node distance = 1.5]
-  \tikzstyle{module}=[rounded corners, draw, inner sep = 10, text width=3cm, align=center]
-  \tikzstyle{sister}=[module, fill=cyan!20]
+\begin{tikzpicture}[node distance = .8]
+  \tikzstyle{module}=[rounded corners, draw, inner sep = 5, text width=5em, align=center]
+  \tikzstyle{sister}=[module, fill=cyan!20, text width=6em]
   \tikzstyle{out-node}=[module, fill=green!20]
 
   \node [sister] (S-A) at (0, 0) {Neural Network Architecture};
-  \node [sister, below = of S-A] (S-B) {Neural Network Architecture};
+  \node [sister, below = 1.5 of S-A] (S-B) {Neural Network Architecture};
   
   \node [left = of S-A] (I-A) {Input A};
   \node [left = of S-B] (I-B) {Input B};
   
-  \node [out-node, right = of S-A] (O-A) {Vector A Output};
-  \node [out-node, right = of S-B] (O-B) {Vector B Output};
+  \node [out-node, right = of S-A] (O-A) {Vector A \\ Output};
+  \node [out-node, right = of S-B] (O-B) {Vector B \\ Output};
   \node (aux-1) at ($(O-A)!0.5!(O-B)$) {};
 
-  \node [module, right = of aux-1, fill=red!20] (D) {Distance compare};
+  \node [module, right = 1 of aux-1, fill=red!20] (D) {Distance \\ compare};
 
   \node [out-node, right = of D] (O) {Output \(\in (0, 1) \) };
 
