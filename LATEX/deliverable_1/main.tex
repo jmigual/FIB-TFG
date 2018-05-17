@@ -3,6 +3,7 @@
 
 \documentclass[a4paper, 12pt]{article}
 
+\usepackage{scrextend}
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
@@ -15,6 +16,8 @@
 \usepackage[bindingoffset=1.5cm, textwidth=15cm]{geometry}
 
 \usepackage{tikz}
+\usepackage{amsmath, amsfonts, amssymb}
+
 \usepackage{pgfgantt}
 \usepackage{subcaption}
 \usepackage{float}
@@ -23,9 +26,8 @@
 \usepackage{multirow}
 \usepackage{makecell}
 \usepackage{hhline}
+\usepackage{fixfoot}
 \usepackage[acronym, toc, numberline]{glossaries}
-
-\usepackage{amsmath, amsfonts, amssymb}
 
 \usetikzlibrary{positioning}
 
@@ -113,8 +115,8 @@
 
 % Just comment this lines to enable/disable some parts of the document
 \include{001_context}
-% \include{002_planning}
-% \include{003_design}
+\include{002_planning}
+\include{003_design}
 
 \pagebreak
 
