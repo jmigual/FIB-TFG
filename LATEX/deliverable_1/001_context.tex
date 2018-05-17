@@ -127,12 +127,18 @@ the area under the \gls{ROC} curve.
 
 \sssecc{Dataset}
 
-The dataset that this project will be using to develop a model is provided through a 
+The dataset used by this project to develop a model is provided through a 
 collaboration with Dr.~Fei-Fei Liu, head of the Radiation Medicine Program at Princess
 Margaret Cancer Centre. 
 
-We have access to a unique set of \( {\sim}500 \) Computed Tomography scans of head-and-neck 
-cancer patients. Each scan is 512 pixels wide by 512 pixels tall and is composed 
+We have access to a unique set of 671 cancer patients diagnosed of \gls{OPSCC}. Accounting
+for approximately half a million cases annually worldwide, \gls{HNSCC} 
+is a considerable cause of mortality and morbidity, with the majority of patients having
+locally advanced, unresectable disease. \gls{OPSCC} has been one of the fastest growing 
+disease sites for \gls{HNSCC}.
+~\cite{medical:ct-based-radiomic-signature}
+
+Each scan is 512 pixels wide by 512 pixels tall and is composed 
 of 100-200 slices in gray scale that together form a 3D image. To be able to slice the tumour
 fro the rest of the image, a mask of the same size as the scan is provided. It contains 1s 
 if the pixel contains a tumour and 0s otherwise, as it can be seen in \autoref{fig:dataset-example}.
