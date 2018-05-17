@@ -1,7 +1,7 @@
 % !TEX spellcheck = en_US
 % !TEX encoding = UTF-8
 
-\documentclass[a4paper, 12pt]{book}
+\documentclass[a4paper, 12pt]{article}
 
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
@@ -23,7 +23,7 @@
 \usepackage{multirow}
 \usepackage{makecell}
 \usepackage{hhline}
-\usepackage{acronym}
+\usepackage[acronym, toc, numberline]{glossaries}
 
 \usepackage{amsmath, amsfonts, amssymb}
 
@@ -50,10 +50,10 @@
 \newcommand{\sseccn}{\ifdef{\chapter}{section}{subsection}}
 \newcommand{\ssseccn}{\ifdef{\chapter}{subsection}{subsubsection}}
 
-\newcommand{\addphantomsec}[1]{%
+\newcommand{\addphantomsec}[2]{%
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{\seccn}{\numberline{}#1}
+  \addcontentsline{toc}{#2}{\numberline{}#1}
   \secc*{#1}
 }
 
@@ -63,6 +63,8 @@
 \pretocmd{\ssecc}{\addtocontents{toc}{\protect\addvspace{-5\p@}}}{}{}
 \pretocmd{\sssecc}{\addtocontents{toc}{\protect\addvspace{-9\p@}}}{}{}
 \makeatother
+
+\input{glossary_definitions.tex}
 
 %%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -107,9 +109,6 @@
 \addcontentsline{toc}{\seccn}{\numberline{}List of Tables}
 \listoftables
 
-\addphantomsec{List of acronyms}
-\input{acronyms.tex}
-
 \pagebreak
 
 % Just comment this lines to enable/disable some parts of the document
@@ -119,7 +118,10 @@
 
 \pagebreak
 
-\addphantomsec{References}
+% \printglossary[type=\acronymtype]
+\printglossaries
+
+\addphantomsec{References}{\seccn}
 \printbibliography[heading=none]{}
 
 \end{document}

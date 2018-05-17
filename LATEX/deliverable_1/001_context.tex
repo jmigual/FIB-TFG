@@ -16,11 +16,12 @@ against computer vision and Natural Language Processing tasks like the classific
 digits from the MNIST data set.
 ~\cites{neural:mnist}{neural:empirical-evaluation-deep-architectures}
 
-Regarding the medical field, recent deep learning algorithms, specially \ac{CNN} 
+Regarding the medical field, recent deep learning algorithms, specially \gls{CNN} 
 have started to push the boundaries of precision medicine. 
 Traditionally, medical predictions have been based on a few clinical parameters with poor accuracy.
 However, other data types are available to improve such predictions. In this context, medical
-images generated from \ac{MRI}, \ac{PET} or \ac{CT} scans are vastly underused due to the 
+images generated from \gls{MRI}, \gls{PET} or \gls{CT} scans are vastly underused 
+due to the 
 inability of radiologists to quantitatively analyze this complex data.
 
 Different methods have appeared to analyze these images for tasks such as
@@ -44,13 +45,10 @@ events. Typically it refers to the time to the failure of a physical component o
 patient. It usually defines the following terms~\cite{neural:survival-analysis}:
 
 \begin{description}
-  \item[Event \( E \)] It can be death (\( E = 1 \)) or otherwise it can be recovery or withdrawal
-  (\( E = 0 \)).
-  \item[Time \( T \)] Time from the beginning of the observation period until an event, the end 
-  of the study or withdrawal from the study. 
-  \item[Baseline data \( x \)] Available data to predict the survival time.
-  \item[Censoring] If a subject does not have an event during the observation time they are
-  described as censored. This means that nothing is known about the subject after the censoring.
+  \item[\Gls{event} \glssymbol{event}] \glsdesc{event}
+  \item[\Gls{time} \glssymbol{time}] \glsdesc{time}
+  \item[\Gls{baseline} \glssymbol{baseline}] \glsdesc{baseline}
+  \item[\Gls{censoring}] \glsdesc{censoring}
 \end{description}
 
 The survival and hazard functions are the two fundamental functions in survival analysis. The
@@ -104,7 +102,7 @@ from a censored point.
 
 % C-index explanation
 The standard performance measure, to compare if a survival 
-model is performing better than another, is the \emph{Concordance Index} (C-index). To obtain this 
+model is performing better than another, is the \gls{CI}. To obtain this 
 indicator, pairs are generated to compare the survival time. A prediction is counted as good only
 if both \( T_i > T_j \) and \( \hat{T}_i > \hat{T}_j \), otherwise
 it's counted as a bad prediction, note that \( T_i = \hat{T}_i \) it's not a required condition. 
@@ -116,15 +114,15 @@ Then, the number of good predictions is divided by the total predictions.
 \]
 
 Also, another comparison 
-element is the ROC curve which represents the \emph{False Positive Rate} against the 
-\emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the C-index is seen as 
-the area under the ROC curve.
+element is the \gls{ROC} curve which represents the \emph{False Positive Rate} against the 
+\emph{True Positive Rate}, see \autoref{fig:ROC-curve}. Usually the \gls{CI} is seen as 
+the area under the \gls{ROC} curve.
 ~\cite{neural:roc-precision-recall}
 
 \begin{figure}
   \centering
   \includegraphics[width=.5\linewidth]{images/roc_curve}
-  \caption{ROC Curve example\label{fig:ROC-curve}}
+  \caption{\acrshort{ROC} Curve example\label{fig:ROC-curve}}
 \end{figure}
 
 \sssecc{Dataset}
@@ -191,7 +189,7 @@ features are usually based in aspects like tumour shape, intensity, volume or te
 ~\cites{medical:tumour-radiomics}{medical:py-radiomics}
 
 An alternative approach, is to use a deep learning-based model for prediction and for feature
-extraction. In this case, features are extracted too but a \ac{CNN} 
+extraction. In this case, features are extracted too but a \acrshort{CNN} 
 is used instead. With this approach the use of transfer learning has been a
 great improvement. Pre-trained networks are used to reduce the requirement of large data
 sets for deep network training. Usually, there are two possible strategies: 
