@@ -294,10 +294,11 @@ and all the required documentation. This actor works as agreed with the director
 he is, ultimately, the person in charge of accomplishing the deadlines.
 
 \sssecc{Director}
-He is the main responsible for guiding, giving advice and, in general, helping the developer.
+The project will be directed by professor Benjamin Haibe-Kains, from the Bioinformatics 
+and Computational Genomics Laboratory. He is the main responsible for guiding, giving 
+advice and, in general, helping the developer.
 His action is key to determine possible errors in the project, both in its proposal and 
-execution. In particular, Benjamin Haibe-Kains from the Bioinformatics and Computational
-Genomics Laboratory has acted as director
+execution.
 ~\cites{bhklab}.
 
 \sssecc{Beneficiaries}
@@ -305,15 +306,27 @@ The project beneficiaries will depend on its outcome. If a more efficient model 
 beneficiaries will be the researchers trying to test a new cancer treatment method. Moreover,
 the final patient will also be benefited because more modern research techniques will be used.
 
-However, if a more efficient model is not found, the beneficiaries will be the researchers
-trying to find the best model for survival analysis since this would have proved which 
-methods do not work well.
+However, if a more efficient model is not found, the beneficiaries will be future researchers
+trying to find the best model for survival analysis, since this would prove which 
+methods do not work well for this problem.
 
 \ssecc{Scope}
 
-The first task will be to learn and to understand how Neural Networks and specifically how 
-Convolutional Neural Networks Work. This way I will have a fully understanding of the background
-that all these methods use to create models for survival prediction.
+This project will be centered around the \gls{PMHNK} dataset. This dataset will be analyzed
+and a model will be created accordingly.
+
+Since the project aims to create a machine learning model, the first task will be to learn and 
+to understand how Neural Networks work. Also, since the inputs will have imaging data learning
+how \gls{CNN} work will be necessary too. This way, I will have a fully understanding of the 
+background that all these methods use to create models for survival prediction.
+
+The following task will be to understand how survival prediction problems are approached. An
+example of survival prediction is the \emph{DeepSurv} python package, so being able to set 
+up, to run and to understand the package will give me a bit more of background in the problem.
+However, \emph{DeepSurv} uses a \gls{CPH} model but in this case an attempt will be made to use
+a different model, since a \gls{CPH} model is only valid under certain circumstances.
+
+% TODO: This is not finished
 
 The next task will be to set up and to run the \emph{DeepSurv} python package on a local
 computer. Once running, all the different parts of the package should be tested to see which
