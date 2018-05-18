@@ -259,7 +259,7 @@ time.
 ~\cite{neural:3d-cnn-action-detection}
 
 On the \gls{PMHNK} dataset some results have already been obtained. By using the \gls{CT} scans and
-extracting some features. In this case, the extracted features where:
+extracting some features. In this case, the extracted features were:
 \begin{itemize}
   \item First order statistics: Energy
   \item Shape: Compactness
@@ -284,7 +284,7 @@ The problem statement will be as follows:
 
 \ssecc{Objectives}
 
-The project's objectives will be:
+The objectives to achieve will be:
 \begin{itemize}
   \item Get a better understanding of survival prediction problems.
   \item Be able to analyze the \gls{PMHNK} dataset to get different strategies for building a 
@@ -328,8 +328,9 @@ This project will be centered around the \gls{PMHNK} dataset. This dataset will 
 and a model will be created accordingly.
 
 Since the project aims to create a machine learning model, the first task will be to learn and 
-to understand how Neural Networks work. Also, since the inputs will have imaging data learning
-how \gls{CNN} work will be necessary too. This way, I will have a fully understanding of the 
+to understand how Neural Networks work. Also, since the inputs will have imaging data, learning
+how \gls{CNN} work will be necessary too, as they are really useful for analyzing imaging data. 
+This way, I will have a fully understanding of the 
 background that all these methods use to create models for survival prediction.
 
 The following task will be to understand how survival prediction problems are approached. An
@@ -337,22 +338,25 @@ example of survival prediction is the \emph{DeepSurv} python package, so being a
 up, to run and to understand the package will give me a bit more of background in the problem.
 However, \emph{DeepSurv} uses a \gls{CPH} model but in this case an attempt will be made to use
 a different model, since a \gls{CPH} model is only valid under certain circumstances.
+~\cites{medical:deep-surv-github}{medical:cox}
 
 % TODO: This is not finished
 
-The next task will be to set up and to run the \emph{DeepSurv} python package on a local
-computer. Once running, all the different parts of the package should be tested to see which
-ones are best suited to be reused to create a new Survival Prediction Model. Since the package
-is not prepared to have images as an input, an improvement will be to add the possibility to 
-pass medical images to train the survival model.
-\cite{medical:deep-surv-github}
+Afterwards, a deep learning model will be created, starting from zero but trying to use some
+ideas from other completed projects. The model, unlike \emph{DeepSurv}, will not be using
+the \gls{CPH} model. In this case, the approach will be to directly optimize the \gls{CI}
+instead of get a better prediction of the hazard function \( \lambda(t) \) to optimize 
+the \gls{CI}.
 
-Afterwards, a deep learning model will be created starting from zero but trying to use 
-some ideas from other completed projects. This model, unlike \emph{DeepSurv}, will not be 
-using the Cox Proportional Hazards because, in this case, the approach will be to compare
-pairs and not to get the hazard function. Since the C-index is computed using pairs of patients, 
-a siamese neural network will be built. This type of network is suited for comparison 
-tasks such as face recognition, but this time it will be comparing the pair's survival time.
+To directly optimize the \gls{CI} the comparison of two pairs will be predicted instead. So,
+for a pair of two patients \( A \) and \( B \) the model should predict if \( T_A < T_B \),
+where \( T \) stands for survival time. So the output should be \( 1 \) if the condition holds
+\texttt{true} and \( 0 \) otherwise.
+
+To do so, a siamese neural network will be used,
+this type of networks are best suited to compare similarity between the inputs and is usually
+used for tasks such as face recognition. Since it will be used to compare a pair's survival
+time and not similarity, some changes should be made before using the network.
 
 \ssecc{Methodology}
 
@@ -360,13 +364,15 @@ This project is part of a research project at Benjamin Haibe-Kains Bioinformatic
 Computational Genomics Laboratory \cite{bhklab}. This means that every week there will be a 
 laboratory meeting where different members will be presenting their progress and feedback will
 be received accordingly. Once in a while this project's progress will be presented there.
+
 Moreover, a weekly meeting with the Principal Investigator will be scheduled to discuss
-the progress made.
+the progress made. This weekly meeting should help in determining possible errors during the 
+project's development and provide further guidance.
 
-Also since there are different ways of development this means that it will have a process of trial
-and error until the proper solution is found. This means that during this process the
-tasks will be assigned on a weekly basis.
-
+Also, since fitting a machine learning model is not a straightforward task, this means that 
+it will require a process of trial and error until the proper solution is found. 
+So, during this process, tasks will be assigned on a weekly basis with the objective of
+improve the results from the previous ones.
 
 \ssecc{Possible obstacles and solutions}
 
