@@ -61,7 +61,19 @@ time \( t \) and it's defined as:
   \frac{\Pr(t \le T < t + \Delta t | T \ge t)}{\Delta t}
 \]
 
-Casting the survival analysis as a ranking problem is a way of dealing with the biased
+Usually, when trying to fit a survival model a \gls{CPH} model is used. This type of model
+intends to use the \gls{baseline} \( \bm{x} = (x_1, x_2, ..., x_p) \)
+to fit the hazard function \( \lambda(t) \)
+in the following way:
+\[
+  \lambda(t | \bm{x}) = \exp(\bm{x}\bm{\beta}) \cdot \lambda_0 (t)
+\]
+Where \( \bm{\beta} \) is a \( p \times 1 \) vector of unknown parameters, that need to be fit, 
+and \( \lambda_0(t) \) is an unknown function giving the standard set of conditions 
+\( \bm{x} = \bm{0} \). As it can be seen this model requires for a log-linear relation between
+the \gls{baseline} \glssymbol{baseline} and the hazard function \( \lambda(t | \bm{x}) \).
+
+However, casting the survival analysis as a ranking problem is a way of dealing with the biased
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
 \begin{enumerate}[noitemsep, topsep=0pt]
@@ -82,7 +94,7 @@ from a censored point.
   \begin{subfigure}[b]{.4\textwidth}
     \centering
     \input{drawings/graph_no_censored.tikz.tex}
-    \caption{No censored data}
+    \caption{Without censored data}
   \end{subfigure}
   ~
   \begin{subfigure}[b]{.4\textwidth}
@@ -94,7 +106,7 @@ from a censored point.
 
   \caption{Order graphs representing the ranking constraints \label{fig:graph-ci}}
 
-  Censored data is represented \( \circ \) and uncensored data is represented by \( \bullet \).
+  Censored data is represented by \( \circ \) and uncensored data is represented by \( \bullet \).
   Every edge \( A \rightarrow B \) means \( T_A > T_B \). Note that in 
   \autoref{fig:graph-ci:censored} some vertex are not connected since an edge 
   \( \circ \rightarrow \bullet \) cannot be formed.
