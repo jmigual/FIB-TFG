@@ -260,9 +260,11 @@ dataset.
 
 \ssecc{Problem Formulation}
 
-As it has been previously said, the current results for the \gls{PMHNK} dataset is a \gls{CI}
-of 0.628 \cite{medical:ct-based-radiomic-signature} by using four different features. 
+This problem is centered around survival prediction and it will be using the \gls{PMHNK} dataset. 
+As it has been previously said, the current results for the dataset is a \gls{CI}
+of 0.628 \cite{medical:ct-based-radiomic-signature} by using four different features.
 
+The problem statement will be as follows:
 \begin{quotation}
   Can a better survival prediction than the current results, be obtained using imaging data and
   \gls{DNN}?
@@ -270,13 +272,18 @@ of 0.628 \cite{medical:ct-based-radiomic-signature} by using four different feat
 
 \ssecc{Objectives}
 
-The goal of this project is to develop a new deep learning model to analyze this private 
-dataset in combination with public databases to improve the prediction rate of patients' 
-survival compared to models built on traditional radiomic features. We would like to 
-investigate and compare the performance of the deep learning-based method 
-to the more conventional methods, such as hand-engineered radiomics features and the tumor 
-\emph{volume} feature which is often used in clinic as a prognostic feature. The C-index 
-of the volume for the set of patients at hand, is ~0.65.
+The project's objectives will be:
+\begin{itemize}
+  \item Get a better understanding of survival prediction problems.
+  \item Be able to analyze the \gls{PMHNK} dataset to get different strategies for building a 
+  deep learning model.
+  \item Develop a new deep learning model to improve the survival's prediction rate for the
+  \gls{PMHNK} dataset patients' compared to models built on traditional radiomic features.
+  \item Investigate and compare the performance of the deep learning-based method to 
+  the more conventional methods, such as hand-engineered radiomic features.
+  \item Get a better \gls{CI} than the \emph{volume} feature, which is often used in clinic as a
+  prognostic feature, its \gls{CI} is ~0.65.
+\end{itemize}
 
 \ssecc{Stakeholders}
 
