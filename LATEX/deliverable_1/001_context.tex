@@ -191,14 +191,12 @@ Usually in image classification there are one or multiple images as input and a 
 variable as output (e.g.~ill or not).
 ~\cite{medical:survey-deep-learning}
 
-\DeclareFixedFootnote{\pyradiomics}{\url{https://github.com/Radiomics/pyradiomics}}
-
 Regarding the prediction of survival models, there have been different approaches although
 almost all of them use \gls{MRI}, \gls{PET} or \gls{CT} scans and the clinical data. 
 The typical one, is to extract hand-crafted radiomic features using own methods or using 
-libraries such as \emph{PyRadiomics}\pyradiomics. This 
+libraries such as \emph{PyRadiomics}. This 
 hand-crafted features are usually based in aspects like tumour shape, intensity, volume or texture.
-~\cites{medical:tumour-radiomics}{medical:py-radiomics}
+~\cites{medical:tumour-radiomics}{medical:py-radiomics}{medical:computational-radiomics}
 
 An alternative approach, is to use a deep learning-based model for prediction and for feature
 extraction. In this case, features are extracted too but a \gls{CNN} 
@@ -228,30 +226,46 @@ to a Cox model.
 In the 3D imaging field, there has been some work too. 3D \glspl{CNN} have
 been used for brain lesion segmentation on multi-channel \gls{MRI} scans. In this case a 
 dual pathway of 11-layers deep 3D \gls{CNN} was used and was able to improve the previous
-state-of-the art. One of the biggest handicaps found was the computational intensity of
+state-of-the art, the model structure can be seen in \autoref{fig:deepmedic} and the code 
+can be found on GitHub. 
+One of the biggest handicaps found was the computational intensity of
 processing 3D medical scans, since they usually need a lot of memory and GPU time.
-~\cite{neural:3d-cnn-crf}
+~\cites{neural:deepmedic}{neural:3d-cnn-crf}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/deepmedic}
+
+  \caption{DeepMedic 3D \acrshort{CNN} model for brain lesion segmentation \cite{neural:3d-cnn-crf}
+  \label{fig:deepmedic}
+  }
+\end{figure}
 
 Another application of 3D \glspl{CNN} has been in action detection and segmentation for videos.
 In this case video imaging was treated as a 3D image where the 3rd dimension represents
 time.
 ~\cite{neural:3d-cnn-action-detection}
 
-On the \gls{PMHNK} dataset there are some results already. By using the \gls{CT} scans and
-extracting some features. In this case the extracted features where:
+On the \gls{PMHNK} dataset some results have already been obtained. By using the \gls{CT} scans and
+extracting some features. In this case, the extracted features where:
 \begin{itemize}
   \item First order statistics: Energy
   \item Shape: Compactness
   \item Gray level run length: Gray level non-uniformity
   \item Wavelet (HLH) 
 \end{itemize}
+By fitting the features through a \gls{CPH} model a \gls{CI} of 0.628 was obtained for the whole
+dataset.
+~\cite{medical:ct-based-radiomic-signature}
 
 \ssecc{Problem Formulation}
 
-Currently, 
+As it has been previously said, the current results for the \gls{PMHNK} dataset is a \gls{CI}
+of 0.628 \cite{medical:ct-based-radiomic-signature} by using four different features. 
 
 \begin{quotation}
-  Can a better survival prediction be obtained using imaging data than the current volume feature?
+  Can a better survival prediction than the current results, be obtained using imaging data and
+  \gls{DNN}?
 \end{quotation}
 
 \ssecc{Objectives}
