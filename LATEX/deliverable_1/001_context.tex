@@ -376,22 +376,24 @@ improve the results from the previous ones.
 
 \sssecc{Training time}
 
-Since this project involves Convolutional Neural Networks training time can be a problem. 
-The convolution operation is computationally expensive, so depending on the network the 
-training time can be of several days. Also, while just inferring the values does not require
+Since this project involves \gls{CNN}, the training time can be a problem. 
+The convolution operation is computationally expensive so, depending on the network, the 
+training time can be of several days. Usually this type of networks are trained using 
+GPUs since the convolution operation can be performed faster in this type of processor. 
+Also, while just inferring the values does not require
 much power, training needs a lot more power. 
 
-To solve this problem the training will be done at \emph{SharcNet} a computing facility. 
-This way the training will be much faster.
+To solve this problem, the training will be done at \gls{CC} a computing facility which 
+has multiple computing clusters with GPUs.
 
 \sssecc{Monitoring Tools}
 
 The work will be done with the help of Git and GitHub. This tools will help monitoring
 the project's evolution. The purpose of Git is to be able to do small revisions,
-named commits, and to document all the different changes in the project. Also it has
-some tools to allow multiple contributors in the same project. Moreover,
+named commits, and to document all the different changes in the project. Also, it's 
+prepared to allow multiple contributors in the same project. Moreover,
 Git projects can be stored in a server, GitHub it's an online platform that allows
-remote Git repositories, also it has integrated an issue system, a milestone system
+remote Git repositories. GitHub has integrated an issue system, a milestone system
 and it's really integrated with Git's contributor system.
 ~\cites{tool:git}{tool:github}
 
@@ -415,7 +417,7 @@ Since the starting dataset is quite small (\( \sim 500 \) samples) overfitting m
 and different methods should be used to avoid it. The possible solutions are:
 \begin{itemize}
   \item Using regularization to avoid units with a very high weight.
-  \item Using dropout to force each unit to learn with part of the data, and thus generalize.
+  \item Using dropout to force each unit to learn with only part of the data, and thus generalize.
   \item Using data augmentation techniques such as random crops or random rotations to increase
   the number of images in the dataset.
 \end{itemize}
