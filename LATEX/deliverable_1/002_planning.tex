@@ -61,15 +61,18 @@ All the tasks where done in three weeks.
 
 \sssecc{Get familiar with survival models like DeepSurv}
 
-Survival Prediction models are a bit different from the typical Machine Learning problem. 
-In this case, the desired output values are not the event indicator \( E \) and the time
-interval \( T \). What we want to obtain is the survival function \( S(t) \) or the 
-hazard function \( \lambda(t) \).
+Survival Prediction models are a bit different from the usual Machine Learning problem. Since, 
+in this case, there is \gls{censored} data some data cannot be used always. Also, we want to
+obtain the survival function \( S(t) \) or the hazard function \( \lambada(t) \) which is not 
+directly provided in the dataset, as our output values are the \gls{event} 
+\glssymbol{event} and the \gls{time} \glssymbol{time}.
+
+DeepSurv is a machine learning package, with a published paper, using a survival model 
 
 DeepSurv is one of the machine learning papers using a survival model, in this case the
 Cox Proportional Hazards model which is not the same I will be planning to use.
 
-To see how to properly use a survival model in a deep learning application i should fully 
+To see how to properly use a survival model in a deep learning application I should fully 
 understand how this is applied in the construction of the DeepSurv neural network. During 
 the task I should compare the code implementation with the theoretical models so this way
 I can see how to properly use \emph{vectorization} to speed-up computation
