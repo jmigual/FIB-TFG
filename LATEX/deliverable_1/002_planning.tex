@@ -67,10 +67,8 @@ obtain the survival function \( S(t) \) or the hazard function \( \lambada(t) \)
 directly provided in the dataset, as our output values are the \gls{event} 
 \glssymbol{event} and the \gls{time} \glssymbol{time}.
 
-DeepSurv is a machine learning package, with a published paper, using a survival model 
-
-DeepSurv is one of the machine learning papers using a survival model, in this case the
-Cox Proportional Hazards model which is not the same I will be planning to use.
+DeepSurv is a machine learning package, with a published paper, using a survival model. In this
+case the model used is \gls{CPH} which is not the same I will be planning to use.
 
 To see how to properly use a survival model in a deep learning application I should fully 
 understand how this is applied in the construction of the DeepSurv neural network. During 
@@ -84,10 +82,10 @@ This process will take around two weeks.
 
 The input data for this project are:
 \begin{itemize}
-  \item RAW data from CT scans. There are around 88 slices for each patient, each one of 
+  \item RAW data from \gls{CT} scans. There are around 100 slices for each patient, each one of 
   a size of \( 512 \times 512 \) pixels.
-  \item Tumour annotations for the CT scans. For each RAW scan there's another slice which
-  is a mask of 1s and 0s where the value is 1 if there's a tumour in that pixel.
+  \item Tumour annotations for the CT scans. For each RAW slice there's another one which is an
+  annotated mask with 1s in the pixels containing tumour and 0s otherwise.
   \item Clinical data. Which has information for each patient such as:
   \begin{itemize}
     \item Age
@@ -99,19 +97,26 @@ The input data for this project are:
   \end{itemize}
 \end{itemize}
 
-The imaging data need to be preprocessed so, for each CT scan, the tumour's bounding
-box needs to be found and then extract the 3D slice. This slice needs to be resized 
-normalized, to a value \( x \in [0, 1] \), and afterwards resized as a 3D image of 
-\( 64 \times 64 \times 64 \) voxels. Additionally if data augmentation techniques are 
-used then random crops and rotations to the image can be added before extracting the
-3D slice. These operations can be done in the period of a week.
+This imaging data needs to be preprocessed, and multiple steps need to be followed:
+
+\begin{enumerate}
+  \item Obtain the tumour bounding box
+  \item Extract the 3D slice contained in the bounding box
+  \item Normalize to a value \( x \in [0, 1] \)
+  \item Resize the image to a a size of \( 64 \times 64 \times 64 \) voxels.
+  \item For data augmentation add random crops and rotations to the image before extracting the 3D
+  slice
+\end{enumerate}
+
+These operations can be done in the period of a week.
 
 \sssecc{Get familiar with Tensorflow}
 
-Tensorflow\cite{neural:tensorflow} is one of the biggest libraries for developing deep neural 
-networks. It hides from the user the underlying details of how to train a model, like how to 
-compute de derivatives for each operation to be able to implement the back propagation 
-algorithm. Also, it's open source so it comes at no cost.
+Tensorflow\cite{neural:tensorflow} is one of the biggest libraries for \gls{DNN}.
+It has high level methods that allow the user to create their own model without having to know
+the underlying implementation. So, this way, they do not have to know how to compute the
+derivatives for each operation, required to implement the back propagation algorithm. Also,
+it's an open source package so it comes at no cost.
 
 Since it's a big piece of software and it offers many possibilities, it's very important to 
 understand how it works and what is the best way to use it. The first step is to start by 
@@ -125,15 +130,19 @@ This task won't take more than a week.
 
 A siamese network is a type of neural network that is suited for comparison tasks such as 
 face recognition or signature verification \cite{neural:siamese:signature}.
-Its design usually is made of two more networks, usually called sisters, then the output
-of the two sisters gets joined in an extra layer which gives us the final output 
-see \autoref{fig:siamese}. Usually the two sister networks share the same parameters and
-architecture so after one is designed then it's duplicated and added the joining layer.
+Its design usually is made of two networks, usually called sisters. The output of the 
+two sisters gets joined in an additional layer, called \gls{contrastive}, that compares
+the outputs. Finally, this layer produces the final output, which is usually used for 
+classification.
 
-Through this approach the survival problem will be transformed into a order learning problem
+Usually, the two sister networks share the same parameters and architecture so after one 
+is designed then it's duplicated and added the \gls{contrastive} layer.
+
+Through this approach, the survival problem will be transformed into a order learning problem
 where for two elements \( x_1 \) and \( x_2 \) the network learns the sorting function
 \( f(x_1, x_2) = \hat{T}(x_1) > \hat{T}(x_2) \), where \( \hat{T}(x) \) is the predicted 
-survival time.
+survival time. Not that the network will not learn the predicted survival time, just if one
+is bigger than the other.
 
 To build this model, a proper design for the sister network must be done first. This, will be
 an iterative task where the proposed model will be created and then, trained optimizing
@@ -142,7 +151,9 @@ it will be compared against the previous one.
 
 The starting point can be seen in \autoref{fig:shallow-sister} which is inspired in a paper
 \cite{neural:hand-eye-coordination} published by Google where they made a combination of 
-scalar and image inputs in a Convolutional Neural Network.
+scalar and image inputs in a Convolutional Neural Network. So the network will try to combine
+both the imaging data (the \gls{CT} scans) and scalar data such as the clinical data and the
+radiomic features extracted from the image.
 
 Then the results will be compared and some few changes will be made to try to get better results.
 
@@ -168,13 +179,13 @@ since the training time could be an issue.
 
 \sssecc{Build deep siamese network}
 
-Once an initial shallow network is already created then the next step will be to try 
-and create a more deep version. To do so it will be done step by step adding one layer
+Once an initial shallow network is already created, then the next step will be to try 
+and create a more deep version. To do so, it will be done step by step adding one layer
 at a time and seeing how the network is performing.
 
 The main advantage of deep networks against shallow networks is that they are able to
 identify more complex features and thus they usually perform better. However, its 
-main drawback is that training time is longer and so the development process is 
+main drawback is that training time is longer and therefore, the development process is 
 slower.
 
 \sssecc{Compare the model against other ones}
