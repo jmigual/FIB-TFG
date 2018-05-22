@@ -1,5 +1,7 @@
 \secc{Design and implementation}
 
+\ssecc{Get familiar with survival models}
+
 \ssecc{Preprocess data}
 
 As it was previously stated the data needs to be preprocessed before start training with it.
@@ -11,12 +13,21 @@ can be reduced in many epochs.
 
 \sssecc{Image data}
 
-The imaging data in the \Gls{PMHNK} contains XXX folders, each one with one patient. However, 
-we only have the clinical data for XXY patients so the amount of data that we can use is
-reduced. Moreover, because there was a problem with tumour annotations only 509 of the XXY 
-patients have valid tumour annotations. This will be the final dataset size used for the
-following training steps.
+The imaging data in the \Gls{PMHNK} contains 671 folders, each one with the scan of one patient. 
+We also have the clinical information of 661 patients, although we do not have a \gls{CT} for
+each of the clinical information patients. Through the intersection of each of the two data
+sources we have 544 patients with both a \gls{CT} scan and the clinical information.
 
+However, because there was a problem in the way the \gls{CT} scan was computed we only have
+the tumour annotations for 509 of the 544 patients, so the data that we can use is reduced
+again. \textbf{509} will be the final dataset size that will be used for the next 
+steps.
 
+\sssecc{Scalar data}
 
+\ssecc{Build shallow siamese network}
+
+\ssecc{Build scalar only siamese network}
+
+\ssecc{Build deeep siamese network}
 
