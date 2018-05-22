@@ -151,10 +151,11 @@ disease sites for \gls{HNSCC}.
 ~\cite{medical:ct-based-radiomic-signature}
 
 Multiple information is provided for each patient. There's a \gls{CT} scan where the tumour 
-can be seen and it's annotated and clinical information. The scan is 512 pixels wide by 512 
+can be seen clinical information about the patient. The scan is 512 pixels wide by 512 
 pixels tall and is composed of 100-200 slices in gray scale that together form a 3D image. 
 To be able to slice the tumour from the rest of the image, a mask of the same size as the scan 
-is provided. The masks contains \texttt{1}s in the tumour containing pixels and \texttt{0}s
+is provided. The masks contains information about the tumour location, it has \texttt{1}s 
+in the pixels containing the tumour and \texttt{0}s
 otherwise, as it can be seen in \autoref{fig:dataset-example}.
 
 In the following document we will be calling this the \gls{PMHNK} dataset.
@@ -190,8 +191,8 @@ Regarding the clinical information the following fields are provided:
 
   \caption{Example of images from the dataset \label{fig:dataset-example}}
 
-  Single \gls{CT}'s scan slice, a whole scan is composed of multiple slices. By applying the mask to 
-  the original image, the part of that only contains the tumour can be extracted.
+  Single \gls{CT}'s scan slice, a whole scan is composed of multiple slices. By applying 
+  the mask to the original image, the part that only contains the tumour can be extracted.
 \end{figure}
 
 
@@ -369,7 +370,7 @@ project's development and provide further guidance.
 
 Also, since fitting a machine learning model is not a straightforward task, this means that 
 it will require a process of trial and error until the proper solution is found. 
-So, during this process, tasks will be assigned on a weekly basis with the objective of
+So, during this process, tasks will be assigned on a weekly basis with the objective to
 improve the results from the previous ones.
 
 \ssecc{Possible obstacles and solutions}
