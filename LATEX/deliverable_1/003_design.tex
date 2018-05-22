@@ -1,2 +1,22 @@
 \secc{Design and implementation}
 
+\ssecc{Preprocess data}
+
+As it was previously stated the data needs to be preprocessed before start training with it.
+This steps are required because small changes can really help in reducing the time needed to
+fit the model. By normalizing the data and setting variance to 1 and mean to 0 the training time
+can be reduced in many epochs.
+
+% TODO: Insert paper about batch normalization.
+
+\sssecc{Image data}
+
+The imaging data in the \Gls{PMHNK} contains XXX folders, each one with one patient. However, 
+we only have the clinical data for XXY patients so the amount of data that we can use is
+reduced. Moreover, because there was a problem with tumour annotations only 509 of the XXY 
+patients have valid tumour annotations. This will be the final dataset size used for the
+following training steps.
+
+
+
+
