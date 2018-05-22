@@ -133,7 +133,7 @@ face recognition or signature verification \cite{neural:siamese:signature}.
 Its design usually is made of two networks, usually called sisters. The output of the 
 two sisters gets joined in an additional layer, called \gls{contrastive}, that compares
 the outputs. Finally, this layer produces the final output, which is usually used for 
-classification.
+classification, an example of siamese network can be found on \autoref{fig:siamese}.
 
 Usually, the two sister networks share the same parameters and architecture so after one 
 is designed then it's duplicated and added the \gls{contrastive} layer.
@@ -165,7 +165,7 @@ Then the results will be compared and some few changes will be made to try to ge
 
 \begin{figure}
   \centering
-  \input{drawings/shallow_network.tex}
+  \input{drawings/shallow_network.tikz.tex}
   \caption{Shallow sister network design \label{fig:shallow-sister}}
 \end{figure}
 

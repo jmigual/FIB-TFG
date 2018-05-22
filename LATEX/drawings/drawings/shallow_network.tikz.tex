@@ -9,15 +9,18 @@
   
   \node [left = of CNN-1] (image) {Image};
   \node [conv, right = of CNN-1] (CNN-2) {Convolution 2};
-  \node [FC, right = of CNN-2] (FC-2) {FC};
-  \node [right = of FC-2] (out) {To siamese};
+  \node [FC, below right = of CNN-2] (FC-1) {FC};
+  \node [right = of FC-1] (out) {Sister out};
+
+  \node [below left = of FC-1] (scalar) {Scalar};
 
 
   \draw [-latex] (CNN-1) -- (CNN-2);
-  \draw [-latex] (CNN-2) -- (FC-2);
-  \draw [-latex] (FC-2) -- (out);
+  \draw [-latex] (CNN-2) -- (FC-1);
+  \draw [-latex] (FC-1) -- (out);
 
   \draw [-latex] (image) -- (CNN-1);
+  \draw [-latex] (scalar) -- (FC-1);
 \end{tikzpicture}
 
 
