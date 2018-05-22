@@ -9,8 +9,9 @@
 
 As it was previously stated the data needs to be preprocessed before start training with it.
 This steps are required because small changes can really help in reducing the time needed to
-fit the model. By normalizing the data and setting variance to 1 and mean to 0 the training time
-can be reduced in many epochs.
+fit the model. Also, by normalizing the data and setting variance to 1 and mean to 0 the network
+can converge faster.
+~\cite{neural:efficient-backprop}
 
 % TODO: Insert paper about batch normalization.
 
@@ -25,6 +26,15 @@ However, because there was a problem in the way the \gls{CT} scan was computed w
 the tumour annotations for 509 of the 544 patients, so the data that we can use is reduced
 again. \textbf{509} will be the final dataset size that will be used for the next 
 steps.
+
+For all the valid patients their directory structure is the same. For example if we have the
+patient \texttt{FHBO003} 
+
+Preprocessing the image data requires multiple steps:
+
+\begin{enuerate}
+  
+\end{enuerate}
 
 \sssecc{Scalar data}
 
