@@ -13,8 +13,6 @@ fit the model. Also, by normalizing the data and setting variance to 1 and mean 
 can converge faster.
 ~\cite{neural:efficient-backprop}
 
-% TODO: Insert paper about batch normalization.
-
 \sssecc{Image data}
 
 The imaging data in the \Gls{PMHNK} contains 671 folders, each one with the scan of one patient. 
@@ -27,14 +25,53 @@ the tumour annotations for 509 of the 544 patients, so the data that we can use 
 again. \textbf{509} will be the final dataset size that will be used for the next 
 steps.
 
-For all the valid patients their directory structure is the same. For example if we have the
-patient \texttt{FHBO003} 
+For all the valid patients their directory structure is the same. They contain two folders,
+one with all the original scan slices and the other with the slice's tumour mask annotations. 
+All the slices are in \verb|.dcm| format.
+For example if we have the
+patient \texttt{FHBO003} the structure will be as follows:
+
+\begin{Verbatim}[samepage=true]
+FHBO003
+├── FHBO003           // Original scan
+│   ├── IMG0001.dcm
+│   ├── IMG0002.dcm
+│   ├── ...
+│   └── IMG0191.dcm
+└── FHBO003-MASS      // Annotated mask
+    ├── IMG0001.dcm
+    ├── IMG0002.dcm
+    ├── ...
+    └── IMG0191.dcm
+\end{Verbatim}
 
 Preprocessing the image data requires multiple steps:
+\begin{enumerate}
+  \item Select valid directories that follow the previously stated conditions
+  \item Join all the \verb|.dcm| files into a 3D \verb|numpy| array
+  \item Apply gaussian filter to mask image. This is done because the mask is manually annotated
+        and usually each layer does not fit perfectly with the previous one. This way a smooth
+        transition between layers is ensured.
+  \item Get 3D bounding box containing the tumour.
+  \item Slice original image and mask with the bounding box to extract the parts only containing
+        the tumour. A single bounding box is obtained.
+  \item Remove extreme values, if the value of the image is smaller than -1000 or bigger than
+        400 this means that this are pixels usually outside of the scanner. This happens because
+        the scanner has a circular field of view but a squared image is generated instead, so 
+        all the pixels outside the circle are \emph{error pixels}.
+  \item Apply mask to extracted image. Since the mask only contains 1s and 0s it's as easy 
+        as \verb|image *= mask|.
+  \item Resize the sliced image to a size of \( 64 \times 64 \times 64 \)
+  \item Normalize image by setting mean = 0 and variance = 1. It's done in the following way:
+  \begin{itemize}
+    \item \verb|image -= mean(image)|
+    \item \verb|image /= std(image)|
+  \end{itemize}
+  \item Rotate the image 3 times to get 4 different versions of the scan that can be used for 
+        training as data augmentation.
+\end{enumerate}
 
-\begin{enuerate}
-  
-\end{enuerate}
+% TODO: Add illustrating image
 
 \sssecc{Scalar data}
 

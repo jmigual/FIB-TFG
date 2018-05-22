@@ -8,36 +8,39 @@
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
 
-% \usepackage[hidelinks, urlcolor=blue]{hyperref}
-\usepackage[
-  colorlinks=true,
-  linkcolor={red!30!black},
-  citecolor={blue!50!black},
-  urlcolor={blue!80!black}
-]{hyperref}
-\usepackage{csquotes}
+\setmonofont{Source Code Pro}
+
+\usepackage[colorlinks=true,
+            linkcolor={red!30!black},
+            citecolor={blue!50!black},
+            urlcolor={blue!80!black}]{hyperref}
+\usepackage{csquotes} % Required by biblatex
 \usepackage[british]{babel}
 \usepackage[backend=biber, sorting=none, dateabbrev=false]{biblatex}
 
 \usepackage[bindingoffset=1.5cm, textwidth=15cm]{geometry}
 
 \usepackage{tikz}
-\usepackage{amsmath, amsfonts, amssymb}
-
 \usepackage{pgfgantt}
-\usepackage{subcaption}
-\usepackage{float}
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{multirow}
-\usepackage{makecell}
-\usepackage{hhline}
-\usepackage{fixfoot}
+
+\usepackage{amsmath, amsfonts, amssymb} % Font symbols
 \usepackage{bm}
-\usepackage[acronym, toc, numberline]{glossaries}
+
 \usepackage[format=plain,
             labelfont={bf,it},
             textfont=it]{caption}
+\usepackage{subcaption}
+\usepackage{fancyvrb} % Verbatim improvements
+
+\usepackage{float}
+\usepackage{enumitem} % Continuous enumeration
+
+\usepackage{array} % Table improvements
+\usepackage{multirow} % Multiple rows in tables
+\usepackage{makecell} % Cell colors in tables
+\usepackage{hhline}   % Better line separation in tables
+
+\usepackage[acronym, toc, numberline]{glossaries}
 
 \usetikzlibrary{positioning}
 
