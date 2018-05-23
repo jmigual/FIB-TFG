@@ -1,0 +1,37 @@
+
+\begin{tikzpicture}[every node/.style={scale=.8}]
+
+  \tikzstyle{module}=[rounded corners, draw, align=center]
+  \tikzstyle{FC}=[module, fill=green!30]
+  \tikzstyle{conv}=[module, fill=orange!30]
+  \tikzstyle{io}=[module, fill=purple!30]
+
+  \node [io] (scalar) {Scalar};
+
+  \node [FC, right = of scalar] (FC-1) {FC \\ 500 units \\ tanh};
+  \node [conv, right = of FC-1] (D-1) {Dropout \\ 20\%};
+  \node [FC, right = of D-1] (FC-2) {FC \\ 200 units \\ tanh};
+  \node [conv, right = of FC-2] (D-2) {Dropout \\ 20\%};
+
+  \node [FC, below = of FC-1] (FC-3) {FC \\ 50 units \\ tanh};
+  \node [conv, right = of FC-3] (D-3) {Dropout \\ 20\%};
+  \node (aux) at ($(FC-3)!0.5!(FC-1)$) {};
+  \node [FC, right = of D-3] (FC-4) {FC \\ 10 units \\ ReLu};
+
+
+  \node [io, right = of FC-4] (out) {Sister out};
+  \draw [-latex] (scalar) -- (FC-1) node[midway, below] {\( 725 \)};
+
+  \draw [-latex] (FC-1) -- (D-1) node[midway, below] {\( 500 \)};
+  \draw [-latex] (D-1) -- (FC-2) node[midway, below] {\( 500 \)};
+  \draw [-latex] (FC-2) -- (D-2) node[midway, below] {\( 200 \)};
+  
+  \draw [-latex] (D-2) |- node[pos=.75, below]{\( 200 \)} (aux) -| (FC-3);
+  \draw [-latex] (FC-3) -- (D-3) node[midway, below] {\( 50 \)};
+  \draw [-latex] (D-3) -- (FC-4) node[midway, below] {\( 50 \)};
+  \draw [-latex] (FC-4) -- (out) node[midway, below] {\( 10 \)};
+
+  % \draw [-latex] (FC-3) -- (out) node[midway, below] {\( 10 \)};
+\end{tikzpicture}
+
+
