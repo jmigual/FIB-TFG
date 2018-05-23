@@ -1,0 +1,61 @@
+
+\begin{tikzpicture}[every node/.style={scale=.8}]
+
+  \tikzstyle{module}=[rounded corners, draw, align=center]
+  \tikzstyle{FC}=[module, fill=green!30]
+  \tikzstyle{conv}=[module, fill=orange!30]
+  \tikzstyle{io}=[module, fill=purple!30]
+  
+  
+  \node [io] (image) {Image};
+  \node [conv, below = of image] (CNN-1) at (0, 0) {
+    Convolution 1 \\ 
+    \( 30 @ 3 \times 3 \times 3 \) \\
+    Stride = 2
+  };
+  \node [conv, below = of CNN-1] (CNN-2) {
+    Convolution 2 \\
+    \( 30 @ 3 \times 3 \times 3 \) \\
+    Stride = 2
+  };
+  \node [conv, below = of CNN-2] (CNN-3) {
+    Convolution 3 \\
+    \( 40 @ 3 \times 3 \times 3 \)
+  };
+  \node [conv, below = of CNN-3] (CNN-4) {
+    Convolution 4 \\
+    \( 40 @ 3 \times 3 \times 3 \)
+  };
+  \node [conv, below = of CNN-4] (CNN-5) {
+    Convolution 5 \\
+    \( 50 @ 3 \times 3 \times 3 \)
+  };
+
+  \node [right = 5 of image] (aux) {};
+  \node [io, right = of aux] (scalar) {Scalar};
+
+  \node [FC, below = of aux] (con) {Concatenate + \\ flatten};
+  \node [left = of con] (aux-2) {};
+  \node [FC, below = of con] (FC-1) {FC \\ 8000 units};
+  \node [FC, below = of FC-1] (FC-2) {FC \\ 1000 units};
+  \node [FC, below = of FC-2] (FC-3) {FC \\ 10 units};
+
+  \node [io, below = of FC-3] (out) {Sister out};
+  
+  \draw [-latex] (image) -- (CNN-1) node[midway, right] {\( 64 \times 64 \times 64 \times 1 \)};
+  \draw [-latex] (CNN-1) -- (CNN-2) node[midway, right] {\( 31 \times 31 \times 31 \times 30 \)};
+  \draw [-latex] (CNN-2) -- (CNN-3) node[midway, right] {\( 15 \times 15 \times 15 \times 40 \)};
+  \draw [-latex] (CNN-3) -- (CNN-4) node[midway, right] {\( 13 \times 13 \times 13 \times 40 \)};
+  \draw [-latex] (CNN-4) -- (CNN-5) node[midway, right] {\( 11 \times 11 \times 11 \times 40 \)};
+
+  \draw (CNN-5) -| (aux-2.center)  node[pos=.3, below] {\( 9 \times 9 \times 9 \times 50 \)};
+  \draw [-latex] (aux-2.center) |- (con);
+  \draw [-latex] (scalar) |- (con) node[pos=.15, left] {\( 725 \)};
+  
+  \draw [-latex] (con) -- (FC-1) node[midway, right] {\( 37.175 \)};
+  \draw [-latex] (FC-1) -- (FC-2) node[midway, right] {\( 8000 \)};
+  \draw [-latex] (FC-2) -- (FC-3) node[midway, right] {\( 1000 \)};
+  \draw [-latex] (FC-3) -- (out) node[midway, right] {\( 10 \)};
+\end{tikzpicture}
+
+

@@ -13,6 +13,14 @@ fit the model. Also, by normalizing the data and setting variance to 1 and mean 
 can converge faster.
 ~\cite{neural:efficient-backprop}
 
+The whole preprocess task took longer than expected as many tasks required more steps than 
+planned. The planned duration was 1 week and the final duration was from March 13\Th and
+ended in April 11\Th so its duration was of 4 weeks. However, this wasn't as problematic as 
+it could seem since the previous task was completed early.
+
+Also, this task has been done sometimes while doing other tasks because some preprocess 
+steps have been added later to improve the network's results.
+
 \sssecc{Image data}
 
 The imaging data in the \Gls{PMHNK} contains 671 folders, each one with the scan of one patient. 
@@ -184,6 +192,23 @@ used in different contexts:
 \end{figure}
 
 \ssecc{Build shallow siamese network}
+
+The shallow siamese network had a very simple design for the sister network. In fact it was so
+simple that a proper \gls{CNN} could not be build, the original design can be found in 
+\autoref{fig:shallow-sister}.
+
+The main problem was that there were only two convolutional layers so that when trying to reduce
+the image dimension the output image still was too big for a Fully Connected layer. With this
+problem in mind a new design was made and it's shown in \autoref{fig:shallow-implement}.
+
+This new design has more layers to reduce the dimensions of the image and is able to 
+incorporate the scalar data.
+
+\begin{figure}
+  \centering
+  \input{drawings/siamese_0.tikz.tex}
+  \caption{Shallow siamese network illustration \label{fig:shallow-implement}}
+\end{figure}
 
 \ssecc{Build scalar only siamese network}
 
