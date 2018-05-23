@@ -192,6 +192,7 @@ used in different contexts:
 \end{figure}
 
 \ssecc{Build shallow siamese network}
+\label{sec:shallow-siamese}
 
 The shallow siamese network had a very simple design for the sister network. In fact it was so
 simple that a proper \gls{CNN} could not be build, the original design can be found in 
@@ -202,21 +203,59 @@ the image dimension the output image still was too big for a Fully Connected lay
 problem in mind a new design was made and it's shown in \autoref{fig:shallow-implement}.
 
 This new design has more layers to reduce the dimensions of the image and is able to 
-incorporate the scalar data.
+incorporate the scalar data. As it was previously said this design it's still part of the
+siamese network model.
+
+The distance comparison used for this siamese network is defined comparing the absolute distance
+of the sister's output features and then applying the logistic function into it to get an
+output value \( d \in [0, 1] \). This way if it's 1 it means \( T_B > T_A \).
+\begin{align*}
+  \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
+  \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
+  \sigma(x) &= \frac{1}{1 + \exp(-x)} \\
+  d &= \sigma(||\bm{O}_B||_2 - ||\bm{O}_A||_2) 
+\end{align*}
+
+The loss function used for the model is the log-loss:
+\[
+  \mathcal{L}(\bm{y}, \hat{\bm{y}}) = -\frac{1}{N} \sum_{i = 1}^{N}
+  (1 - y_i)\log(1 - \hat{y}_i) + y_i\log(\hat{y}_i)
+\]
+
+So the model's cost function, adding the regularization loss, is:
+\[
+  C(\bm{y}, \hat{\bm{y}}) = \mathcal{L}(\bm{y}, \hat{\bm{y}}) + 
+  ||w||_2
+\]
 
 \begin{figure}
   \centering
   \input{drawings/siamese_0.tikz.tex}
-  \caption{Shallow siamese network illustration \label{fig:shallow-implement}}
+  \caption{Shallow siamese sister's network illustration \label{fig:shallow-implement}}
 \end{figure}
 
 \ssecc{Build scalar only siamese network}
+
+To speed up the testing process a scalar only siamese network. With this approach the training
+time was reduced from around 5 hours to 1 minute for one training step. 
+
+To improve the performance Dropout was used, by using dropout some of the model activations 
+are zeroed and then scaled according to the dropout probability. This way, the networks'
+neurons do not have all the information and thus it must generalize. Dropout is used as a 
+way of regularization. Moreover, regularization is applied to the model too by adding the 
+l2 norm of the weights.
+
+The loss and cost functions are the same as the ones used in \autoref{sec:shallow-siamese}
 
 \begin{figure}
   \centering
   \input{drawings/scalar_0.tikz.tex}
   \caption{Scalar siamese network illustration \label{fig:scalar-implement}}
 \end{figure}
+
+\sssecc{Results}
+
+The model was trained both with 4-CV and \gls{LOOCV}.
 
 \ssecc{Build deeep siamese network}
 

@@ -35,12 +35,13 @@
 \usepackage{makecell} % Cell colors in tables
 \usepackage{hhline}   % Better line separation in tables
 
-\usepackage[acronym, toc, numberline]{glossaries}
-
 \usepackage[colorlinks=true,
             linkcolor={red!30!black},
             citecolor={blue!50!black},
             urlcolor={blue!80!black}]{hyperref}
+
+% Must be loaded after hyperref
+\usepackage[acronym, toc, numberline]{glossaries}
 
 \usetikzlibrary{positioning}
 
