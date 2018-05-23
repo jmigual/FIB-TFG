@@ -28,22 +28,29 @@ steps.
 For all the valid patients their directory structure is the same. They contain two folders,
 one with all the original scan slices and the other with the slice's tumour mask annotations. 
 All the slices are in \verb|.dcm| format.
-For example if we have the
-patient \texttt{FHBO003} the structure will be as follows:
+For example if we have the patient \texttt{FHBO003} the structure can be seen in 
+\autoref{fig:hnk-raw}.
 
-\begin{Verbatim}[samepage=true]
-FHBO003
-├── FHBO003           // Original scan
-│   ├── IMG0001.dcm
-│   ├── IMG0002.dcm
-│   ├── ...
-│   └── IMG0191.dcm
-└── FHBO003-MASS      // Annotated mask
-    ├── IMG0001.dcm
-    ├── IMG0002.dcm
-    ├── ...
-    └── IMG0191.dcm
-\end{Verbatim}
+\begin{figure}
+  \centering
+  \begin{minipage}{0.8\textwidth}
+    \begin{Verbatim}[samepage=true]
+      FHBO003
+      ├── FHBO003           // Original scan
+      │   ├── IMG0001.dcm
+      │   ├── IMG0002.dcm
+      │   ├── ...
+      │   └── IMG0191.dcm
+      └── FHBO003-MASS      // Annotated mask
+      ├── IMG0001.dcm
+      ├── IMG0002.dcm
+      ├── ...
+      └── IMG0191.dcm
+    \end{Verbatim}
+  \end{minipage}
+    
+  \caption{Original data directory structure \label{fig:hnk-raw}}
+\end{figure}
 
 Preprocessing the image data requires multiple steps:
 \begin{enumerate}
@@ -77,11 +84,52 @@ Preprocessing the image data requires multiple steps:
   }
 
   \caption{Image pre-process pipeline \label{fig:preprocess}}
+
+  \it
+  In this example the process is shown for a 2D image, all the pictures are being resized to 
+  have the same size so the steps can be appreciated. The normalization step is not shown as is
+  since setting a mean of 0 and variance of 1 produces an invalid \acrshort{PNG} image, but still valid
+  for \gls{ML} purposes.
 \end{figure}
 
-% TODO: Add illustrating image
-
 \sssecc{Scalar data}
+
+There are two types of scalar data:
+\begin{itemize}
+  \item Clinical information
+  \item Radiomic features extracted from the image, regarding tumour shape, intensity, volume...
+\end{itemize}
+
+The clinical information should be anonymized as much as possible and especially if it's going
+to be outside \gls{UHN}, the network of hospitals where this project is being developed.
+Since this is the case, as the training will be done at \gls{CC} cluster, the unnecessary fields
+are removed and only the ones that are being used are kept. Moreover, removing the unused fields
+is helpful when using the data.
+
+Originally, the clinical information provides 36 different fields. From this fields only the 
+following ones are kept:
+\begin{itemize}
+  \item ID
+  \item Age
+  \item Sex
+  \item Survival event, this one needs to be negated since, in the provided event, \verb|event = 1|
+        means survival, but in our survival model this means death. 
+  \item Survival time
+\end{itemize}
+
+The radiomic features can be extracted directly with the \emph{PyRadiomics}
+\cite{medical:py-radiomics} package, but in this case they have been already extracted and stored
+in a single file so we can reuse them. These features should be normalized before start training,
+because otherwise the network may never converge, which indeed it happened. 
+
+For this normalization to be valid the mean and the standard deviation is obtained only from 
+the train samples. These are different for each feature because not all the features need to 
+be normalized in the same way. Afterwards, the normalization is applied to both the train 
+and test samples. The mean for the test samples is never obtained, because, otherwise, the
+model could have \gls{leakage}. 
+
+
+\sssecc{Pair generation}
 
 \ssecc{Build shallow siamese network}
 
