@@ -39,16 +39,17 @@ are end-to-end and, for a given task, they drive features from the data.
 ~\cite{medical:radiomics-ml-classifiers}
 
 \sssecc{Survival Analysis}
+\label{sec:survival}
 
 Survival Analysis is a branch of statistics that analyzes the duration time of the observed
 events. Typically it refers to the time to the failure of a physical component or to death of a
 patient. It usually defines the following terms~\cite{neural:survival-analysis}:
 
 \begin{description}
-  \item[\Gls{event} \glssymbol{event}] \glsdesc{event}
-  \item[\Gls{time} \glssymbol{time}] \glsdesc{time}
-  \item[\Gls{baseline} \glssymbol{baseline}] \glsdesc{baseline}
-  \item[\Gls{censoring}] \glsdesc{censoring}
+  \item[\Gls{event} \glssymbol{event}] \glsdesc*{event}
+  \item[\Gls{time} \glssymbol{time}] \glsdesc*{time}
+  \item[\Gls{baseline} \glssymbol{baseline}] \glsdesc*{baseline}
+  \item[\Gls{censoring}] \glsdesc*{censoring}
 \end{description}
 
 The survival and hazard functions are the two fundamental functions in survival analysis. The
@@ -76,11 +77,11 @@ the \gls{baseline} \glssymbol{baseline} and the hazard function \( \lambda(t | \
 However, casting the survival analysis as a ranking problem is a way of dealing with the biased
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
-\begin{enumerate}[noitemsep, topsep=0pt]
+\begin{itemize}[noitemsep, topsep=0pt]
   \item Both of them are uncensored (\( E_i = E_j = 1\))
   \item The uncensored time of one is smaller than the censored survival time of the other
   (\( T_i < T_j | E_i = 1; E_j = 0 \))
-\end{enumerate}
+\end{itemize}
 
 This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph-ci}.
 The set of vertices \( V \) represents all the individuals, where each filled circle 
@@ -106,7 +107,7 @@ from a censored point.
 
   \caption{Order graphs representing the ranking constraints \label{fig:graph-ci}}
 
-  \it
+  \it\justify
   Censored data is represented by \( \circ \) and uncensored data is represented by \( \bullet \).
   Every edge \( A \rightarrow B \) means \( T_A > T_B \). Note that in 
   \autoref{fig:graph-ci:censored} some vertex are not connected since an edge 
@@ -192,7 +193,7 @@ Regarding the clinical information the following fields are provided:
 
   \caption{Example of images from the dataset \label{fig:dataset-example}}
 
-  \it
+  \it\justify
   Single \gls{CT}'s scan slice, a whole scan is composed of multiple slices. By applying 
   the mask to the original image, the part that only contains the tumour can be extracted.
 \end{figure}

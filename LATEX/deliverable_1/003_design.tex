@@ -112,7 +112,7 @@ following ones are kept:
   \item ID
   \item Age
   \item Sex
-  \item Survival event, this one needs to be negated since, in the provided event, \verb|event = 1|
+  \item Survival event. This one needs to be negated since, in the provided event, \verb|event = 1|
         means survival, but in our survival model this means death. 
   \item Survival time
 \end{itemize}
@@ -135,18 +135,18 @@ model could have \gls{leakage}. An example of features normalization can be seen
   \begin{subfigure}[t]{.47\textwidth}
     \includegraphics[width=\textwidth]{images/features_original}
 
-    \caption{Features before normalization box plot \label{fig:feature-normalization-before}}
+    \caption{Features' box plot before normalization \label{fig:feature-normalization-before}}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{.47\textwidth}
     \includegraphics[width=\textwidth]{images/features_normalized}
 
-    \caption{Features after normalization box plot}
+    \caption{Features' box plot after normalization}
   \end{subfigure}
 
   \caption{Features normalization example \label{fig:feature-normalization}}
 
-  \it
+  \it\justify
   In this example only the first 15 of 725 features are shown for readability. 
   \autoref{fig:feature-normalization-before} shows the features before normalizing them. Many
   of the features are too small compared with the ones shown so only a small line is drawn.
@@ -155,6 +155,33 @@ model could have \gls{leakage}. An example of features normalization can be seen
 
 
 \sssecc{Pair generation}
+
+As the siamese network is prepared to train in pairs these have to be generated before. As
+it has been explained in \autoref{sec:survival} and shown in \autoref{fig:graph-ci},
+for two subjects \( A \) and \( B \) a pair can only be generated if:
+\begin{itemize}[noitemsep, topsep=0pt]
+  \item Both of them are uncensored (\( E_A = E_B = 1\))
+  \item The uncensored time of one is smaller than the censored survival time of the other
+  (\( T_A < T_B | E_A = 1; E_B = 0 \))
+\end{itemize}
+
+These conditions are to be kept in mind when generating the pairs. Moreover, before starting
+the train and test sets must be decided first. Once they have been generated then the pairs
+can be generated too. To avoid \gls{leakage} three types of pairs will be defined and will be
+used in different contexts:
+\begin{description}
+  \item[\Gls{train-pair}] \glsdesc*{train-pair}
+  \item[\Gls{test-pair}] \glsdesc*{test-pair}
+  \item[\Gls{mixed-pair}] \glsdesc*{mixed-pair}
+\end{description}
+
+\begin{figure}
+  \centering
+
+  \input{drawings/pairs_sets.tikz.tex}
+
+  \caption{Types of pairs generated from the test and train sets}
+\end{figure}
 
 \ssecc{Build shallow siamese network}
 

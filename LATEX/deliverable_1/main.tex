@@ -8,10 +8,6 @@
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
 
-\usepackage[colorlinks=true,
-            linkcolor={red!30!black},
-            citecolor={blue!50!black},
-            urlcolor={blue!80!black}]{hyperref}
 \usepackage{csquotes} % Required by biblatex
 \usepackage[british]{babel}
 \usepackage[backend=biber, sorting=none, dateabbrev=false]{biblatex}
@@ -32,6 +28,7 @@
 
 \usepackage{float}
 \usepackage{enumitem} % Continuous enumeration
+\usepackage{ragged2e} % Justify
 
 \usepackage{array} % Table improvements
 \usepackage{multirow} % Multiple rows in tables
@@ -39,6 +36,11 @@
 \usepackage{hhline}   % Better line separation in tables
 
 \usepackage[acronym, toc, numberline]{glossaries}
+
+\usepackage[colorlinks=true,
+            linkcolor={red!30!black},
+            citecolor={blue!50!black},
+            urlcolor={blue!80!black}]{hyperref}
 
 \usetikzlibrary{positioning}
 
@@ -77,6 +79,8 @@
 \pretocmd{\ssecc}{\addtocontents{toc}{\protect\addvspace{-5\p@}}}{}{}
 \pretocmd{\sssecc}{\addtocontents{toc}{\protect\addvspace{-9\p@}}}{}{}
 \makeatother
+
+\setlist[description]{topsep=0em}
 
 \input{glossary_definitions.tex}
 
