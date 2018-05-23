@@ -126,7 +126,32 @@ For this normalization to be valid the mean and the standard deviation is obtain
 the train samples. These are different for each feature because not all the features need to 
 be normalized in the same way. Afterwards, the normalization is applied to both the train 
 and test samples. The mean for the test samples is never obtained, because, otherwise, the
-model could have \gls{leakage}. 
+model could have \gls{leakage}. An example of features normalization can be seen in
+\autoref{fig:feature-normalization}
+
+\begin{figure}
+  \centering
+
+  \begin{subfigure}[t]{.47\textwidth}
+    \includegraphics[width=\textwidth]{images/features_original}
+
+    \caption{Features before normalization box plot \label{fig:feature-normalization-before}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{.47\textwidth}
+    \includegraphics[width=\textwidth]{images/features_normalized}
+
+    \caption{Features after normalization box plot}
+  \end{subfigure}
+
+  \caption{Features normalization example \label{fig:feature-normalization}}
+
+  \it
+  In this example only the first 15 of 725 features are shown for readability. 
+  \autoref{fig:feature-normalization-before} shows the features before normalizing them. Many
+  of the features are too small compared with the ones shown so only a small line is drawn.
+  
+\end{figure}
 
 
 \sssecc{Pair generation}
