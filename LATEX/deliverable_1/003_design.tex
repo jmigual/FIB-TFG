@@ -191,6 +191,66 @@ used in different contexts:
   \caption{Types of pairs generated from the test and train sets}
 \end{figure}
 
+\ssecc{Create basic siamese model}
+
+The first step is to create an environment where different sisters networks can be tested
+for improvements. To do so, the loss and cost functions are defined assuming an output
+\( \bm{O} \) for the input \( \bm{X} \) of the sister network. This will be called the
+basic model.
+
+The distance comparison used for the following siamese networks is defined comparing the 
+absolute distance of the sister's output features and then applying the logistic function 
+into it to get an output value \( d \in [0, 1] \). This way if it's 1 it means \( T_B > T_A \).
+\begin{align*}
+  \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
+  \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
+  \sigma(x) &= \frac{1}{1 + \exp(-x)} \\
+  d &= \sigma(||\bm{O}_B||_2 - ||\bm{O}_A||_2) 
+\end{align*}
+
+The loss function used for the model is the log-loss:
+\[
+  \mathcal{L}(\bm{y}, \hat{\bm{y}}) = -\frac{1}{N} \sum_{i = 1}^{N}
+  (1 - y_i)\log(1 - \hat{y}_i) + y_i\log(\hat{y}_i)
+\]
+
+The model uses L2 regularization, so the model's cost function, 
+adding the regularization loss, is:
+\[
+  C(\bm{y}, \hat{\bm{y}}) = \mathcal{L}(\bm{y}, \hat{\bm{y}}) + 
+  ||w||_2
+\]
+
+\ssecc{Build volume only model}
+
+To be able to have a baseline and compare the results not only with the state-of-the art ones
+but with future designs too a model using only the most prognostic feature, the volume, is 
+built.
+
+This design is a siamese network too and implements the sister network part. The model to fit
+is inspired the idea "A bigger tumour volume means less chances of 
+survival" and it is the following one:
+\[
+  \operatorname{sister}(x) = w\cdot x + b
+\]
+Where \( x \) in this case is only the volume. This model is built only to set a 
+baseline for improvement.
+
+\sssecc{Results}
+
+The results with this model have been obtained using 4-CV and \gls{LOOCV}.
+
+
+% TODO: Add figures
+The results obtained with \gls{LOOCV} are shown in FIGURE. To train this model one element has
+been removed from the dataset and the model has been trained with the rest of the elements 
+(all minus one). As it can be seen the distribution for the uncensored data is quite similar from
+the rest of the dataset. The final \gls{CI} is NUMBER and the mean \gls{CI} is NUMBER.
+
+This results are very similar from the ones previously obtained of 0.628 as explained in the
+state-of-the art.
+
+
 \ssecc{Build shallow siamese network}
 \label{sec:shallow-siamese}
 
@@ -206,37 +266,17 @@ This new design has more layers to reduce the dimensions of the image and is abl
 incorporate the scalar data. As it was previously said this design it's still part of the
 siamese network model.
 
-The distance comparison used for this siamese network is defined comparing the absolute distance
-of the sister's output features and then applying the logistic function into it to get an
-output value \( d \in [0, 1] \). This way if it's 1 it means \( T_B > T_A \).
-\begin{align*}
-  \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
-  \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
-  \sigma(x) &= \frac{1}{1 + \exp(-x)} \\
-  d &= \sigma(||\bm{O}_B||_2 - ||\bm{O}_A||_2) 
-\end{align*}
-
-The loss function used for the model is the log-loss:
-\[
-  \mathcal{L}(\bm{y}, \hat{\bm{y}}) = -\frac{1}{N} \sum_{i = 1}^{N}
-  (1 - y_i)\log(1 - \hat{y}_i) + y_i\log(\hat{y}_i)
-\]
-
-So the model's cost function, adding the regularization loss, is:
-\[
-  C(\bm{y}, \hat{\bm{y}}) = \mathcal{L}(\bm{y}, \hat{\bm{y}}) + 
-  ||w||_2
-\]
-
-The results with this model are still not valid and this task has been scheduled for later as
-the training times are really high. Once there is a basic working model with scalar features
-only this model will be finished and the results obtained.
+Some initial results have been obtained with this model although these are still not valid as
+this task has been scheduled for completion in a later step of the project. The cause of the 
+rescheduling is because of the long training times. Once a more basic model is working and
+with some results, this task will be finished.
 
 \begin{figure}
   \centering
   \input{drawings/siamese_0.tikz.tex}
   \caption{Shallow siamese sister's network illustration \label{fig:shallow-implement}}
 \end{figure}
+
 
 \ssecc{Build scalar only siamese network}
 \label{sec:scalar-only}
@@ -262,14 +302,18 @@ The loss and cost functions are the same as the ones used in \autoref{sec:shallo
 
 The results obtained with this model are both with 4-CV and \gls{LOOCV}. 
 
-The a summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. It can be
+A summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. It can be
 observed that the number of pairs is not constant through all the folds. This is caused by
 censoring, since not all members can form a pair with all the other ones some possibilities 
 have more available pairs than others. From the results it can be seen that the final test
 \gls{CI} is 0.624 and the final mixed \gls{CI} is 0.789.
 
-Even though it seems that these results may seem similar to the state-of-the art (~0.65) 
-they 
+Even though it seems that these results may seem similar to the state-of-the art (0.628) for 
+the test set, the improvement in this project is in the mixed pairs. As the main goal of the
+project is to predict survival, the final created method to predict survival will be to 
+compare a new patient against the whole training set and then, having all the comparisons and
+the survival time of the train set patients, a prediction of the new patient's survival time
+can be made.
 
 \begin{table}
   \centering
@@ -295,7 +339,5 @@ they
 
   \caption{Results for scalar only model using 4-CV \label{tab:scalar-4CV}}
 \end{table}
-
-\ssecc{Build deeep siamese network}
 
  
