@@ -223,6 +223,9 @@ adding the regularization loss, is:
   ||w||_2
 \]
 
+This step was not included in the planning but it was later found that it was necessary to be 
+able to test multiple models. The whole process took one week to complete.
+
 \ssecc{Build volume only model}
 
 To be able to have a baseline and compare the results not only with the state-of-the art ones
@@ -237,6 +240,10 @@ survival" and it is the following one:
 \]
 Where \( x \) in this case is only the volume. This model is built only to set a 
 baseline for improvement.
+
+This step was not included in the planning but having a baseline was required to see the 
+improvement of the new models compared against this one. This step took half a week to complete,
+including the time to test and obtain the results.
 
 \sssecc{Results}
 
@@ -318,6 +325,10 @@ this task has been scheduled for completion in a later step of the project. The 
 rescheduling is because of the long training times. Once a more basic model is working and
 with some results, this task will be finished.
 
+This has been developed for two weeks for now and it will take at least one more to complete.
+Since this step has taken less time than planned it has made some room to add other required
+steps that were not planned initially.
+
 \begin{figure}
   \centering
   \input{drawings/siamese_0.tikz.tex}
@@ -340,6 +351,9 @@ Dropout is used as a way of regularization.
 Moreover, since this model inherits from the basic model, defined in \autoref{sec:basic-siamese}, 
 regularization is applied too by adding the l2 norm of the weights. The loss and
 cost functions are the same too.
+
+This step took one week to complete although some fixes have been applied later during the
+development of other models.
 
 \begin{figure}
   \centering
@@ -424,4 +438,11 @@ very similar to the one obtained using 4-CV (0.788 vs 0.789).
   can be close to 1.
 \end{figure}
 
- 
+\ssecc{Predict patients survival}
+
+This step is yet to be completed. Once there is a working model that allows to compare two 
+individuals to see which one lives more, the prediction of the survival time of the patients 
+should be implemented.
+
+This step should take at most one week to complete.
+
