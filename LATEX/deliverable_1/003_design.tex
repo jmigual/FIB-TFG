@@ -255,7 +255,35 @@ The loss and cost functions are the same as the ones used in \autoref{sec:shallo
 
 \sssecc{Results}
 
-Some results have been obtained with this model. 
+The results obtained with this model are both with 4-CV and \gls{LOOCV}. 
+
+The a summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. 
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c||c|c|c||c|c|c|}
+    \cline{2-7}
+    \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
+    \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
+    \hline
+    \textbf{Fold} & \textbf{Train} & \textbf{Test} & \textbf{Mixed} & 
+    \textbf{Train} & \textbf{Test} & \textbf{Mixed} \\
+    \hhline{=======}
+    0 & 82.518 & 9.254 & 55.512 & 0.959 & 0.619 & 0.784 \\
+    \hline
+    1 & 82.958 & 9.150 & 55.176 & 0.960 & 0.637 & 0.798 \\
+    \hline
+    2 & 83.416 & 9.004 & 54.864 & 0.953 & 0.622 & 0.791 \\
+    \hline
+    3 & 82.396 & 9.312 & 55.576 & 0.954 & 0.618 & 0.784 \\
+    \hhline{=======}
+    \textbf{Total} & 331.288 & 36.720 & 221.128 & 0.957 & 0.624 & 0.789 \\
+    \hline
+  \end{tabular}
+
+  \caption{Results for scalar only model using 4-CV \label{tab:scalar-4CV}}
+\end{table}
 
 \ssecc{Build deeep siamese network}
 
+ 
