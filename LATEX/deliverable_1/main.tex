@@ -1,9 +1,9 @@
 % !TEX spellcheck = en_US
 % !TEX encoding = UTF-8
 
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 12pt, draft]{book}
 
-\usepackage{scrextend}
+% \usepackage{scrextend} % KOMA-script
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
@@ -12,7 +12,7 @@
 \usepackage[british]{babel}
 \usepackage[backend=biber, sorting=none, dateabbrev=false]{biblatex}
 
-\usepackage[bindingoffset=1.5cm, textwidth=15cm]{geometry}
+
 
 \usepackage{tikz}
 \usepackage{pgfgantt}
@@ -34,7 +34,9 @@
 \usepackage{multirow} % Multiple rows in tables
 \usepackage{makecell} % Cell colors in tables
 \usepackage{hhline}   % Better line separation in tables
+\usepackage{tocloft}
 
+%%%%%%%%% HYPERREF %%%%%%%%%%
 \usepackage[colorlinks=true,
             linkcolor={red!30!black},
             citecolor={blue!50!black},
@@ -42,6 +44,7 @@
 
 % Must be loaded after hyperref
 \usepackage[acronym, toc, numberline]{glossaries}
+\usepackage[bindingoffset=1.5cm, textwidth=15cm, top=3cm, bottom=3cm]{geometry}
 
 \usetikzlibrary{positioning}
 
@@ -75,13 +78,21 @@
   \secc*{#1}
 }
 
-% Reduce the table of contents length
-\makeatletter
-\pretocmd{\secc}{\addtocontents{toc}{\protect\addvspace{15\p@}}}{}{}
-\pretocmd{\ssecc}{\addtocontents{toc}{\protect\addvspace{-5\p@}}}{}{}
-\pretocmd{\sssecc}{\addtocontents{toc}{\protect\addvspace{-9\p@}}}{}{}
-\makeatother
+\ifdef{\chapter}{
+  \renewcommand\cftchapafterpnum{\vskip15pt}
+  \renewcommand\cftsecafterpnum{\vskip6pt}
+  \renewcommand\cftsubsecafterpnum{\vskip3pt}
+}{
+  \renewcommand\cftsecafterpnum{\vskip15pt}
+  \renewcommand\cftsubsecafterpnum{\vskip6pt}
+}
 
+\renewcommand\cftsubsubsecafterpnum{\vskip3pt}
+\renewcommand\cftfigafterpnum{\vskip5pt}
+\renewcommand\cfttabafterpnum{\vskip5pt}
+
+
+% List configuration
 \setlist[description]{topsep=0em}
 
 \input{glossary_definitions.tex}
