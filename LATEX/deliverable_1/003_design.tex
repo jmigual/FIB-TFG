@@ -228,6 +228,10 @@ So the model's cost function, adding the regularization loss, is:
   ||w||_2
 \]
 
+The results with this model are still not valid and this task has been scheduled for later as
+the training times are really high. Once there is a basic working model with scalar features
+only this model will be finished and the results obtained.
+
 \begin{figure}
   \centering
   \input{drawings/siamese_0.tikz.tex}
@@ -235,6 +239,7 @@ So the model's cost function, adding the regularization loss, is:
 \end{figure}
 
 \ssecc{Build scalar only siamese network}
+\label{sec:scalar-only}
 
 To speed up the testing process a scalar only siamese network. With this approach the training
 time was reduced from around 5 hours to 1 minute for one training step. 
@@ -257,7 +262,14 @@ The loss and cost functions are the same as the ones used in \autoref{sec:shallo
 
 The results obtained with this model are both with 4-CV and \gls{LOOCV}. 
 
-The a summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. 
+The a summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. It can be
+observed that the number of pairs is not constant through all the folds. This is caused by
+censoring, since not all members can form a pair with all the other ones some possibilities 
+have more available pairs than others. From the results it can be seen that the final test
+\gls{CI} is 0.624 and the final mixed \gls{CI} is 0.789.
+
+Even though it seems that these results may seem similar to the state-of-the art (~0.65) 
+they 
 
 \begin{table}
   \centering
