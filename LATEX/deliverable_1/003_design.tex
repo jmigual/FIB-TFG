@@ -140,13 +140,13 @@ model could have \gls{leakage}. An example of features normalization can be seen
 \begin{figure}
   \centering
 
-  \begin{subfigure}[t]{.47\textwidth}
+  \begin{subfigure}[t]{.49\textwidth}
     \includegraphics[width=\textwidth]{images/features_original}
 
     \caption{Features' box plot before normalization \label{fig:feature-normalization-before}}
   \end{subfigure}
   \hfill
-  \begin{subfigure}[t]{.47\textwidth}
+  \begin{subfigure}[t]{.49\textwidth}
     \includegraphics[width=\textwidth]{images/features_normalized}
 
     \caption{Features' box plot after normalization}
@@ -191,7 +191,9 @@ used in different contexts:
   \caption{Types of pairs generated from the test and train sets}
 \end{figure}
 
+
 \ssecc{Create basic siamese model}
+\label{sec:basic-siamese}
 
 The first step is to create an environment where different sisters networks can be tested
 for improvements. To do so, the loss and cost functions are defined assuming an output
@@ -238,25 +240,70 @@ baseline for improvement.
 
 \sssecc{Results}
 
-The results with this model have been obtained using 4-CV and \gls{LOOCV}.
+The results with this model have been obtained using both 4-CV and \gls{LOOCV}.
 
+\begin{table}
+  \centering
+  \begin{tabular}{|c||c|c|c||c|c|c|}
+    \cline{2-7}
+    \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
+    \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
+    \hline
+    \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} 
+    & \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
+    \hhline{=======}
+    0 & 55512 & 82518 & 9254 & 0.65 & 0.625 & 0.673 \\
+    1 & 55176 & 82958 & 9150 & 0.633 & 0.643 & 0.619 \\
+    2 & 54864 & 83416 & 9004 & 0.655 & 0.621 & 0.687 \\
+    3 & 55576 & 82396 & 9312 & 0.615 & 0.661 & 0.568 \\
+    \hhline{=======}
+    \textbf{Total} & 221128 & 331288 & 36720 & 0.638 & 0.638 & 0.636 \\
+    \hline
+  \end{tabular}
 
-% TODO: Add figures
-The results obtained with \gls{LOOCV} are shown in FIGURE. To train this model one element has
-been removed from the dataset and the model has been trained with the rest of the elements 
-(all minus one). As it can be seen the distribution for the uncensored data is quite similar from
-the rest of the dataset. The final \gls{CI} is NUMBER and the mean \gls{CI} is NUMBER.
+  \caption{Results for volume only model using 4-CV \label{tab:volume-4CV}}
+\end{table}
+
+The results obtained with \gls{LOOCV} are shown in \autoref{fig:results-volume-LOOCV}. 
+To train this model one element has been removed from the dataset and the model has 
+been trained with the rest of the elements (all minus one). It shows the \gls{CI} of each
+element when comparing it with the training set, so only the mixed pairs \gls{CI} are shown.
+
+In this case the distribution of the censored data is important because many censored elements
+can create very few pairs (< 100) so they may give a wrong sense of security when looking at
+the \gls{LOOCV}. As it can be seen the 
+distribution for the uncensored data is quite similar from the rest of the dataset. 
+The final \gls{CI} is 0.638 and the mean \gls{CI} is 0.647. A distribution of the number of
+pairs for each element compared against its \gls{CI} can be seen in \autoref{fig:scatter-volume-CI}.
 
 This results are very similar from the ones previously obtained of 0.628 as explained in the
 state-of-the art.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/results/c-index_volume}
+  \caption{Results for volume only model using \acrshort{LOOCV} \label{fig:results-volume-LOOCV}}
+
+  \it\justify
+  Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
+  when using mixed pairs to obtain the \acrshort{CI}. 
+  In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
+  elements, which have more pairs to compare with.
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/results/scatter_volume}
+  \caption{Scatter plot of \acrshort{CI} against number of pairs for volume only model
+  \label{fig:scatter-volume-CI}
+  }.
+\end{figure}
 
 \ssecc{Build shallow siamese network}
 \label{sec:shallow-siamese}
 
-The shallow siamese network had a very simple design for the sister network. In fact it was so
-simple that a proper \gls{CNN} could not be build, the original design can be found in 
-\autoref{fig:shallow-sister}.
+The initial shallow siamese network design had a very simple design for the sister network. 
+In fact, it was so simple that a proper \gls{CNN} could not be build, the original design 
+can be found in \autoref{fig:shallow-sister}.
 
 The main problem was that there were only two convolutional layers so that when trying to reduce
 the image dimension the output image still was too big for a Fully Connected layer. With this
@@ -281,16 +328,18 @@ with some results, this task will be finished.
 \ssecc{Build scalar only siamese network}
 \label{sec:scalar-only}
 
-To speed up the testing process a scalar only siamese network. With this approach the training
-time was reduced from around 5 hours to 1 minute for one training step. 
+To speed up the testing process, a siamese network that only used scalar features 
+was built. With this approach, the training time was reduced from around 5 hours 
+to 1 minute to train the model. 
 
-To improve the performance Dropout was used, by using dropout some of the model activations 
-are zeroed and then scaled according to the dropout probability. This way, the networks'
-neurons do not have all the information and thus it must generalize. Dropout is used as a 
-way of regularization. Moreover, regularization is applied to the model too by adding the 
-l2 norm of the weights.
+To improve the performance Dropout \cite{neural:dropout} was used, by using dropout some 
+of the model activations are zeroed and then scaled according to the dropout probability. 
+This way, the networks' neurons do not have all the information and thus it must generalize. 
+Dropout is used as a way of regularization. 
 
-The loss and cost functions are the same as the ones used in \autoref{sec:shallow-siamese}
+Moreover, since this model inherits from the basic model, defined in \autoref{sec:basic-siamese}, 
+regularization is applied too by adding the l2 norm of the weights. The loss and
+cost functions are the same too.
 
 \begin{figure}
   \centering
@@ -302,18 +351,33 @@ The loss and cost functions are the same as the ones used in \autoref{sec:shallo
 
 The results obtained with this model are both with 4-CV and \gls{LOOCV}. 
 
-A summary of the results using 4-CV can be seen at \autoref{tab:scalar-4CV}. It can be
+A summary of the results using 4-CV can be seen at \autoref{tab:results-scalar-4CV}. It can be
 observed that the number of pairs is not constant through all the folds. This is caused by
-censoring, since not all members can form a pair with all the other ones some possibilities 
-have more available pairs than others. From the results it can be seen that the final test
-\gls{CI} is 0.624 and the final mixed \gls{CI} is 0.789.
+censoring, since not all members can form a pair with all the other ones some elements 
+have more available pairs than others. 
 
-Even though it seems that these results may seem similar to the state-of-the art (0.628) for 
-the test set, the improvement in this project is in the mixed pairs. As the main goal of the
-project is to predict survival, the final created method to predict survival will be to 
-compare a new patient against the whole training set and then, having all the comparisons and
-the survival time of the train set patients, a prediction of the new patient's survival time
-can be made.
+From the 4-CV results it can be seen that the final test \gls{CI} is 0.624 and the final mixed 
+\gls{CI} is 0.789. Even thought it seems that the test results are very similar to the
+state-of-the art (0.628) when compared to the baseline the test results are similar but
+the mixed pairs results have improved (0.789 vs 0.638).
+
+The improvement with the baseline is relevant because the final objective of the project
+is to create a model to predict a patient's survival time. The final method to predict
+survival will be to compare a new patient against the whole training set and then, having
+all the comparisons and the survival time of the train set's patients, a prediction of
+the new patient's survival time can will be made. This means that the most relevant 
+indicator is the mixed \gls{CI}.
+
+The results using \gls{LOOCV} can be seen represented in \autoref{fig:results-scalar-LOOCV}. 
+In this case, only the mixed pairs have been compared to create the histogram. As it can be 
+observed, the distribution of uncensored elements compared to the whole set is very different. 
+This is caused because some censored elements have very few pairs to compare with (< 100) and 
+have obtained a good prediction, this pairs can be seen in \autoref{fig:scatter-scalar-CI} in red.
+
+However, since this elements have very few pairs they do not affect really much the \gls{CI}.
+The final \gls{CI} with \gls{LOOCV} is 0.788 while the mean \gls{CI} is 0.822. This difference
+is explained by the elements with very few pairs. The final \gls{CI} using \gls{LOOCV} is 
+very similar to the one obtained using 4-CV (0.788 vs 0.789).
 
 \begin{table}
   \centering
@@ -322,22 +386,42 @@ can be made.
     \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
     \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
     \hline
-    \textbf{Fold} & \textbf{Train} & \textbf{Test} & \textbf{Mixed} & 
-    \textbf{Train} & \textbf{Test} & \textbf{Mixed} \\
+    \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} & 
+    \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
     \hhline{=======}
-    0 & 82.518 & 9.254 & 55.512 & 0.959 & 0.619 & 0.784 \\
-    \hline
-    1 & 82.958 & 9.150 & 55.176 & 0.960 & 0.637 & 0.798 \\
-    \hline
-    2 & 83.416 & 9.004 & 54.864 & 0.953 & 0.622 & 0.791 \\
-    \hline
-    3 & 82.396 & 9.312 & 55.576 & 0.954 & 0.618 & 0.784 \\
+    0 & 55512 & 82518 & 9254 & 0.784 & 0.959 & 0.619 \\
+    1 & 55176 & 82958 & 9150 & 0.798 & 0.96 & 0.637 \\
+    2 & 54864 & 83416 & 9004 & 0.791 & 0.954 & 0.622 \\
+    3 & 55576 & 82396 & 9312 & 0.784 & 0.954 & 0.618 \\
     \hhline{=======}
-    \textbf{Total} & 331.288 & 36.720 & 221.128 & 0.957 & 0.624 & 0.789 \\
+    \textbf{Total} & 221128 & 331288 & 36720 & 0.789 & 0.957 & 0.624\\
     \hline
   \end{tabular}
 
-  \caption{Results for scalar only model using 4-CV \label{tab:scalar-4CV}}
+  \caption{Results for scalar only model using 4-CV \label{tab:results-scalar-4CV}}
 \end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/results/c-index_scalar}
+  \caption{Results for scalar only model using \gls{LOOCV} \label{fig:results-scalar-LOOCV}}
+
+  \it\justify
+  Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
+  when using mixed pairs to obtain the \acrshort{CI}. 
+  In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
+  elements, which have more pairs to compare with.
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/results/scatter_scalar}
+  \caption{Scatter plot of \acrshort{CI} against number of pairs for scalar only model
+  \label{fig:scatter-scalar-CI}
+  }
+
+  In red elements that have less than 100 pairs to compare with, and thus the \acrshort{CI} 
+  can be close to 1.
+\end{figure}
 
  
