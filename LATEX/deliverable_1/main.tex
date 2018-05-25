@@ -1,7 +1,7 @@
 % !TEX spellcheck = en_US
 % !TEX encoding = UTF-8
 
-\documentclass[a4paper, 12pt, draft]{book}
+\documentclass[a4paper, 12pt]{book}
 
 % \usepackage{scrextend} % KOMA-script
 \usepackage{graphicx}
@@ -38,9 +38,9 @@
 
 %%%%%%%%% HYPERREF %%%%%%%%%%
 \usepackage[colorlinks=true,
-            linkcolor={red!30!black},
-            citecolor={blue!50!black},
-            urlcolor={blue!80!black}]{hyperref}
+linkcolor={red!30!black},
+citecolor={blue!50!black},
+urlcolor={blue!80!black}]{hyperref}
 
 % Must be loaded after hyperref
 \usepackage[acronym, toc, numberline]{glossaries}
@@ -140,16 +140,17 @@
 \addcontentsline{toc}{\seccn}{\numberline{}List of Tables}
 \listoftables
 
-\pagebreak
-
 % Just comment this lines to enable/disable some parts of the document
+\cleardoublepage
 \include{001_context}
+
+\cleardoublepage
 \include{002_planning}
+
+\cleardoublepage
 \include{003_design}
 
-\pagebreak
-
-% \printglossary[type=\acronymtype]
+\cleardoublepage
 \printglossaries
 
 \addphantomsec{References}{\seccn}
