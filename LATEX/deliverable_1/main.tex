@@ -10,7 +10,13 @@
 
 \usepackage{csquotes} % Required by biblatex
 \usepackage[british]{babel}
-\usepackage[backend=biber, sorting=none, dateabbrev=false]{biblatex}
+\usepackage[
+  backend=biber, 
+  sorting=none, 
+  dateabbrev=false, 
+  block=ragged,
+  style=ieee
+]{biblatex}
 
 
 
@@ -55,9 +61,10 @@ urlcolor={blue!80!black}]{hyperref}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 % Fix bibliography parameters for overfull
-\setcounter{biburlnumpenalty}{5000}
-\setcounter{biburllcpenalty}{7000}
-\setcounter{biburlucpenalty}{8000}
+% \setcounter{biburlnumpenalty}{5000}
+% \setcounter{biburllcpenalty}{7000}
+% \setcounter{biburlucpenalty}{8000}
+
 
 % Bibliography
 \addbibresource{../bibliography/mendeley.bib}
@@ -76,6 +83,13 @@ urlcolor={blue!80!black}]{hyperref}
   \phantomsection
   \addcontentsline{toc}{#2}{\numberline{}#1}
   \secc*{#1}
+}
+
+% Special heading, indenting the name on table of contents
+\defbibheading{bibintocindent}[\refname]{%
+  \secc*{#1}%
+  \addcontentsline{toc}{\seccn}{\protect\numberline{}#1}%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
 }
 
 \ifdef{\chapter}{
@@ -128,6 +142,7 @@ urlcolor={blue!80!black}]{hyperref}
   {\LARGE 2018 \par}
 \end{titlepage}
 
+\cleardoublepage
 \tableofcontents
 
 \cleardoublepage
@@ -153,7 +168,8 @@ urlcolor={blue!80!black}]{hyperref}
 \cleardoublepage
 \printglossaries
 
-\addphantomsec{References}{\seccn}
-\printbibliography[heading=none]{}
+\emergencystretch=1em
+% \addphantomsec{References}{\seccn}
+\printbibliography[heading=bibintocindent, title={References}]{}
 
 \end{document}
