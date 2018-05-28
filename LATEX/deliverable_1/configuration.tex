@@ -94,10 +94,16 @@ urlcolor={blue!80!black}]{hyperref}
   \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
 }
 
+\pagestyle{fancy}
+
 \ifdef{\chapter}{
   \renewcommand\cftchapafterpnum{\vskip15pt}
   \renewcommand\cftsecafterpnum{\vskip6pt}
   \renewcommand\cftsubsecafterpnum{\vskip3pt}
+  \renewcommand{\chaptermark}[1]%
+             {\markboth{\thechapter\quad#1}{}}
+  \renewcommand{\sectionmark}[1]%
+              {\markright{\thesection\ #1}}
 }{
   \renewcommand\cftsecafterpnum{\vskip15pt}
   \renewcommand\cftsubsecafterpnum{\vskip6pt}
@@ -109,6 +115,16 @@ urlcolor={blue!80!black}]{hyperref}
 
 % List configuration
 \setlist[description]{topsep=0em}
+\def\mscname{Joan Marcè i Igual}
 
-\pagestyle{fancy}
+\setlength{\headheight}{13.6pt} %add some space to headheight to eliminate LaTeX "Overfull \vbox..." warnings
+
+\fancyhead[EL, OR]{\thepage}
+\fancyhead[ER]{\rightmark}
+\fancyhead[OL]{\MakeUppercase{\leftmark}}
+
+\fancyfoot[C]{}
+\fancyfoot[EL, OR]{\small\mscname}
+\fancyfoot[ER, OL]{Bachelor Thesis}
+\renewcommand{\footrulewidth}{0.4pt}
 
