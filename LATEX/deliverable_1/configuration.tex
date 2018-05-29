@@ -41,6 +41,7 @@
 \usepackage{hhline}   % Better line separation in tables
 \usepackage{tocloft}
 \usepackage{lipsum}
+\usepackage[nobottomtitles*]{titlesec}
 
 %%%%%%%%% HYPERREF %%%%%%%%%%
 \usepackage[colorlinks=true,
@@ -64,15 +65,10 @@ urlcolor={blue!80!black}]{hyperref}
 
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-% Fix bibliography parameters for overfull
-% \setcounter{biburlnumpenalty}{5000}
-% \setcounter{biburllcpenalty}{7000}
-% \setcounter{biburlucpenalty}{8000}
-
-
 % Bibliography
 \addbibresource{../bibliography/mendeley.bib}
 
+% Section defines
 \newcommand{\secc}{\ifdef{\chapter}{\chapter}{\section}}
 \newcommand{\ssecc}{\ifdef{\chapter}{\section}{\subsection}}
 \newcommand{\sssecc}{\ifdef{\chapter}{\subsection}{\subsubsection}}
@@ -117,6 +113,7 @@ urlcolor={blue!80!black}]{hyperref}
 
 % List configuration
 \setlist[description]{topsep=0em}
+\setlist[itemize]{topsep=0em, noitemsep}
 \def\mscname{Joan Marcè i Igual}
 
 \setlength{\headheight}{13.6pt} %add some space to headheight to eliminate LaTeX "Overfull \vbox..." warnings

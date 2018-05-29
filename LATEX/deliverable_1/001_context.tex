@@ -77,7 +77,7 @@ the \gls{baseline} \glssymbol{baseline} and the hazard function \( \lambda(t | \
 However, casting the survival analysis as a ranking problem is a way of dealing with the biased
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
-\begin{itemize}[noitemsep, topsep=0pt]
+\begin{itemize}
   \item Both of them are uncensored (\( \bm{E}_i = \bm{E}_j = 1\))
   \item The uncensored time of one is smaller than the censored survival time of the other
   (\( \bm{T}_i < \bm{T}_j | \bm{E}_i = 1; \bm{E}_j = 0 \))
@@ -229,13 +229,14 @@ on the application a different activation function may be used, for example in
 
 So, the whole activation for unit \( i \) of layer \( l \) is as follows:
 \begin{align*}
-  z_i^{[l]} &= \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} \cdot a_j^{[l - 1]} \\
+  z_i^{[l]} &= b_i^{[l]} + \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} \cdot a_j^{[l - 1]} \\
   a_i^{[l]} &= g^{[l]}(z_i^{[l]})
 \end{align*}
 
-By using a matrix notation, it can be applied to a whole layer's units.
+By using a matrix notation, it can be applied to a whole layer's units:
 \begin{align*}
-  z
+  \bm{z}^{[l]} &= \bm{W}^{[l]} \cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]} \\
+  \bm{a}^{[l]} &= g^{[l]}(\bm{z}^{[l]})
 \end{align*}
 
 Some linear functions can be seen in \autoref{fig:activation_functions}. They are defined as:
@@ -296,7 +297,7 @@ extraction. In this case, features are extracted too but a \gls{CNN}
 is used instead. With this approach, the use of transfer learning has been a
 great improvement. Also, pre-trained networks are used to reduce the requirement of large data
 sets for deep network training. Usually, there are two possible strategies: 
-\begin{itemize}[noitemsep, topsep=0pt]
+\begin{itemize}
   \item Using a pre-trained NN as a feature extractor
   \item Fine-tuning a pre-trained network on medical data.
 \end{itemize}
