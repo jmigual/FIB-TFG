@@ -78,16 +78,16 @@ However, casting the survival analysis as a ranking problem is a way of dealing 
 distributions of survival times and the censoring data. Two subjects' survival times can be 
 ordered only if:
 \begin{itemize}[noitemsep, topsep=0pt]
-  \item Both of them are uncensored (\( E_i = E_j = 1\))
+  \item Both of them are uncensored (\( \bm{E}_i = \bm{E}_j = 1\))
   \item The uncensored time of one is smaller than the censored survival time of the other
-  (\( T_i < T_j | E_i = 1; E_j = 0 \))
+  (\( \bm{T}_i < \bm{T}_j | \bm{E}_i = 1; \bm{E}_j = 0 \))
 \end{itemize}
 
 This can be visualized by means of an order graph \( G = (V, E) \), see \autoref{fig:graph-ci}.
 The set of vertices \( V \) represents all the individuals, where each filled circle 
 (\( \bullet \)) indicates an \emph{uncensored} survival time, while an empty circle 
 (\( \circ \)) denotes a \emph{censored} observation.
-Existence of an edge \( E_{ij} \) implies that \( T_i < T_j \). An edge cannot originate 
+Existence of an edge \( E_{ij} \) implies that \( \bm{T}_i < \bm{T}_j \). An edge cannot originate 
 from a censored point.
 
 \begin{figure}
@@ -214,16 +214,18 @@ multiple layers and each layer has multiple units. The number of units in layer 
 is defined by  \( n^{[l]} \).
 
 Each unit has an activation (output) computed in two steps, the linear and the non-linear
-step, \( z \) and \( a \) respectively.
+step, these are represented by \( z \) and \( a \) respectively.
 
 The linear step is performed by adding each output from the
 previous layer (\( l - 1 \)), multiplying it by a weight and adding a bias.
 Here, \(w_{ij}^{[l]}\) denotes a weight between unit \( j \) of layer \( l - 1 \) 
 and unit \( i \) of layer \( l \). 
 
-The non-linear step is defined by applying a
-non-linear function, called activation, (\( g^{[l]} \)) to the linear part. 
-Multiple activation functions can be seen in \autoref{fig:activation_functions}. 
+The non-linear step is defined by applying a non-linear function, called activation, 
+(\( g^{[l]} \)) to the linear part. 
+Multiple activation functions can be seen in \autoref{fig:activation_functions}. Depending
+on the application a different activation function may be used, for example in 
+\glspl{CNN} usually the ReLU function is used due to the low computational complexity. 
 
 So, the whole activation for unit \( i \) of layer \( l \) is as follows:
 \begin{align*}
@@ -231,10 +233,10 @@ So, the whole activation for unit \( i \) of layer \( l \) is as follows:
   a_i^{[l]} &= g^{[l]}(z_i^{[l]})
 \end{align*}
 
-A matrix notation can be used when applying this to all the layer's units.
-% \begin{align*}
-  
-% \end{align*}
+By using a matrix notation, it can be applied to a whole layer's units.
+\begin{align*}
+  z
+\end{align*}
 
 Some linear functions can be seen in \autoref{fig:activation_functions}. They are defined as:
 \begin{itemize}
@@ -256,9 +258,11 @@ Some linear functions can be seen in \autoref{fig:activation_functions}. They ar
     Neural Network graph drawing. 
     \label{fig:neural_network}
     
-    Each arrow represents a weight $w_{ij}^{[l]}$ from two units.
+    Each circle represents a unit, green means input, red hidden and blue a output unit.
     In this case the network has 2 units for the input layer, 2 hidden layers with 4 units
     each and 3 units in the output layer.
+
+    Each arrow represents a weight $w_{ij}^{[l]}$ between two units.
   }
 \end{figure}
 \begin{figure}

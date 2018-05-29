@@ -1,0 +1,35 @@
+% !TEX root = main.tex
+
+\phantomsection
+\addcontentsline{toc}{\seccn}{\numberline{}Notation}
+\secc*{Notation}
+\markboth{NOTATION}{NOTATION}
+
+Through the thesis the following notation will be used:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{l|c|p{6cm}}
+     & \textbf{Symbol} & \textbf{Description} \\
+    \hhline{===}
+    Scalars & \( x \) & \\
+    Vectors & \( \bm{x} \) & \\
+    Elements of vector & \( \bm{x}_i \) & \( i \)-th element of vector \( \bm{x} \) \\
+    Matrices & \(\bm{X}\) & \\
+    Desired values & \( \bar{x} \) & Desired value for \( x \) \\
+    Predicted values & \( \hat{x} \) & Predicted value for \( x \) \\
+    L2-norm & \( ||\bm{x}||_2 \) & \\
+    \hline
+    Layer & \( l \) & \\
+    Units for layer & \( n^{[l]} \) & Units for layer \( l \) \\
+    Weights & \( w_{ij}^{[l]} \) & Weight between unit \( i \) of layer \( l \) and unit
+    \( j \) of layer \( l - 1 \) \\
+    Weight matrix & \( \bm{W}^{[l]} \) & Weight 
+    matrix between layers \( l \) and \( l - 1 \), 
+    \( \bm{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}} \). \\
+    Activation & \( a_i^{[l]} \) & Activation of unit \( i \) for layer \( l \) \\
+    Batch size & \( m \) & \\
+  \end{tabular}
+  \caption{Thesis' notation}
+\end{table}
+
