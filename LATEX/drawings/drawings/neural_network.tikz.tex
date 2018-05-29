@@ -1,0 +1,28 @@
+
+\tikzset{
+  pics/layer/.style n args = {3}{
+    code = {
+      \foreach \y in {1,...,#1} {
+        \node[draw, circle] (L-#2-\y) at (0,{1.5*(\y - #1/2)}) {${#3}_{#2 \y}$};
+      }
+    }
+  }
+}
+
+\begin{tikzpicture}
+\def\layers{2/I, 5/H, 5/H, 3/O}
+
+\foreach \x/\name [count=\xi] in \layers  {
+  \draw (3*\xi, 0) pic {layer={\x}{\xi}{\name}};
+}
+
+\foreach \x/\ignore [count=\xi, remember=\xi as \lastxi, remember=\x as \lastx] in \layers {
+  \ifthenelse{\xi > 1}{
+    \foreach \ylast in {1,...,\lastx} \foreach \y in {1,...,\x}{
+      \draw [-latex] (L-\lastxi-\ylast) -- (L-\xi-\y);
+    }
+  }{};
+}
+
+\end{tikzpicture}
+
