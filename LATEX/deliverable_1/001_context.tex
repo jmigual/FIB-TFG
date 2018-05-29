@@ -213,8 +213,10 @@ by a graph (or network) diagram as seen in \autoref{fig:neural_network}. It is d
 multiple layers and each layer has multiple units. The number of units in layer \( l \) 
 is defined by  \( n^{[l]} \).
 
-Each unit has an activation (output) computed in two steps, the linear and the non-linear
-step, these are represented by \( z \) and \( a \) respectively.
+Each hidden unit has an activation (output) computed in two steps, the linear and the 
+non-linear step, these are represented by \( \bm{z} \) and \( \bm{a} \) respectively.
+These are called hidden units because the values of the \( \bm{a} \) are not directly 
+observed. In general, more than one hidden unit is used to fit more complex features.
 
 The linear step is performed by adding each output from the
 previous layer (\( l - 1 \)), multiplying it by a weight and adding a bias.
@@ -275,6 +277,30 @@ Some linear functions can be seen in \autoref{fig:activation_functions}. They ar
     \label{fig:activation_functions}
   }
 \end{figure}
+
+The output units allow for a final transformation of the previous layer's vector of outputs.
+For regression, typically the identity function \( g^{[L]}(\bm{a^{[L - 1]}}) = \bm{a^{[L - 1]}} \)
+is chosen. However, if \( K \)-class classification is going to be used usually the
+\emph{softmax} function is used instead. This function provides a probability for each
+one of the \( K \) classes:
+\[
+  g_k^{[L]}(\bm{a}^{[L - 1]}) = \frac{e^{a_k^{[L - 1]}}}{\sum_{i = 1}^K e^{a_i^{[L - 1]}}}
+\]
+
+A \gls{NN} has unknown parameters \( \bm{W}^{[l]} \), called weights, and the objective is
+to find the values that make the model fit the training data well. The cost function 
+is the objective function to be minimized, for regression it's usually defined as 
+the mean squared error:
+
+\begin{align*}
+  \hat{\bm{y}} &:= g^{[L]}(\bm{a^{[L - 1]}}) \\
+  C(\bm{y}, \hat{\bm{y}}) &:= \frac{1}{N} \sum_{i = 1}^N (y_i - \hat{y}_i)^2
+\end{align*}
+
+To fit a neural network model the cost function \( C(\bm{y}, \hat{\bm{y}}) \) needs to be
+minimized. To do so, gradient descent is used so, each weight gets updated by the partial
+derivative 
+%TODO: Finish this section
 
 
 \ssecc{State-of-the-art}
