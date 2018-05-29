@@ -2,15 +2,26 @@
 \tikzset{
   pics/layer/.style n args = {3}{
     code = {
+      \ifthenelse{\equal{#3}{H}}{
+        \def\cellcolor{red!20}
+      }{
+        \ifthenelse{\equal{#3}{I}}{
+          \def\cellcolor{green!20}
+        }{
+          \def\cellcolor{Cyan!20}
+        }
+      }
+
       \foreach \y in {1,...,#1} {
-        \node[draw, circle] (L-#2-\y) at (0,{1.5*(\y - #1/2)}) {${#3}_{#2 \y}$};
+        \node[draw, circle, fill=\cellcolor] 
+          (L-#2-\y) at (0,{1.5*(#1/2 - \y)}) {${#3}_{\y}^{[#2]}$};
       }
     }
   }
 }
 
 \begin{tikzpicture}
-\def\layers{2/I, 5/H, 5/H, 3/O}
+\def\layers{2/I, 4/H, 4/H, 3/O}
 
 \foreach \x/\name [count=\xi] in \layers  {
   \draw (3*\xi, 0) pic {layer={\x}{\xi}{\name}};

@@ -90,13 +90,14 @@ Preprocessing the image data requires multiple steps:
     \input{drawings/preprocess.tikz.tex}
   }
 
-  \caption{Image pre-process pipeline \label{fig:preprocess}}
-
-  \itshape\justify
-  In this example the process is shown for a 2D image, all the pictures are being resized to 
-  have the same size so the steps can be appreciated. The normalization step is not shown as is,
-  since setting a mean of 0 and variance of 1 produces an invalid \acrshort{PNG} image, but still valid
-  for \gls{ML} purposes.
+  \caption[Image pre-process pipeline]{
+    Image pre-process pipeline \label{fig:preprocess}
+    
+    In this example the process is shown for a 2D image, all the pictures are being resized to 
+    have the same size so the steps can be appreciated. The normalization step is not shown as is,
+    since setting a mean of 0 and variance of 1 produces an invalid \acrshort{PNG} image, but still valid
+    for \gls{ML} purposes.
+  }
 \end{figure}
 
 \sssecc{Scalar data}
@@ -151,13 +152,14 @@ model could have \gls{leakage}. An example of features normalization can be seen
     \caption{Features' box plot after normalization}
   \end{subfigure}
 
-  \caption{Features normalization example \label{fig:feature-normalization}}
-
-  \itshape\justify
-  In this example only the first 15 of 725 features are shown for readability. 
-  \autoref{fig:feature-normalization-before} shows the features before normalizing them. 
-  There, many of the features are too small compared with the ones shown so only a small 
-  line is drawn.
+  \caption[Features normalization example]{
+    Features normalization example \label{fig:feature-normalization}
+    
+    In this example only the first 15 of 725 features are shown for readability. 
+    \autoref{fig:feature-normalization-before} shows the features before normalizing them. 
+    There, many of the features are too small compared with the ones shown so only a small 
+    line is drawn.
+  }
   
 \end{figure}
 
@@ -291,19 +293,21 @@ state-of-the art.
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{images/results/c-index_volume}
-  \caption{Results for volume only model using \acrshort{LOOCV} \label{fig:results-volume-LOOCV}}
-
-  \itshape\justify
-  Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
-  when using mixed pairs to obtain the \acrshort{CI}. 
-  In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
-  elements, which have more pairs to compare with.
+  \caption[LOOCV volume only model results]{
+    Volume only model results using \acrshort{LOOCV} \label{fig:results-volume-LOOCV}
+    
+    Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
+    when using mixed pairs to obtain the \acrshort{CI}. 
+    In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
+    elements, which have more pairs to compare with.
+  }
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{images/results/scatter_volume}
-  \caption{Scatter plot of \acrshort{CI} against number of pairs for volume only model
-  \label{fig:scatter-volume-CI}
+  \caption[CI against pairs scatter plot]{
+    Scatter plot of \acrshort{CI} against number of pairs for volume only model
+    \label{fig:scatter-volume-CI}
   }.
 \end{figure}
 
@@ -421,25 +425,26 @@ very similar to the one obtained using 4-CV (0.788 vs 0.789).
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{images/results/c-index_scalar}
-  \caption{Results for scalar only model using \acrshort{LOOCV} \label{fig:results-scalar-LOOCV}}
-
-  \itshape\justify
-  Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
-  when using mixed pairs to obtain the \acrshort{CI}. 
-  In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
-  elements, which have more pairs to compare with.
+  \caption[LOOCV scalar only model results]{
+    Scalar only model results using \acrshort{LOOCV} \label{fig:results-scalar-LOOCV}
+    
+    Histogram showing the distribution of all the \acrshort{LOOCV} elements' \acrshort{CI}
+    when using mixed pairs to obtain the \acrshort{CI}. 
+    In blue the distribution of all the \acrshort{LOOCV} elements. In orange only the uncensored
+    elements, which have more pairs to compare with.
+  }
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{images/results/scatter_scalar}
-  \caption{Scatter plot of \acrshort{CI} against number of pairs for scalar only model
-  \label{fig:scatter-scalar-CI}
-  }
+  \caption[CI against pairs scatter plot]{
+    Scatter plot of \acrshort{CI} against number of pairs for scalar only model
+    \label{fig:scatter-scalar-CI}
 
-  \itshape\justify
-  In red elements that have less than 100 pairs to compare with, and thus the \acrshort{CI} 
-  can be close to 1.
+    In red elements that have less than 100 pairs to compare with, and thus the \acrshort{CI} 
+    can be close to 1.
+  }
 \end{figure}
 
 \ssecc{Build deep siamese network}

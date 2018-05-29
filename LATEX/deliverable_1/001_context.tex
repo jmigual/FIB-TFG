@@ -105,13 +105,14 @@ from a censored point.
     \label{fig:graph-ci:censored}
   \end{subfigure}
 
-  \caption{Order graphs representing the ranking constraints \label{fig:graph-ci}}
-
-  \itshape\justify
-  Censored data is represented by \( \circ \) and uncensored data is represented by \( \bullet \).
-  Every edge \( A \rightarrow B \) means \( T_A > T_B \). Note that in 
-  \autoref{fig:graph-ci:censored} some vertex are not connected since an edge 
-  \( \circ \rightarrow \bullet \) cannot be formed.
+  \caption[Order graph with ranking constraints]{
+    Order graphs representing the ranking constraints \label{fig:graph-ci}
+    
+    Censored data is represented by \( \circ \) and uncensored data is represented by \( \bullet \).
+    Every edge \( A \rightarrow B \) means \( T_A > T_B \). Note that in 
+    \autoref{fig:graph-ci:censored} some vertex are not connected since an edge 
+    \( \circ \rightarrow \bullet \) cannot be formed.
+  }
 \end{figure}
 
 % C-index explanation
@@ -191,11 +192,12 @@ Regarding the clinical information the following fields are provided:
     \caption{Mask applied to original}
   \end{subfigure}
 
-  \caption{Example of images from the dataset \label{fig:dataset-example}}
-
-  \itshape\justify
-  Single \gls{CT}'s scan slice, a whole scan is composed of multiple slices. By applying 
-  the mask to the original image, the part that only contains the tumour can be extracted.
+  \caption[Images from the dataset]{
+    Example of images from the dataset \label{fig:dataset-example}
+    
+    Single \gls{CT}'s scan slice, a whole scan is composed of multiple slices. By applying 
+    the mask to the original image, the part that only contains the tumour can be extracted.
+  }
 \end{figure}
 
 
@@ -207,7 +209,67 @@ function of these features. As it has been previously explained this is a powerf
 method which has had really good results in many fields.
 
 A neural network is a two-stage regression or classification algorithm, typically represented
-by a graph (or network) diagram as seen in FIGURE.
+by a graph (or network) diagram as seen in \autoref{fig:neural_network}. It is defined by
+multiple layers and each layer has multiple units. The number of units in layer \( l \) 
+is defined by  \( n^{[l]} \).
+
+Each unit has an activation (output) computed in two steps, the linear and the non-linear
+step, \( z \) and \( a \) respectively.
+
+The linear step is performed by adding each output from the
+previous layer (\( l - 1 \)), multiplying it by a weight and adding a bias.
+Here, \(w_{ij}^{[l]}\) denotes a weight between unit \( j \) of layer \( l - 1 \) 
+and unit \( i \) of layer \( l \). 
+
+The non-linear step is defined by applying a
+non-linear function, called activation, (\( g^{[l]} \)) to the linear part. 
+Multiple activation functions can be seen in \autoref{fig:activation_functions}. 
+
+So, the whole activation for unit \( i \) of layer \( l \) is as follows:
+\begin{align*}
+  z_i^{[l]} &= \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} \cdot a_j^{[l - 1]} \\
+  a_i^{[l]} &= g^{[l]}(z_i^{[l]})
+\end{align*}
+
+A matrix notation can be used when applying this to all the layer's units.
+% \begin{align*}
+  
+% \end{align*}
+
+Some linear functions can be seen in \autoref{fig:activation_functions}. They are defined as:
+\begin{itemize}
+  \item Rectified Linear Unit function 
+  \( g(x) = \max(0, x) \)
+  \item Hyperbolic tangent function 
+  \( g(x) = \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)
+  \item Logistic function 
+  \( g(x) = \frac{1}{1 + e^{-x}} \)
+\end{itemize}
+
+% TODO: Finish this section
+
+
+\begin{figure}
+  \centering
+  \input{drawings/neural_network.tikz.tex}
+  \caption[Neural network graph]{
+    Neural Network graph drawing. 
+    \label{fig:neural_network}
+    
+    Each arrow represents a weight $w_{ij}^{[l]}$ from two units.
+    In this case the network has 2 units for the input layer, 2 hidden layers with 4 units
+    each and 3 units in the output layer.
+  }
+\end{figure}
+\begin{figure}
+  \centering
+  \input{drawings/activation_functions.tikz.tex}
+
+  \caption[Activation functions]{
+    Activation functions.
+    \label{fig:activation_functions}
+  }
+\end{figure}
 
 
 \ssecc{State-of-the-art}
@@ -263,8 +325,9 @@ processing 3D medical scans, since they usually need a lot of memory and GPU tim
   \centering
   \includegraphics[width=\textwidth]{images/deepmedic}
 
-  \caption{DeepMedic 3D \acrshort{CNN} model for brain lesion segmentation \cite{neural:3d-cnn-crf}
-  \label{fig:deepmedic}
+  \caption[DeepMedic 3D CNN model]{
+    DeepMedic 3D \acrshort{CNN} model for brain lesion segmentation \cite{neural:3d-cnn-crf}
+    \label{fig:deepmedic}
   }
 \end{figure}
 

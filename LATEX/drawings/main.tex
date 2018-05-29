@@ -2,7 +2,7 @@
 % !TEX encoding = UTF-8
 
 \RequirePackage{luatex85}
-\documentclass[tikz, border=1pt]{standalone}
+\documentclass[tikz, border=1pt, dvipsnames]{standalone}
 
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
@@ -14,13 +14,15 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{pgfgantt}
+\usepackage{pgfplots}
 \usepackage{ifthen}
 
 \usepackage{amsmath, amsfonts, amssymb}
 
+\pgfplotsset{compat=1.16}
 \usetikzlibrary{positioning, calc}
 
 %%%%%%%%%%%% BEGIN OF DOCUMENT %%%%%%%%%%%%%%%%%%
 \begin{document}
-\input{drawings/neural_network.tikz.tex}
+\input{drawings/activation_functions.tikz.tex}
 \end{document}
