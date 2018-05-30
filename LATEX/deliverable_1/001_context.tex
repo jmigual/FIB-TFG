@@ -207,16 +207,18 @@ Neural Networks are a class of \gls{ML} algorithms. The idea is to extract multi
 linear combinations of the inputs as derived features and model the objective as a nonlinear
 function of these features. As it has been previously explained this is a powerful learning
 method which has had really good results in many fields.
+~\cite{neural:elements-statistical-learning}
 
 A neural network is a two-stage regression or classification algorithm, typically represented
-by a graph (or network) diagram as seen in \autoref{fig:neural_network}. It is defined by
-multiple layers and each layer has multiple units. The number of units in layer \( l \) 
+by a graph (or network) diagram as seen in \autoref{fig:neural_network}. It is composed by 
+\( L \) layers and layer has multiple units. The number of units in layer \( l \) 
 is defined by  \( n^{[l]} \).
 
 Each hidden unit has an activation (output) computed in two steps, the linear and the 
 non-linear step, these are represented by \( \bm{z} \) and \( \bm{a} \) respectively.
-These are called hidden units because the values of the \( \bm{a} \) are not directly 
-observed. In general, more than one hidden unit is used to fit more complex features.
+These are called hidden units because the values of \( \bm{z} \) and \( \bm{a} \) are 
+not directly observed. In general, more than one hidden unit is used to fit more complex 
+features.
 
 The linear step is performed by adding each output from the
 previous layer (\( l - 1 \)), multiplying it by a weight and adding a bias.
@@ -228,10 +230,11 @@ The non-linear step is defined by applying a non-linear function, called activat
 Multiple activation functions can be seen in \autoref{fig:activation_functions}. Depending
 on the application a different activation function may be used, for example in 
 \glspl{CNN} usually the ReLU function is used due to the low computational complexity. 
+~\cite{neural:bishop}
 
 So, the whole activation for unit \( i \) of layer \( l \) is as follows:
 \begin{align*}
-  z_i^{[l]} &= b_i^{[l]} + \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} \cdot a_j^{[l - 1]} \\
+  z_i^{[l]} &= \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} + w_{i0}^{[l]} \cdot a_j^{[l - 1]} \\
   a_i^{[l]} &= g^{[l]}(z_i^{[l]})
 \end{align*}
 
@@ -250,9 +253,6 @@ Some linear functions can be seen in \autoref{fig:activation_functions}. They ar
   \item Logistic function 
   \( g(x) = \frac{1}{1 + e^{-x}} \)
 \end{itemize}
-
-% TODO: Finish this section
-
 
 \begin{figure}
   \centering
@@ -297,9 +297,14 @@ the mean squared error:
   C(\bm{y}, \hat{\bm{y}}) &:= \frac{1}{N} \sum_{i = 1}^N (y_i - \hat{y}_i)^2
 \end{align*}
 
-To fit a neural network model the cost function \( C(\bm{y}, \hat{\bm{y}}) \) needs to be
-minimized. To do so, gradient descent is used so, each weight gets updated by the partial
-derivative 
+To minimize the objective function, the gradient descent algorithm is used. It's an iterative
+algorithm that updates the weights by partial derivative of the cost function with respect to 
+the weight:
+\begin{align*}
+  w_{ij}^{[l]} = w_{ij}^{[l]} - \alpha 
+  \frac{\partial C(\bm{y}, \hat{\bm{y}})}{\partial w_{ij}^{[l]}}
+\end{align*}
+
 %TODO: Finish this section
 
 
