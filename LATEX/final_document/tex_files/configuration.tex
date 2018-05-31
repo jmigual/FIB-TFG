@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage[tuenc]{fontspec}
 \usepackage{xcolor}
+\usepackage{shellesc}
 
 \usepackage{csquotes} % Required by biblatex
 \usepackage[british]{babel}
@@ -58,7 +59,14 @@ urlcolor={blue!80!black}]{hyperref}
 
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{positioning, external}
-\tikzexternalize
+\tikzexternalize[optimize=false, mode=list and make]
+% \tikzset{%
+%   % external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=batchmode --jobname "\image" "\texsource"},
+%   external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=batchmode --output-directory=./build --jobname "\image" "\texsource"},
+%   /pgf/images/include external/.code={%
+%     \includegraphics{build/#1}%
+%   },
+% }
 
 \setmainfont{CMU Serif}
 \setmonofont[Scale=MatchLowercase]{Source Code Pro}
