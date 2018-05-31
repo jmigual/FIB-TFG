@@ -1,0 +1,3 @@
+[submodule "LATEX/final_document"]
+	path = LATEX/final_document
+	url = git@github.com:jmigual/FIB-TFG-Final
