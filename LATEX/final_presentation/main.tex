@@ -1,0 +1,132 @@
+% !TEX spellcheck = en_US
+% !TEX encoding = UTF-8
+
+\documentclass[xcolor={x11names, table}, compress]{beamer}
+
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{bm}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{eurosym}
+\usepackage{makecell}
+\usepackage{hhline}
+\usepackage{ifthen}
+\usepackage{hyperref}
+% \usepackage[backend=biber]{biblatex}
+
+%   \pgfplotsset{compat=1.15}
+\usetikzlibrary{positioning, shapes, calc, arrows}
+\hypersetup{pdfstartview={Fit}}
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme{default}
+\usepackage[T1]{fontenc}
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{frametitle}{}
+
+\definecolor{BHKpresentationDark}{RGB}{114,133,176}
+\definecolor{BHKpresentationDarkGrey}{RGB}{103,116,128}
+\definecolor{BHKblue}{RGB}{51,105,153}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamercolor*{frametitle}{fg=BHKpresentationDark} 
+\setbeamercolor*{lower separation line head}{bg=BHKblue} 
+\setbeamercolor*{normal text}{fg=BHKpresentationDarkGrey,bg=white} 
+\setbeamercolor*{alerted text}{fg=BHKblue} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{item}{fg=BHKpresentationDark,bg=gray} 
+\setbeamercolor{enumerate item}{fg=BHKpresentationDark}
+\setbeamercolor*{structure}{fg=black} 
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+\setbeamercovered{transparent}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth]{footlinecolor}
+        \includegraphics[width=\textwidth]{bar_footline.pdf}
+    \end{beamercolorbox}%
+}
+
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newcommand{\insertsec}{\thesection.~\insertsection}
+\newcommand{\insertsubsec}{\thesection.\thesubsection~\insertsubsection}
+
+\AtBeginSection[]{
+\begin{frame}
+\vfill
+\centering
+\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsec\par%
+\end{beamercolorbox}
+\vfill
+\end{frame}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start of document %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%%%% title slide %%%%%%
+{
+    \setbeamertemplate{footline}{} 
+    \begin{frame}
+        \begin{flushright}
+            \hfill\includegraphics[width=0.3\textwidth]{images/logo}
+        \end{flushright}
+        \begin{flushleft}
+            \begin{flushleft}
+                \huge \color{BHKpresentationDark} 
+                Unlock the potential of medical imaging using deep learning 
+            \end{flushleft}
+
+            \hspace{-1cm}\includegraphics[width=0.8\textwidth]{images/title_line}\hfill
+            
+            \date{$~~$}
+            \vspace{-1cm}
+            \author[Joan]{\begin{flushleft}\vspace{-1cm} Joan Marcè i Igual\end{flushleft}}
+            \titlepage
+        \end{flushleft}
+        
+        \begin{flushright}
+            \vspace{-3cm}
+            \includegraphics[width=.35\textwidth]{images/pmcp-logo} 
+
+            \vspace{0.5cm}
+            \includegraphics[width=.35\textwidth]{images/upc-logo} \hspace{1cm}
+            \includegraphics[width=.35\textwidth]{images/uoft-logo}
+        \end{flushright}
+    \end{frame}
+}
+
+\begin{frame}[allowframebreaks]{Table of Contents}
+\tableofcontents
+\end{frame}
+
+\input{sections/01_introduction.tex} 
+\input{sections/02_scope.tex}
+
+\begin{frame}
+    \begin{center}
+        Questions?
+    \end{center}
+\end{frame}
+
+
+
+\end{document}
