@@ -4,6 +4,7 @@
 
 build/
 
+*.nav
 *.aux
 *.dep
 *.dpth

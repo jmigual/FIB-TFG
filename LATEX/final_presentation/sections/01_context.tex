@@ -1,0 +1,119 @@
+% !TEX root = ../main.tex
+
+\section{Context}
+\begin{frame}{\insertsec}
+	\begin{itemize}
+    \item Nowadays Machine Learning is widely used
+    \item Medical images can be obtained using MRI, PET or CT scans but are underused
+    \item Different methods have appeared to analyze these data for image classification,
+    object detection, segmentation...
+    \item Deep learning models aim to be able to unlock the full potential of medical imaging
+    \item Hand-crafted radiomic features can be extracted from medical images
+    \item The work will be centered around predicting patients' survival
+  \end{itemize}
+\end{frame}
+
+\subsection{Survival Analysis}
+\begin{frame}{\insertsubsec}
+  Survival analysis models usually have:
+  \begin{itemize}
+    \item Baseline data \( x \)
+    \item Event \( E \in \{0, 1\} \)
+    \item Time \( T \)
+    \item Censoring
+  \end{itemize}
+  
+  Survival function:
+  \[
+    S(t) = \Pr(T \ge t)
+  \]
+
+  Hazard function:
+  \[
+    \lambda(t) = \lim_{\Delta t \rightarrow 0}
+    \frac{\Pr(t \le T < t + \Delta t | T \ge t)}{\Delta t}
+  \]
+\end{frame}
+
+\begin{frame}
+
+  Casting the survival problem as a ranking is a way of dealing with censored data.
+  Conditions:
+  \begin{itemize}
+    \item Both of them are uncensored (\( \bm{E}_i = \bm{E}_j = 1\))
+    \item The uncensored time of one is smaller than the censored survival time of the other
+    (\( \bm{T}_i < \bm{T}_j | \bm{E}_i = 1; \bm{E}_j = 0 \))
+  \end{itemize}
+
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{figure}
+        \centering
+        \scalebox{.8}{\input{drawings/graph_no_censored.tikz.tex}}
+        \caption{Uncensored data}
+      \end{figure}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{figure}
+        \centering
+        \scalebox{.8}{\input{drawings/graph_censored.tikz.tex}}
+        \caption{Censored data}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  Concordance Index:
+  \[
+    CI = \frac{\text{Good predictions}}{\text{Total predictions}} \in [0, 1]
+  \]
+\end{frame}
+
+\subsection{Dataset}
+\begin{frame}{\insertsubsec}
+  \begin{itemize}
+    \item Dataset with 671 patients diagnosed of Oropharyngeal Squamous Cell Carcinoma
+    \item CT scan of \( 512 \times 512 \) with 100-200 slices
+    \item Tumour annotated in provided mask
+    \item Clinical information compressed of:
+    \begin{itemize}
+      \item Subject characteristics
+      \item Tumour characteristics
+      \item Treatment data
+      \item Outcome data
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \begin{subfigure}[t]{.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images_main/IMG0138_example.png}
+      \caption{Original image}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images_main/IMG0138_MASS_example.png}
+      \caption{Image mask}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{.32\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images_main/IMG0138_merge_example.png}
+      \caption{Mask applied to original}
+    \end{subfigure}
+  
+    \caption[Images from the dataset]{
+      Example of images from the dataset
+    }
+  \end{figure}
+\end{frame}
+
+\subsection{Neural Networks}
+\begin{frame}{\insertsubsec}
+  % TODO: Continue from here
+\end{frame}
