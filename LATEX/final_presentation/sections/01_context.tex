@@ -64,6 +64,16 @@
 \end{frame}
 
 \begin{frame}
+  Good prediction:
+  \[
+    T_i > T_j \land \hat{T}_i > \hat{T}_j
+  \]
+
+  Bad prediction:
+  \[
+    T_i > T_j \land \hat{T}_i < \hat{T}_j
+  \]
+
   Concordance Index:
   \[
     CI = \frac{\text{Good predictions}}{\text{Total predictions}} \in [0, 1]
@@ -115,5 +125,59 @@
 
 \subsection{Neural Networks}
 \begin{frame}{\insertsubsec}
-  % TODO: Continue from here
+  \begin{figure}
+    \centering
+    \input{drawings/neural_network.tikz.tex}
+    \caption[Neural network graph]{
+      Neural Network graph drawing. 
+    }
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Hidden Layers}
+    \begin{equation*}
+      \begin{aligned}
+        z_i^{[l]} &= \sum_{j = 1}^{n^{[l]}} w_{ij}^{[l]} + w_{i0}^{[l]} \cdot a_j^{[l - 1]} \\
+        a_i^{[l]} &= g^{[l]}(z_i^{[l]})
+      \end{aligned}
+      \quad
+      \xrightarrow{\text{becomes}}
+      \quad
+      \begin{aligned}
+        \bm{z}^{[l]} &= \bm{W}^{[l]} \cdot \bm{a}^{[l - 1]} + \bm{b}^{[l]} \\
+        \bm{a}^{[l]} &= g^{[l]}(\bm{z}^{[l]})
+      \end{aligned}
+    \end{equation*}
+  
+  \end{block}
+  \begin{figure}
+    \centering
+    \input{drawings/activation_functions.tikz.tex}
+  
+    \caption[Activation functions]{
+      Activation functions
+    }
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Output layers}
+    \[
+      g_k^{[L]}(\bm{a}^{[L - 1]}) = \frac{e^{a_k^{[L - 1]}}}{\sum_{i = 1}^K e^{a_i^{[L - 1]}}}
+    \]
+  \end{block}
+  
+  \begin{block}{Cost function}
+    \begin{align*}
+      \hat{\bm{y}} &:= g^{[L]}(\bm{a^{[L - 1]}}) \\
+      C(\bm{y}, \hat{\bm{y}}) &:= \frac{1}{N} \sum_{i = 1}^N (y_i - \hat{y}_i)^2
+    \end{align*}
+  \end{block}
+\end{frame}
+
+\subsection{Convolutional Neural Networks}
+
+\begin{frame}{\insertsubsec}
+  
 \end{frame}
