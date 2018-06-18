@@ -182,5 +182,32 @@
 \subsection{Convolutional Neural Networks}
 
 \begin{frame}{\insertsubsec}
-  
+  \centering
+  \begin{figure}
+    \hspace{-7cm}
+    \adjustbox{max width=1.35\pagewidth}{\input{drawings/convolution_operation.tikz.tex}}
+
+    \caption{Convolution operation}
+  \end{figure}
+
+  \begin{block}{Output size}
+    \begin{align*}
+      n_{\text{next}} = \left\lfloor\frac{n_{\text{prev}} + p - f}{s}\right\rfloor + 1
+    \end{align*}
+  \end{block} 
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \scalebox{.7}{\input{drawings/convolutional_layer.tikz.tex}}
+    \caption{Convolutional layer}
+  \end{figure}
+
+  \begin{align*}
+    \bm{z}^{[l]} &= \bm{W}^{[l]} \cdot \bm{a}^{[l - 1]} + \bm{b}^{[l - 1]} \\
+    &\downarrow \text{becomes} \\
+    \bm{\mathsf{Z}}^{[l]} &= \bm{\mathsf{A}}^{[l - 1]} * \bm{\mathsf{W}}^{[l]} + 
+    \bm{\mathsf{B}}^{[l - 1]}
+  \end{align*}
 \end{frame}
