@@ -1,16 +1,6 @@
 % !TEX root = ../main.tex
 
 \section{Project scope}
-\subsection{Problem formulation}
-\begin{frame}{\insertsubsec}
-  \begin{itemize}
-    \item We have access to a unique set of \( \simeq 500 \) scans
-    \item Develop a new deep learning model to analyze this dataset
-    \item Get better results than the \emph{volume} radiomic feature which usually achieves
-    a C-index of 0.65 for the Head and Neck dataset. 
-  \end{itemize}
-\end{frame}
-
 \subsection{State-of-the-art}
 \begin{frame}{\insertsubsec}
   The most typical approach is to extract radiomic features, usually with
@@ -24,7 +14,48 @@
     \item Use a pre-trained CNN as a feature extractor
     \item Fine tune a pre-trained CNN on medical data
   \end{itemize}
+  \vspace{.5cm}
+  In survival models \emph{DeepSurv} is uses a deep neural network to fit a Cox Proportional 
+  Hazards model
+\end{frame}
+
+\begin{frame}
+  In 3D imaging \emph{DeepMedic} used 3D CNNs to analyze MRI scans for brain lesion segmentation
+
+  \vspace{.5cm}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.9\textwidth]{images_main/deepmedic}
+    \caption{\emph{DeepMedic} architecture}
+  \end{figure}
+\end{frame}
+
+\subsection{Problem formulation}
+\begin{frame}{\insertsubsec}
+
+  \begin{itemize}
+    \item Work centered around PMHNK dataset
+    \item Medical Image analysis problem
+    \item Current results show a CI of 0,628
+  \end{itemize}
   
+  Can a better survival prediction than the current results, be obtained using image
+  data and Deep Neural Networks?
+\end{frame}
+
+\subsection{Objectives}
+\begin{frame}{\insertsubsec}
+  \begin{itemize}
+    \item Get a better understanding of survival prediction problems.
+    \item Be able to analyze the PMHNK dataset to get different strategies for building a 
+    deep learning model.
+    \item Develop a new deep learning model to improve the survival's prediction rate of
+    PMHNK dataset patients.
+    \item Investigate and compare the performance of the deep learning-based method to 
+    the more conventional methods.
+    \item Get a better CI than the \emph{volume} feature, which is often used in clinic as a
+    prognostic feature, its CI is 0,628.
+  \end{itemize}
 \end{frame}
 
 \subsection{Stakeholders}
