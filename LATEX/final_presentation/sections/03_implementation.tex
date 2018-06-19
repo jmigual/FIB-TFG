@@ -67,8 +67,16 @@
   
   \begin{figure}
     \centering
-    \include{pairs_sets.tikz.tex}
+    \scalebox{.7}{\input{drawings/pairs_sets.tikz.tex}}
     \caption{Types of pairs generated from train and test sets}
   \end{figure}
+
+  \begin{block}{Conditions}
+    \begin{itemize}
+      \item Both of them are uncensored \( E_A = E_B = 1 \)
+      \item The uncensored time of one is smaller than the censored time of the other
+            \( T_A < T_B | E_A = 1; E_B = 0 \)
+    \end{itemize}
+  \end{block}
 \end{frame}
 
