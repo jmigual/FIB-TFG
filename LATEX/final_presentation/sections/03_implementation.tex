@@ -10,9 +10,20 @@
     \item Generate pairs for training
   \end{itemize}
 
+  \vspace{.5cm}
+  Only 490 of the initial 671 could be used to fit a model because we needed the following 
+  requirements:
+  \begin{itemize}
+    \item CT scan
+    \item Tumour annotations
+    \item Radiomic features
+    \item Clinical information
+  \end{itemize}
+\end{frame}
+\begin{frame}
   \begin{figure}
     \centering
-    \scalebox{.5}{\input{drawings/preprocess.tikz.tex}}
+    \scalebox{.6}{\input{drawings/preprocess.tikz.tex}}
     \caption{Image data pre-processing}
   \end{figure}
 \end{frame}
