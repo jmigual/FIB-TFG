@@ -152,7 +152,6 @@
 \end{frame}
 
 \begin{frame}
-  LOOCV CI is 0,627.
   \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{images/results/c-index_volume}
@@ -160,6 +159,7 @@
       Volume only model results using LOOCV \label{fig:results-volume-LOOCV}
     }
   \end{figure}
+  LOOCV CI is 0,627.
 \end{frame}
 
 \subsection{Build shallow siamese network}
@@ -204,10 +204,101 @@
 \end{frame}
 
 \subsection{Build scalar only siamese network}
-\begin{frame}
+\begin{frame}{\insertsubsec}
   \begin{figure}
     \centering
     \input{drawings/scalar_0.tikz.tex}
     \caption{Scalar siamese network illustration \label{fig:scalar-implement}}
   \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Learning rate: 0,001
+    \item Regularization factor: 0,01
+    \item Dropout probability: 20\%
+    \item Number of epochs: 1000
+    \item Batch size: The whole dataset
+  \end{itemize}
+
+  \begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|c||c|c|c|}
+      \cline{2-7}
+      \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
+      \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
+      \hline
+      \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} & 
+      \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
+      \hhline{=======}
+      0 & 16.359 & 46.804 & 5.330 & 0,728 & 0,915 & 0,543 \\
+      1 & 16.359 & 46.957 & 5.278 & 0,809 & 0,927 & 0,64 \\
+      2 & 16.348 & 47.577 & 5.084 & 0,751 & 0,91 & 0,675 \\
+      3 & 16.348 & 47.274 & 5.176 & 0,766 & 0,919 & 0,624 \\
+      \hhline{=======}
+      \textbf{Total} & 65.414 & 188.612 & 20.868 & 0,764 & 0,918 & 0,62   \\
+      \hline
+    \end{tabular}
+  
+    \caption[Scalar Only 4-CV results]{
+      Results for scalar only model using 4-CV \label{tab:results-scalar-4CV}
+    }
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.8\textwidth]{images/results/c-index_scalar}
+    \caption[LOOCV scalar only model results]{
+      Scalar only model results using LOOCV \label{fig:results-scalar-LOOCV}
+    }
+  \end{figure}
+
+  Final CI is 0,771
+\end{frame}
+
+\subsection{Build deep siamese network}
+\begin{frame}{\insertsubsec}
+  \begin{figure}
+    \centering
+    \scalebox{.7}{\input{drawings/residual_general.tikz.tex}}
+    \caption[Deep siamese network main structure]{
+      Deep siamese network main structure \label{fig:residual-general}
+    }
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Learning rate: 0,001
+    \item Regularization factor: 0,01
+    \item Dropout probability: 0,2/1
+    \item Number of epochs: 15
+    \item Batch size: 20
+  \end{itemize}
+
+  \begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|c||c|c|c|}
+      \cline{2-7}
+      \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
+      \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
+      \hline
+      \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} & 
+      \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
+      \hhline{=======}
+      0 & 65.436 & 187.216 & 21.320 & 0,765 & 0,812 & 0,814 \\
+      1 & 65.436 & 187.828 & 21.112 & 0,821 & 0,813 & 0,813 \\
+      2 & 65.392 & 190.308 & 20.336 & 0,427 & 0,431 & 0,387 \\
+      3 & 65.392 & 189.096 & 20.704 & 0,389 & 0,359 & 0,428 \\
+      \hhline{=======}
+      \textbf{Total} & 261.656 & 754.448 & 83.472 & 0,601 & 0,603 & 0,614 \\
+      \hline
+    \end{tabular}
+  
+    \caption[Residual 4-CV results]{
+      Results for residual model using 4-CV \label{tab:results-residual-4CV}
+    }
+  \end{table}
 \end{frame}
