@@ -84,7 +84,12 @@
 \begin{frame}{\insertsubsec}
   Step required from a software engineering perspective. Future models should implement the 
   \( \operatorname{sister}(x) \) function.
-
+  \begin{figure}
+    \scalebox{.7}{\input{drawings/siamese_network.tikz.tex}}
+    \caption{Siamese network illustration}
+  \end{figure}
+\end{frame}
+\begin{frame}
   \begin{align*}
     \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
     \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
@@ -119,7 +124,7 @@
     \item Batch size: The whole dataset
   \end{itemize}
 
-  Previous state-of-the-art CI was 0,628
+  Previous state-of-the-art CI was 0,628.
 
   \begin{table}
     \centering
@@ -147,6 +152,7 @@
 \end{frame}
 
 \begin{frame}
+  LOOCV CI is 0,627.
   \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{images/results/c-index_volume}
@@ -162,5 +168,46 @@
     \centering
     \scalebox{.7}{\input{drawings/siamese_0.tikz.tex}}
     \caption{Shallow siamese sister's network illustration \label{fig:shallow-implement}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Learning rate: 0,05
+    \item Number of epochs: 200
+    \item Batch size: The whole dataset
+  \end{itemize}
+
+  \begin{table}
+    \centering
+    \begin{tabular}{|c||c|c|c||c|c|c|}
+      \cline{2-7}
+      \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
+      \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
+      \hline
+      \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} 
+      & \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
+      \hhline{=======}
+      0 & 16.359 & 46.804 & 5.330 & 0,627 & 0,634 & 0,639 \\
+      1 & 16.359 & 46.957 & 5.278 & 0,629 & 0,635 & 0,63 \\
+      2 & 16.348 & 47.577 & 5.084 & 0,636 & 0,627 & 0,661 \\
+      3 & 16.348 & 47.274 & 5.176 & 0,618 & 0,644 & 0,6 \\
+      \hhline{=======}
+      \textbf{Total} & 65.414 & 188.612 & 20.868 & 0,627 & 0,635 & 0,632 \\
+      \hline
+    \end{tabular}
+  
+    \caption[Volume Only 4-CV results]{
+      Results for volume only model using 4-CV \label{tab:results-volume-4CV}
+    }
+  \end{table}
+\end{frame}
+
+\subsection{Build scalar only siamese network}
+\begin{frame}
+  \begin{figure}
+    \centering
+    \input{drawings/scalar_0.tikz.tex}
+    \caption{Scalar siamese network illustration \label{fig:scalar-implement}}
   \end{figure}
 \end{frame}
