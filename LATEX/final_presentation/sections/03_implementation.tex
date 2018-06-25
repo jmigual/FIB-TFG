@@ -185,20 +185,20 @@
       \multicolumn{1}{c|}{} & \multicolumn{3}{|c||}{\textbf{Pairs}} & 
       \multicolumn{3}{c|}{\textbf{Concordance Index}} \\
       \hline
-      \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} 
-      & \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
+      \textbf{Fold} & \textbf{Mixed} & \textbf{Train} & \textbf{Test} & 
+      \textbf{Mixed} & \textbf{Train} & \textbf{Test} \\
       \hhline{=======}
-      0 & 16.359 & 46.804 & 5.330 & 0,627 & 0,634 & 0,639 \\
-      1 & 16.359 & 46.957 & 5.278 & 0,629 & 0,635 & 0,63 \\
-      2 & 16.348 & 47.577 & 5.084 & 0,636 & 0,627 & 0,661 \\
-      3 & 16.348 & 47.274 & 5.176 & 0,618 & 0,644 & 0,6 \\
+      0 & 65.436 & 187.216 & 21.320 & 0,43 & 0,42 & 0,419 \\
+      1 & 65.436 & 187.828 & 21.112 & 0,444 & 0,431 & 0,459 \\
+      2 & 65.392 & 190.308 & 20.336 & 0,472 & 0,474 & 0,426 \\
+      3 & 65.392 & 189.096 & 20.704 & 0,514 & 0,512 & 0,514 \\
       \hhline{=======}
-      \textbf{Total} & 65.414 & 188.612 & 20.868 & 0,627 & 0,635 & 0,632 \\
+      \textbf{Total} & 261.656 & 754.448 & 83.472 & 0,465 & 0,459 & 0,455 \\
       \hline
     \end{tabular}
   
-    \caption[Volume Only 4-CV results]{
-      Results for volume only model using 4-CV \label{tab:results-volume-4CV}
+    \caption[Shallow 4-CV results]{
+      Results for shallow model using 4-CV \label{tab:results-shallow-4CV}.
     }
   \end{table}
 \end{frame}
@@ -301,6 +301,17 @@
       Results for residual model using 4-CV \label{tab:results-residual-4CV}
     }
   \end{table}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/residual_train}
+  
+    \caption{Training iterations CI
+      \label{fig:results-residual-CI}
+    }
+  \end{figure}
 \end{frame}
 
 \subsection{Predict patient's survival}
