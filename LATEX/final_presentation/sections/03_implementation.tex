@@ -90,22 +90,29 @@
   \end{figure}
 \end{frame}
 \begin{frame}
-  \begin{align*}
-    \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
-    \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
-    \sigma(x) &= \frac{1}{1 + \exp(-x)} \\
-    \hat{y} &= \sigma(||\bm{O}_B||_2 - ||\bm{O}_A||_2) 
-  \end{align*}
+  \begin{block}{Sister network}
+    \begin{align*}
+      \bm{O}_A &= \operatorname{sister}(\bm{X}_A) \\
+      \bm{O}_B &= \operatorname{sister}(\bm{X}_B) \\
+      \sigma(x) &= \frac{1}{1 + \exp(-x)} \\
+      \hat{y} &= \sigma(||\bm{O}_B||_2 - ||\bm{O}_A||_2) 
+    \end{align*}
+  \end{block}
 
-  \[
-    \mathcal{L}(\bm{y}, \hat{\bm{y}}) = -\frac{1}{N} \sum_{i = 1}^{N}
-    (1 - y_i)\log(1 - \hat{y}_i) + y_i\log(\hat{y}_i)
-  \]
+  \begin{block}{Loss function}
+    \[
+      \mathcal{L}(\bm{y}, \hat{\bm{y}}) = -\frac{1}{N} \sum_{i = 1}^{N}
+      (1 - y_i)\log(1 - \hat{y}_i) + y_i\log(\hat{y}_i)
+    \]
+  \end{block}
 
-  \[
-    C(\bm{y}, \hat{\bm{y}}) = \mathcal{L}(\bm{y}, \hat{\bm{y}}) + 
-    ||\bm{w}||_2
-  \]
+  \begin{block}{Cost function}
+    
+    \[
+      C(\bm{y}, \hat{\bm{y}}) = \mathcal{L}(\bm{y}, \hat{\bm{y}}) + 
+      ||\bm{w}||_2
+    \]
+  \end{block}
 \end{frame}
 
 \subsection{Build volume only model}
@@ -115,15 +122,16 @@
   \[
     \operatorname{sister}(\bm{X}) = w\cdot X_{\text{scalar}_{26}} + b
   \]
+
+  \begin{block}{Train parameters}
+    \begin{itemize}
+      \item Learning rate: 0,05
+      \item Number of epochs: 200
+      \item Batch size: The whole dataset
+    \end{itemize}
+  \end{block}
 \end{frame}
 \begin{frame}
-  Parameters:
-  \begin{itemize}
-    \item Learning rate: 0,05
-    \item Number of epochs: 200
-    \item Batch size: The whole dataset
-  \end{itemize}
-
   Previous state-of-the-art CI was 0,628.
 
   \begin{table}
