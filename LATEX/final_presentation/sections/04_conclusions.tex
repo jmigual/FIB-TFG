@@ -4,30 +4,24 @@
 
 \begin{frame}
   \begin{itemize}
-    \item A model that has a better CI than the previous state-of-the-art values has been created.
-    \item The model did not use a CNN
-    \item By using CC clusters it was possible to validate the scalar model
     \item Some time was spent learning how DNNs and CNNs work
+    \item A model that has a better CI than the previous state-of-the-art values has been created,
+    although it did not use a CNN
+    \item By using Compute Canada clusters it was possible to validate the scalar model
     \item Two important innovations from the previous results:
     \begin{itemize}
       \item Converting the regression survival problem into a classification one by using 
       the siamese network
       \item Using a DNN to train the survival data
     \end{itemize}
-    \item The initial objectives seem complete
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Future work}
   \begin{itemize}
-    \item When working with the deep residual siamese and using CNN there's still 
-    room for improvement. This model was built and tested but a proper 
-    hyper-parameter search may get better results, future work will be directed towards
-    finding a good set of hyper-parameters that can help the model to converge.
-    \item Improvements towards using CNN for the model can also be focused in 
-    using transfer learning once 3D pre-trained CNN models start to appear.
-    \item Even though the CI has been improved, future work should also be focused in 
-    using the results to predict a patient's survival time or risk.
-    \item The found model should also be validated by using more data or an external dataset.
+    \item Find better hyper-parameters when using a CNN
+    \item Use transfer learning with CNNs.
+    \item Predict a patient's survival time or risk
+    \item Validate model through external dataset
   \end{itemize}
 \end{frame}
